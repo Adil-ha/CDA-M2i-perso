@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <section class="tab">
+      <h1>Liste de contacts</h1>
+      <table border="1">
+        <thead>
+          <tr>
+            <th>Titre</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Date Naissance</th>
+            <th>Telephone</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody class="table"></tbody>
+      </table>
+    </section>
+
+    <section class="form">
+      <h1>Ajouter Contact</h1>
+      <form action="">
+        <div class="radio">
+          <input type="radio" id="huey" name="drone" value="Mr" checked />
+          <label for="Mr">Mr</label>
+          <input type="radio" id="dewey" name="drone" value="Mme" />
+          <label for="Mme">Mme</label>
+        </div>
+        <div class="name">
+          <input class="nom" type="text" placeholder="nom" />
+          <input class="prenom" type="text" placeholder="prenom" />
+        </div>
+        <div class="info">
+          <input class="date" type="date" placeholder="Date" />
+          <input class="telephone" type="number" placeholder="Telephone" />
+          <input class="email" type="text" placeholder="Email" />
+        </div>
+        <input type="submit" value="Ajouter" />
+      </form>
+    </section>
+    <script src="./script.js" type="module"></script>
+  </body>
+</html>

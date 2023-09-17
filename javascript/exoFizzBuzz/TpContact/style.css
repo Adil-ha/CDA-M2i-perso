@@ -1,0 +1,57 @@
+body {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 1.5rem;
+  text-align: center;
+}
+thead{
+  background-color: black;
+  color: white;
+}
+td,th{
+  padding: 10px;
+}
+
+.form{
+  border: 0.5px solid grey;
+  margin-top: 20px;
+}
+
+input, label{
+  height: 30px;
+  font-size: 1.5rem;
+}
+.radio {
+  text-align: left;
+}
+.name,
+.info {
+  display: flex;
+}
+.nom,
+.prenom {
+  width: 50%;
+}
+.date,
+.telephone,
+.email {
+  width: 33%;
+}
+
+input[type="submit"] {
+  width: 100%;
+  background: rgb(0, 155, 93);
+  outline: none;
+  border: none;
+  color: white;
+  margin-top: 20px;
+}
