@@ -1,4 +1,5 @@
 import { Task } from "./Task.js";
+
 export class TaskList {
   constructor() {
     this.tasks = [];
@@ -10,13 +11,15 @@ export class TaskList {
   }
 
   removeTask(id) {
-    let index = this.tasks.findIndex((objet) => objet.id == id);
-    this.tasks.splice(index, 1);
+    // let index = this.tasks.findIndex((objet) => objet.id == id);
+    // this.tasks.splice(index, 1);
+    this.tasks = this.tasks.filter((task) => task.id != id);
   }
 
-  removeAllTask() {
-    return (this.tasks = []);
-  }
+  // removeAllTask() {
+  //   let tab = [];
+  //   return (this.tasks = tab);
+  // }
 
   renderTasks() {
     const ul = document.createElement("ul");
