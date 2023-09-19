@@ -2,23 +2,26 @@ import { Parking } from "./class/Parking.js";
 
 let btnPay = document.querySelector(".btnPay");
 let btnTicket = document.querySelector(".btnTicket");
-let display = false;
+
 let parking = new Parking();
 parking.parking = [];
-console.log(parking.parking);
 
 btnTicket.addEventListener("click", () => {
   let inputPlaque = document.querySelector(".inputPlaque").value.trim();
-  if (inputPlaque !== "") {
+  const vehiculeExiste = parking.isVehicleAvailable(inputPlaque);
+  if (inputPlaque !== "" && !vehiculeExiste) {
     parking.addVehicule(inputPlaque);
     console.log(parking.parking);
-    document.querySelector(".inputPlaque").value = "";
-    let message = `Veuillez prendre votre ticket pour le véhicule ${inputPlaque}`;
+    const message = `Veuillez prendre votre ticket pour le véhicule ${inputPlaque}`;
     parking.renderWarning("success", message);
+  } else if (vehiculeExiste) {
+    const message = `Un véhicule avec la plaque ${inputPlaque} existe déjà dans le parking.`;
+    parking.renderWarning("danger", message);
   } else {
-    let message = "Le format de la plaque n'est pas correcte";
+    const message = "Le format de la plaque n'est pas correct.";
     parking.renderWarning("danger", message);
   }
+  document.querySelector(".inputPlaque").value = "";
 });
 
 btnPay.addEventListener("click", () => {
@@ -33,10 +36,8 @@ btnPay.addEventListener("click", () => {
 
 function verificationCar() {
   let inputPlaque = document.querySelector(".inputPlaque").value.trim();
-  const vehiculeExiste = parking.parking.some(
-    (vehicule) => vehicule.plaque === inputPlaque
-  );
 
+  const vehiculeExiste = parking.isVehicleAvailable(inputPlaque);
   if (!vehiculeExiste) {
     let message = `Le véhicule ${inputPlaque} n'existe pas`;
     parking.renderWarning("danger", message);
@@ -50,21 +51,24 @@ function verificationCar() {
     let secondes = Math.floor(timeParking / 1000); // 1 seconde = 1000 millisecondes
 
     let price = 0;
-
-    if (minutes <= 15) {
-      price = Parking.price1;
-    } else if (minutes > 15 && minutes <= 30) {
-      price = Parking.price2;
-    } else if (minutes > 30 && minutes <= 45) {
-      price = Parking.price3;
-    } else if (minutes > 45) {
-      price = Parking.price4;
+    switch (true) {
+      case minutes <= 15:
+        price = Parking.price1;
+        break;
+      case minutes > 15 && minutes <= 30:
+        price = Parking.price2;
+        break;
+      case minutes > 30 && minutes <= 45:
+        price = Parking.price3;
+        break;
+      default:
+        price = Parking.price4;
     }
 
-    let message = `Le prix à payer pour le véhicule ${inputPlaque} est de ${price}`; // Complétez le message avec le calcul du prix.
+    let message = `Le prix à payer pour le véhicule ${inputPlaque} est de ${price}`;
     parking.renderWarning("warning", message);
     parking.exitCar(inputPlaque);
-    console.log(parking.parking);
+    console.table(parking.parking);
   }
   document.querySelector(".inputPlaque").value = "";
 }

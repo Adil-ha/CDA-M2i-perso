@@ -10,19 +10,13 @@ export class Parking {
     this.parking = [];
   }
 
-  // Méthode de vérification de véhicule
   isVehicleAvailable(plaque) {
-    return !this.parking.some((vehicule) => vehicule.plaque == plaque);
+    return this.parking.some((vehicule) => vehicule.plaque == plaque);
   }
 
   addVehicule(plaque) {
-    if (this.isVehicleAvailable(plaque)) {
-      let vehicule = new Vehicule(plaque);
-      this.parking.push(vehicule);
-    } else {
-      let message = `Un véhicule avec la plaque ${plaque} existe déjà dans le parking.`;
-      this.renderWarning("danger", message);
-    }
+    let vehicule = new Vehicule(plaque);
+    this.parking.push(vehicule);
   }
 
   exitCar(plaque) {
@@ -30,14 +24,22 @@ export class Parking {
   }
 
   renderWarning(type, text) {
-    let warning = document.querySelector(".warning");
-    warning.style.display = "block";
-    warning.innerHTML = `
-    <div class="alert alert-dismissible alert-${type}">
-      <p class="m-auto text-center">${text}</p>
-    </div>
+    const warning = document.createElement("div");
+    warning.classList.add("alert", "alert-dismissible", `alert-${type}`);
 
-`;
+    const paragraph = document.createElement("p");
+    paragraph.classList.add("m-auto", "text-center");
+    paragraph.textContent = text;
+    warning.appendChild(paragraph);
+
+    const parentElement = document.querySelector(".warning");
+    while (parentElement.firstChild) {
+      parentElement.removeChild(parentElement.firstChild);
+    }
+    parentElement.appendChild(warning);
+
+    warning.style.display = "block";
+
     setTimeout(() => {
       warning.style.display = "none";
     }, 5000);
