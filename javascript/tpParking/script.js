@@ -2,42 +2,44 @@ import { Parking } from "./class/Parking.js";
 
 let btnPay = document.querySelector(".btnPay");
 let btnTicket = document.querySelector(".btnTicket");
-let warning = document.querySelector(".warning");
 let display = false;
 let parking = new Parking();
 parking.parking = [];
 console.log(parking.parking);
 
 btnTicket.addEventListener("click", () => {
-  let inputPlaque = document.querySelector(".inputPlaque").value;
-  parking.addVehicule(inputPlaque);
-  console.log(parking.parking);
-  document.querySelector(".inputPlaque").value = "";
+  let inputPlaque = document.querySelector(".inputPlaque").value.trim();
+  if (inputPlaque !== "") {
+    parking.addVehicule(inputPlaque);
+    console.log(parking.parking);
+    document.querySelector(".inputPlaque").value = "";
+    let message = `Veuillez prendre votre ticket pour le véhicule ${inputPlaque}`;
+    parking.renderWarning("success", message);
+  } else {
+    let message = "Le format de la plaque n'est pas correcte";
+    parking.renderWarning("danger", message);
+  }
 });
 
 btnPay.addEventListener("click", () => {
-  verificationCar();
+  let inputPlaque = document.querySelector(".inputPlaque").value.trim();
+  if (inputPlaque !== "") {
+    verificationCar();
+  } else {
+    let message = "Le format de la plaque n'est pas correcte";
+    parking.renderWarning("danger", message);
+  }
 });
 
 function verificationCar() {
-  let inputPlaque = document.querySelector(".inputPlaque").value;
+  let inputPlaque = document.querySelector(".inputPlaque").value.trim();
   const vehiculeExiste = parking.parking.some(
     (vehicule) => vehicule.plaque === inputPlaque
   );
 
   if (!vehiculeExiste) {
     let message = `Le véhicule ${inputPlaque} n'existe pas`;
-    createWarning("danger", message);
-
-    setTimeout(() => {
-      warning.style.display = "none";
-      display = true;
-    }, 5000);
-    if (display) {
-      warning.style.display = "block";
-      message = `Veuillez prendre votre ticket pour le véhicule ${inputPlaque}`;
-      createWarning("success", message);
-    }
+    parking.renderWarning("danger", message);
   } else if (vehiculeExiste) {
     let exitDate = new Date().getTime();
     let timeParking = exitDate - parking.parking[0].enterDate;
@@ -60,16 +62,9 @@ function verificationCar() {
     }
 
     let message = `Le prix à payer pour le véhicule ${inputPlaque} est de ${price}`; // Complétez le message avec le calcul du prix.
-    createWarning("warning", message);
+    parking.renderWarning("warning", message);
+    parking.exitCar(inputPlaque);
+    console.log(parking.parking);
   }
   document.querySelector(".inputPlaque").value = "";
-}
-
-function createWarning(type, message) {
-  warning.innerHTML = `
-                          <div class="alert alert-dismissible alert-${type}">
-                            <p class="m-auto text-center">${message}</p>
-                          </div>
-  
-  `;
 }

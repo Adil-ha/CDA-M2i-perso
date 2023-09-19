@@ -10,8 +10,36 @@ export class Parking {
     this.parking = [];
   }
 
+  // Méthode de vérification de véhicule
+  isVehicleAvailable(plaque) {
+    return !this.parking.some((vehicule) => vehicule.plaque == plaque);
+  }
+
   addVehicule(plaque) {
-    let vehicule = new Vehicule(plaque);
-    this.parking.push(vehicule);
+    if (this.isVehicleAvailable(plaque)) {
+      let vehicule = new Vehicule(plaque);
+      this.parking.push(vehicule);
+    } else {
+      let message = `Un véhicule avec la plaque ${plaque} existe déjà dans le parking.`;
+      this.renderWarning("danger", message);
+    }
+  }
+
+  exitCar(plaque) {
+    this.parking = this.parking.filter((car) => car.plaque !== plaque);
+  }
+
+  renderWarning(type, text) {
+    let warning = document.querySelector(".warning");
+    warning.style.display = "block";
+    warning.innerHTML = `
+    <div class="alert alert-dismissible alert-${type}">
+      <p class="m-auto text-center">${text}</p>
+    </div>
+
+`;
+    setTimeout(() => {
+      warning.style.display = "none";
+    }, 5000);
   }
 }
