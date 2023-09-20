@@ -6,9 +6,14 @@ const reset = document.querySelector(".reset");
 
 window.addEventListener("load", () => {
   const localstoragetab = JSON.parse(localStorage.getItem("product"));
+  console.log(localstoragetab);
   if (localstoragetab) {
+    //Cela permet de fusionner les produits chargés depuis le local storage avec les produits existants dans la mémoire de l'application.
     listProduct.push(...localstoragetab);
-    id = listProduct.length;
+    console.log(listProduct);
+    //Cette ligne met à jour la variable id en fonction du nombre de produits présents dans le tableau listProduct.
+    //Cela permet d'attribuer des ID uniques aux nouveaux produits ajoutés.
+
     createProductInTable();
   }
 });
@@ -16,7 +21,7 @@ window.addEventListener("load", () => {
 btnAddProduct.addEventListener("click", () => {
   const productInput = document.querySelector(".productInput").value;
   if (productInput != "") {
-    id++;
+    id = new Date().getTime().toString();
     const product = {
       id: id,
       name: productInput,
@@ -78,15 +83,15 @@ function deleteProductById(id) {
   }
 }
 
-function editProductById(id, newName) {
-  const index = listProduct.findIndex((product) => product.id === id);
-  if (index !== -1) {
-    listProduct[index].name = newName;
-    localStorage.setItem("product", JSON.stringify(listProduct));
-    const productElement = document.querySelector(`[data-id="${id}"]`);
-    if (productElement) {
-      const li = productElement.querySelector("li");
-      li.innerHTML = newName;
-    }
-  }
-}
+// function editProductById(id, newName) {
+//   const index = listProduct.findIndex((product) => product.id === id);
+//   if (index !== -1) {
+//     listProduct[index].name = newName;
+//     localStorage.setItem("product", JSON.stringify(listProduct));
+//     const productElement = document.querySelector(`[data-id="${id}"]`);
+//     if (productElement) {
+//       const li = productElement.querySelector("li");
+//       li.innerHTML = newName;
+//     }
+//   }
+// }
