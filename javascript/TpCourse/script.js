@@ -11,9 +11,6 @@ window.addEventListener("load", () => {
     //Cela permet de fusionner les produits chargés depuis le local storage avec les produits existants dans la mémoire de l'application.
     listProduct.push(...localstoragetab);
     console.log(listProduct);
-    //Cette ligne met à jour la variable id en fonction du nombre de produits présents dans le tableau listProduct.
-    //Cela permet d'attribuer des ID uniques aux nouveaux produits ajoutés.
-
     createProductInTable();
   }
 });
