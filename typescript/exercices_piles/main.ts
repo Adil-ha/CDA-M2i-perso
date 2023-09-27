@@ -5,14 +5,12 @@ class Pile<T> {
     this.tabPile = tabPile;
   }
 
-  public empiler(element: T): T[] {
+  public empiler(element: T): void {
     this.tabPile.push(element);
-    return this.tabPile;
   }
 
-  public depiler(): T[] {
+  public depiler(): void {
     this.tabPile.pop();
-    return this.tabPile;
   }
 
   public getTabPile(): T[] {
@@ -24,7 +22,7 @@ const maPile = new Pile<number>([1, 2, 3]);
 maPile.empiler(4);
 console.log(maPile);
 const elementDepile = maPile.depiler();
-console.log(elementDepile);
+// console.log(elementDepile);
 
 const maPileDeString = new Pile<string>(["aa", "bb", "cc"]);
 maPileDeString.empiler("gg");

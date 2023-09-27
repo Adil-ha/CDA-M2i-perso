@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TP exercices recettes</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container-fluid">
+      <form class="row my-3 g-3">
+        <div class="col-4">
+          <div class="bg-dark p-3 rounded">
+            <h3 class="fw-light text-light">Filters</h3>
+            <hr class="text-light" />
+            <label for="customRange1" class="form-label text-light"
+              >Preparation time :
+            </label>
+            <input type="range" class="form-range" id="customRange1" />
+            <label for="customRange1" class="form-label text-light"
+              >Cooking time: :
+            </label>
+            <input type="range" class="form-range" id="customRange1" />
+            <label for="nameInput" class="form-label text-light">Name</label>
+            <input type="text" class="form-control" id="nameInput" />
+            <label for="IngredientSelect" class="form-label text-light mt-3"
+              >Ingredients</label
+            >
+            <select
+              id="IngredientSelect"
+              class="form-select"
+              multiple
+              aria-label="multiple select example"
+            >
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+            <hr class="text-light" />
+            <button class="btn btn-outline-light w-100">
+              <i class="bi bi-send"></i> Filter
+            </button>
+          </div>
+        </div>
+        <div class="col-8">
+          <div class="bg-dark p-3 rounded">
+            <h3 class="fw-light text-light">Recipes</h3>
+            <div class="border border-light mb-3 w-100 rounded">
+              <h3 class="fw-bold text-light text-center">Tomato Basil Pasta</h3>
+              <hr class="text-light" />
+              <div class="d-flex justify-content-around">
+                <p class="text-light">10min</p>
+                <p class="text-light">15min</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <script type="module" src="./assets/js/main.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
