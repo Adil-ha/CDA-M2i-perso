@@ -1,4 +1,4 @@
-export interface Recipe {
+export interface IRecipe {
   id?: string;
   name: string;
   servings: number;
