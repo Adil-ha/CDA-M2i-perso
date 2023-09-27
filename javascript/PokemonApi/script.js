@@ -33,12 +33,12 @@ function createPokemonCard(data) {
   const weightElement = document.createElement("p");
   weightElement.classList.add("card-text");
   weightElement.classList.add("weightPokemon");
-  weightElement.textContent = `Poids ${data.weight}`;
+  weightElement.textContent = `Poids ${data.weight / 10} kg`;
 
   const heightElement = document.createElement("p");
   heightElement.classList.add("card-text");
   heightElement.classList.add("hightPokemon");
-  heightElement.textContent = `Taille  ${data.height}`;
+  heightElement.textContent = `Taille  ${data.height / 10} m`;
 
   const linkElement = document.createElement("a");
   linkElement.classList.add("btn");
@@ -55,7 +55,6 @@ function createPokemonCard(data) {
   cardBodyDiv.appendChild(heightElement);
   cardBodyDiv.appendChild(linkElement);
 
-  //   container.appendChild(cardDiv);
   pokemonContainer.innerHTML = "";
   pokemonContainer.appendChild(cardDiv);
   randomSuprise();
@@ -95,7 +94,11 @@ function randomSuprise() {
 function clickArrowLeft() {
   let arrowLeft = document.querySelector(".arrowLeft");
   arrowLeft.addEventListener("click", (e) => {
-    nbRandom = nbRandom - 1;
+    if (nbRandom == 0) {
+      nbRandom == 151;
+    } else {
+      nbRandom--;
+    }
     fetchApiPokemon(nbRandom);
     console.log(e);
   });
@@ -104,7 +107,7 @@ function clickArrowRight() {
   let arrowRight = document.querySelector(".arrowRight");
   arrowRight.addEventListener("click", (e) => {
     console.log(e);
-    nbRandom = nbRandom + 1;
+    nbRandom++;
     fetchApiPokemon(nbRandom);
   });
 }
