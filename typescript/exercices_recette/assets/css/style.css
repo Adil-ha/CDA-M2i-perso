@@ -1,39 +1,41 @@
-*{
-    box-sizing: border-box;
+* {
+  box-sizing: border-box;
 }
-.recipe{
-    border: 1px solid white;
-    transition: 0.5s;
+.recipe {
+  border: 1px solid white;
+  transition: 0.5s;
 }
-.recipe:hover{
-    opacity: 0.6;
-    cursor: pointer;
-    border: 1px solid green;
+.recipe:hover {
+  opacity: 0.6;
+  cursor: pointer;
+  border: 1px solid green;
 }
 
 .myModal {
-    padding: 10px;
-    border: 1px solid black;
-    border-radius: 15px;
-    z-index: 38;
-    display: none;
-    position: fixed;
-    transform: translate(-50%,-50%);
-    top: 50%;
-    left: 50%;
-    height: 50vh;
-    width: 75vw;   
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 15px;
+  z-index: 38;
+  display: none;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  height: 500px;
+  width: 750px;
+  background-color: white;
 }
 
-.myModal p, .myModal li{
-    font-size: 0.8rem;
+.myModal p,
+.myModal li {
+  font-size: 0.8rem;
 }
-.right{
-    position: relative;
+.right {
+  position: relative;
 }
-.close{
-    font-size: 2rem;
-    position: absolute;
-    right: 15px;
-    cursor: pointer;
+.close {
+  font-size: 2rem;
+  position: absolute;
+  right: 15px;
+  cursor: pointer;
 }

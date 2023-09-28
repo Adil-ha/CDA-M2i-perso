@@ -23,33 +23,45 @@
           <div class="bg-dark p-3 rounded">
             <h3 class="fw-light text-light">Filters</h3>
             <hr class="text-light" />
-            <label for="customRange1" class="form-label text-light"
-              >Preparation time :
+            <label
+              for="customRange1"
+              class="form-label text-light rangeValuePreparation"
+              >Preparation time : 15 min
             </label>
-            <input type="range" class="form-range" id="customRange1" />
-            <label for="customRange1" class="form-label text-light"
-              >Cooking time: :
+            <input
+              type="range"
+              class="form-range inputRangePreparation"
+              id="customRange1"
+              value="15"
+              max="15"
+            />
+
+            <label
+              for="customRange1"
+              class="form-label text-light rangeValueCooking"
+              >Cooking time : 30 min
             </label>
-            <input type="range" class="form-range" id="customRange1" />
-            <label for="nameInput" class="form-label text-light">Name</label>
+            <input
+              type="range"
+              class="form-range inputRangeCooking"
+              id="customRange1"
+              max="30"
+              value="30"
+            />
+            <label for="nameInput" class="form-label text-light">Name :</label>
             <input type="text" class="form-control" id="nameInput" />
             <label for="IngredientSelect" class="form-label text-light mt-3"
-              >Ingredients</label
+              >Ingredients :</label
             >
             <select
               id="IngredientSelect"
               class="form-select"
               multiple
               aria-label="multiple select example"
-            >
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-            </select>
+              size="9"
+            ></select>
             <hr class="text-light" />
-            <button class="btn btn-outline-light w-100">
-              <i class="bi bi-send"></i> Filter
-            </button>
+            <button class="btn btn-outline-light w-100">Filter</button>
           </div>
         </div>
         <div class="col-8">
@@ -58,66 +70,7 @@
           </div>
         </div>
       </form>
-      <div class="myModal">
-        <div class="row">
-          <div class="col-4">
-            <h6>Preparation Time</h6>
-            <p>10 mins</p>
-            <h6>Cooking Time</h6>
-            <p>15mins</p>
-            <h6>Servings</h6>
-            <p>4 servings</p>
-            <h6>Ingredients</h6>
-            <li>Spaguetti</li>
-            <li>Lorem, ipsum.</li>
-            <li>Lorem, ipsum.</li>
-            <li>Lorem, ipsum.</li>
-            <li>Lorem, ipsum.</li>
-            <li>Lorem, ipsum.</li>
-            <li>Lorem, ipsum.</li>
-            <li>Lorem, ipsum.</li>
-          </div>
-          <div class="col-8 right">
-            <div class="close">
-              <i class="bi bi-x-lg"></i>
-            </div>
-            <h4>Lemon Garlic Shrimp Pasta</h4>
-            <hr />
-            <li>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex
-              similique tempore iure obcaecati asperiores quam?
-            </li>
-            <li>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex
-              similique tempore iure obcaecati asperiores quam?
-            </li>
-            <li>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex
-              similique tempore iure obcaecati asperiores quam?
-            </li>
-            <li>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex
-              similique tempore iure obcaecati asperiores quam?
-            </li>
-            <li>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex
-              similique tempore iure obcaecati asperiores quam?
-            </li>
-            <li>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex
-              similique tempore iure obcaecati asperiores quam?
-            </li>
-            <li>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex
-              similique tempore iure obcaecati asperiores quam?
-            </li>
-            <li>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex
-              similique tempore iure obcaecati asperiores quam?
-            </li>
-          </div>
-        </div>
-      </div>
+      <div class="myModal"></div>
     </div>
     <script type="module" src="./assets/js/main.js"></script>
     <script
