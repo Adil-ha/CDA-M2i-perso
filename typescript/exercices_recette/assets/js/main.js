@@ -3,26 +3,24 @@ const recipeContent = document.querySelector(".recipeContent");
 const modal = document.querySelector(".myModal");
 const inputRangePreparation = document.querySelector(".inputRangePreparation");
 const inputRangeCooking = document.querySelector(".inputRangeCooking");
-console.log(inputRangeCooking);
 const rangeValuePreparation = document.querySelector(".rangeValuePreparation");
 const rangeValueCooking = document.querySelector(".rangeValueCooking");
 const nameInput = document.getElementById("nameInput");
+const IngredientSelect = document.getElementById("IngredientSelect");
 const recipeList = [];
 function getRecipe() {
     for (const key in recipeData) {
-        if (recipeData.hasOwnProperty(key)) {
-            const recetteData = recipeData[key];
-            const recette = {
-                id: key,
-                name: recetteData.name,
-                servings: recetteData.servings,
-                prepTime: recetteData.prepTime,
-                cookTime: recetteData.cookTime,
-                ingredients: recetteData.ingredients,
-                instructions: recetteData.instructions,
-            };
-            recipeList.push(recette);
-        }
+        const recetteData = recipeData[key];
+        const recette = {
+            id: key,
+            name: recetteData.name,
+            servings: recetteData.servings,
+            prepTime: recetteData.prepTime,
+            cookTime: recetteData.cookTime,
+            ingredients: recetteData.ingredients,
+            instructions: recetteData.instructions,
+        };
+        recipeList.push(recette);
     }
     displayRecipe();
     displayIngredientsInSelect();
@@ -30,11 +28,17 @@ function getRecipe() {
 function createRecipeElement(recipe) {
     recipeContent.innerHTML += `
     <div class="mb-3 w-100 rounded recipe" id="${recipe.id}">
-      <h3 class="fw-bold text-light text-center">${recipe.name}</h3>
-      <hr class="text-light">
+      <h3 class="fw-bold text-center pt-2">${recipe.name}</h3>
+      <hr>
       <div class="d-flex justify-content-around">
-        <p class="text-light">Preparation Time: ${recipe.prepTime}</p>
-        <p class="text-light">Cooking Time: ${recipe.cookTime}</p>
+        <div class="d-flex">
+          <i class="bi bi-gear"></i>
+          <p>${recipe.prepTime}</p>
+        </div>
+        <div class="d-flex">
+          <i bi bi-fire pr-2"></i>
+          <p>${recipe.cookTime}</p>
+        </div>
       </div>
     </div>
   `;
@@ -121,18 +125,36 @@ function displayIngredientsInSelect() {
 }
 function filter() {
     const searchTerm = nameInput.value.toLowerCase();
-    const minPrepTime = parseInt(inputRangePreparation.value);
-    console.log(minPrepTime);
-    const minCookTime = parseInt(inputRangeCooking.value);
-    console.log(minCookTime);
-    const filteredRecipes = recipeList.filter((recipe) => {
+    const minPrepTime = +inputRangePreparation.value;
+    const minCookTime = +inputRangeCooking.value;
+    const selectedIngredients = Array.from(IngredientSelect.selectedOptions).map(option => option.text.toLowerCase());
+    // Filtrer les recettes par nom
+    let filteredRecipes = recipeList.filter((recipe) => {
         const recipeName = recipe.name.toLowerCase();
-        const prepTime = parseInt(recipe.prepTime.split(" ")[0]);
-        const cookTime = parseInt(recipe.cookTime.split(" ")[0]);
-        return (recipeName.includes(searchTerm) &&
-            prepTime <= minPrepTime &&
-            cookTime <= minCookTime);
+        return recipeName.includes(searchTerm);
     });
+    // Filtrer les recettes par temps de préparation
+    if (!isNaN(minPrepTime)) {
+        filteredRecipes = filteredRecipes.filter((recipe) => {
+            const prepTime = +recipe.prepTime.split(" ")[0];
+            return prepTime <= minPrepTime;
+        });
+    }
+    // Filtrer les recettes par temps de cuisson
+    if (!isNaN(minCookTime)) {
+        filteredRecipes = filteredRecipes.filter((recipe) => {
+            const cookTime = +recipe.cookTime.split(" ")[0];
+            return cookTime <= minCookTime;
+        });
+    }
+    // Filtrer les recettes par ingrédients sélectionnés
+    if (selectedIngredients.length > 0) {
+        filteredRecipes = filteredRecipes.filter((recipe) => {
+            const recipeIngredients = recipe.ingredients.map(ingredient => ingredient.name);
+            const hasAllSelectedIngredients = selectedIngredients.every(selectedIngredient => recipeIngredients.includes(selectedIngredient));
+            return hasAllSelectedIngredients;
+        });
+    }
     recipeContent.innerHTML = "";
     filteredRecipes.forEach((recipe) => {
         createRecipeElement(recipe);
@@ -140,7 +162,6 @@ function filter() {
     displayModal();
 }
 window.addEventListener("load", getRecipe);
-console.log(recipeList);
 inputRangePreparation.addEventListener("input", () => {
     filter();
     rangeValuePreparation.textContent = `Preparation time : ${inputRangePreparation.value} min`;
@@ -150,3 +171,4 @@ inputRangeCooking.addEventListener("input", () => {
     rangeValueCooking.textContent = `Cooking time : ${inputRangeCooking.value} min`;
 });
 nameInput.addEventListener("input", filter);
+IngredientSelect.addEventListener("change", filter);

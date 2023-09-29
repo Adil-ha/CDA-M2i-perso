@@ -1,4 +1,4 @@
-import { IRecipe } from "./Interface/Irecipe.js";
+import { IRecipe } from "./Interface/IRecipe.js";
 import { recipeData } from "./data/recipeData.js";
 
 const recipeContent = document.querySelector(
@@ -11,7 +11,6 @@ const inputRangePreparation = document.querySelector(
 const inputRangeCooking = document.querySelector(
   ".inputRangeCooking"
 ) as HTMLInputElement;
-console.log(inputRangeCooking);
 const rangeValuePreparation = document.querySelector(
   ".rangeValuePreparation"
 ) as HTMLBodyElement;
@@ -19,12 +18,12 @@ const rangeValueCooking = document.querySelector(
   ".rangeValueCooking"
 ) as HTMLBodyElement;
 const nameInput = document.getElementById("nameInput") as HTMLInputElement;
+const IngredientSelect = document.getElementById("IngredientSelect") as HTMLSelectElement;
 
 const recipeList: IRecipe[] = [];
 
-function getRecipe() {
+function getRecipe():void {
   for (const key in recipeData) {
-    if (recipeData.hasOwnProperty(key)) {
       const recetteData = recipeData[key];
 
       const recette: IRecipe = {
@@ -38,34 +37,39 @@ function getRecipe() {
       };
 
       recipeList.push(recette);
-    }
   }
 
   displayRecipe();
   displayIngredientsInSelect();
 }
-function createRecipeElement(recipe: IRecipe) {
+function createRecipeElement(recipe: IRecipe):void {
   recipeContent.innerHTML += `
     <div class="mb-3 w-100 rounded recipe" id="${recipe.id}">
-      <h3 class="fw-bold text-light text-center">${recipe.name}</h3>
-      <hr class="text-light">
+      <h3 class="fw-bold text-center pt-2">${recipe.name}</h3>
+      <hr>
       <div class="d-flex justify-content-around">
-        <p class="text-light">Preparation Time: ${recipe.prepTime}</p>
-        <p class="text-light">Cooking Time: ${recipe.cookTime}</p>
+        <div class="d-flex">
+          <i class="bi bi-gear"></i>
+          <p>${recipe.prepTime}</p>
+        </div>
+        <div class="d-flex">
+          <i bi bi-fire pr-2"></i>
+          <p>${recipe.cookTime}</p>
+        </div>
       </div>
     </div>
   `;
 }
-function displayRecipe() {
+function displayRecipe():void {
   recipeList.forEach((recipe) => {
     createRecipeElement(recipe);
   });
   displayModal();
 }
 
-function displayModal() {
-  const recipeItems = document.querySelectorAll(".recipe");
-  recipeItems.forEach((element) => {
+function displayModal():void {
+  const recipeItems : NodeListOf<Element>  = document.querySelectorAll(".recipe");
+  recipeItems.forEach((element:Element) => {
     element.addEventListener("click", () => {
       const id: string = element.id;
       createModal(id);
@@ -74,8 +78,8 @@ function displayModal() {
   });
 }
 
-function createModal(id: string) {
-  const recipe = recipeList.find((r) => r.id === id);
+function createModal(id: string):void {
+  const recipe : IRecipe|undefined = recipeList.find((r) => r.id === id);
 
   if (!recipe) {
     console.error("Recipe not found");
@@ -122,8 +126,8 @@ function createModal(id: string) {
   closeModal();
 }
 
-function closeModal() {
-  const btnModalClose = document.querySelector(".close");
+function closeModal():void {
+  const btnModalClose: Element|null = document.querySelector(".close");
   if (btnModalClose) {
     btnModalClose.addEventListener("click", () => {
       modal.style.display = "none";
@@ -131,8 +135,8 @@ function closeModal() {
   }
 }
 
-function displayIngredientsInSelect() {
-  const uniqueIngredients = new Set<string>();
+function displayIngredientsInSelect():void{
+  const uniqueIngredients:Set<string> = new Set<string>();
 
   recipeList.forEach((recipe) => {
     recipe.ingredients.forEach((ingredient) => {
@@ -145,30 +149,51 @@ function displayIngredientsInSelect() {
   ) as HTMLBodyElement;
 
   uniqueIngredients.forEach((ingredientName) => {
-    const option = document.createElement("option");
+    const option:HTMLOptionElement = document.createElement("option");
     option.text = ingredientName;
     selectElement.appendChild(option);
   });
 }
 
 function filter() {
-  const searchTerm = nameInput.value.toLowerCase();
-  const minPrepTime = parseInt(inputRangePreparation.value);
-  console.log(minPrepTime);
-  const minCookTime = parseInt(inputRangeCooking.value);
-  console.log(minCookTime);
+  const searchTerm:string = nameInput.value.toLowerCase();
+  const minPrepTime:number = +inputRangePreparation.value;
+  const minCookTime:number = +inputRangeCooking.value;
 
-  const filteredRecipes = recipeList.filter((recipe) => {
-    const recipeName = recipe.name.toLowerCase();
-    const prepTime = parseInt(recipe.prepTime.split(" ")[0]);
-    const cookTime = parseInt(recipe.cookTime.split(" ")[0]);
+  const selectedIngredients:string[] = Array.from(IngredientSelect.selectedOptions).map(option => option.text.toLowerCase());
 
-    return (
-      recipeName.includes(searchTerm) &&
-      prepTime <= minPrepTime &&
-      cookTime <= minCookTime
-    );
+  // Filtrer les recettes par nom
+  let filteredRecipes: IRecipe[] = recipeList.filter((recipe) => {
+    const recipeName:string = recipe.name.toLowerCase();
+    return recipeName.includes(searchTerm);
   });
+
+  // Filtrer les recettes par temps de préparation
+  if (!isNaN(minPrepTime)) {
+    filteredRecipes = filteredRecipes.filter((recipe) => {
+      const prepTime:number = +recipe.prepTime.split(" ")[0];
+      return prepTime <= minPrepTime;
+    });
+  }
+
+  // Filtrer les recettes par temps de cuisson
+  if (!isNaN(minCookTime)) {
+    filteredRecipes = filteredRecipes.filter((recipe) => {
+      const cookTime:number = +recipe.cookTime.split(" ")[0];
+      return cookTime <= minCookTime;
+    });
+  }
+
+  // Filtrer les recettes par ingrédients sélectionnés
+  if (selectedIngredients.length > 0) {
+    filteredRecipes = filteredRecipes.filter((recipe) => {
+      const recipeIngredients:string[] = recipe.ingredients.map(ingredient => ingredient.name);
+      const hasAllSelectedIngredients:boolean = selectedIngredients.every(selectedIngredient =>
+        recipeIngredients.includes(selectedIngredient)
+      );
+      return hasAllSelectedIngredients;
+    });
+  }
 
   recipeContent.innerHTML = "";
 
@@ -180,7 +205,6 @@ function filter() {
 }
 
 window.addEventListener("load", getRecipe);
-console.log(recipeList);
 
 inputRangePreparation.addEventListener("input", () => {
   filter();
@@ -193,3 +217,5 @@ inputRangeCooking.addEventListener("input", () => {
 });
 
 nameInput.addEventListener("input", filter);
+
+IngredientSelect.addEventListener("change", filter);
