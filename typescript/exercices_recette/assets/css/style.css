@@ -4,11 +4,12 @@
 .recipe {
   border: 1px solid white;
   transition: 0.5s;
+  color: white;
 }
 .recipe:hover {
-  opacity: 0.6;
   cursor: pointer;
-  border: 1px solid green;
+  background: white;
+  color: #1d3b55;
 }
 
 .myModal {
@@ -39,3 +40,5 @@
   right: 15px;
   cursor: pointer;
 }
+
+
