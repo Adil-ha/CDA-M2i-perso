@@ -5,23 +5,35 @@ function Menu() {
   return (
     <>
       <header>
-        <nav className="navbar navbar-expand-lg bg-dark text-light">
-          <h1>eWebsite</h1>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav">
-              <li className="nav-item text-light">
-                <NavLink to="/">Accueil</NavLink>
-              </li>
-              <li className="nav-item text-light">
-                <NavLink to="/Project">Projets</NavLink>
-              </li>
-              <li className="nav-item text-light">
-                <NavLink to="/Contact">Contacter moi</NavLink>
-              </li>
-              <li className="nav-item text-light">
-                <NavLink to="/Abou">A propos</NavLink>
-              </li>
-            </ul>
+        <nav className="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+          <div className="container-fluid">
+            <a className="navbar-brand" href="#">
+              eWebsite
+            </a>
+            <div className="collapse navbar-collapse" id="navbarColor02">
+              <ul className="navbar-nav me-auto">
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/">
+                    Accueil
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/Project">
+                    Projets
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/Contact">
+                    Contacter moi
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/About">
+                    A propos
+                  </NavLink>
+                </li>
+              </ul>
+            </div>
           </div>
         </nav>
       </header>
