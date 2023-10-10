@@ -5,7 +5,6 @@ import ContactContext from "../contexts/ContactContext";
 
 const ContactMePage = () => {
   const { setContacts, contacts } = useContext(ContactContext);
-  console.log(contacts);
   const [searchParams] = useSearchParams();
   const monId = searchParams.get("id");
   const mode = searchParams.get("mode");
@@ -24,19 +23,30 @@ const ContactMePage = () => {
 
   const editContact = () => {
     if (mode === "edit" && monId) {
-      const contactToEdit = contacts.find((contact) => contact.id == monId);
+      const contactToEdit = contacts.find((contact) => contact.id === monId);
       if (contactToEdit) {
         setFirstname(contactToEdit.firstname);
         setLastname(contactToEdit.lastname);
         setEmail(contactToEdit.email);
         setTelephone(contactToEdit.telephone);
       }
-      console.log(contactToEdit);
+    }
+  };
+  const deleteContact = () => {
+    if (mode === "delete" && monId) {
+      const contactToEdit = contacts.find((contact) => contact.id === monId);
+      if (contactToEdit) {
+        setFirstname(contactToEdit.firstname);
+        setLastname(contactToEdit.lastname);
+        setEmail(contactToEdit.email);
+        setTelephone(contactToEdit.telephone);
+      }
     }
   };
 
   useEffect(() => {
     editContact();
+    deleteContact();
   }, [mode, monId, contacts]);
 
   const submitFormHandler = (e) => {
@@ -51,22 +61,43 @@ const ContactMePage = () => {
       return;
     }
 
-    if (mode === "edit" && monId) {
-      const updatedContactsList = contacts.map((contact) => {
-        if (contact.id == monId) {
-          return new Contact(newFirstname, newLastname, newEmail, newTelephone);
+    switch (mode) {
+      case "edit":
+        if (monId) {
+          const updatedContactsList = contacts.map((contact) => {
+            if (contact.id === monId) {
+              return new Contact(
+                newFirstname,
+                newLastname,
+                newEmail,
+                newTelephone
+              );
+            }
+            return contact;
+          });
+          setContacts(updatedContactsList);
         }
-        return contact;
-      });
-      setContacts(updatedContactsList);
-    } else {
-      const newContact = new Contact(
-        newFirstname,
-        newLastname,
-        newEmail,
-        newTelephone
-      );
-      setContacts((prevContacts) => [...prevContacts, newContact]);
+        break;
+
+      case "delete":
+        if (monId) {
+          const updatedContactsList = contacts.filter(
+            (contact) => contact.id !== monId
+          );
+          setContacts(updatedContactsList);
+          navigate("/ListContact");
+          return;
+        }
+        break;
+
+      default:
+        const newContact = new Contact(
+          newFirstname,
+          newLastname,
+          newEmail,
+          newTelephone
+        );
+        setContacts((prevContacts) => [...prevContacts, newContact]);
     }
 
     navigate("/ListContact");
@@ -74,7 +105,13 @@ const ContactMePage = () => {
 
   return (
     <>
-      <h3>{mode === "edit" ? "Edit Contact" : "Add Contact"}</h3>
+      <h3>
+        {mode === "edit"
+          ? "Edit Contact"
+          : mode === "delete"
+          ? "Supprimer Contact"
+          : "Add Contact"}
+      </h3>
       <hr />
       <form onSubmit={submitFormHandler}>
         <div className="mb-3">
@@ -137,9 +174,24 @@ const ContactMePage = () => {
         <div className="text-end">
           <button type="submit" className="btn btn-outline-light">
             <i className="bi bi-send"></i>{" "}
-            {mode === "edit" ? "Éditer" : "Ajouter"}
+            {mode === "edit"
+              ? "Éditer"
+              : mode === "delete"
+              ? "Supprimer"
+              : "Ajouter"}
           </button>
         </div>
+        {mode === "delete" && (
+          <button
+            type="button"
+            onClick={() => {
+              navigate("/ListContact");
+            }}
+            className="btn btn-danger"
+          >
+            Annuler la suppression
+          </button>
+        )}
       </form>
     </>
   );

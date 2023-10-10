@@ -3,18 +3,19 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import ContactContext from "../contexts/ContactContext";
 
 const ListContact = () => {
-  const { contacts, setContacts } = useContext(ContactContext);
+  const { contacts } = useContext(ContactContext);
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const monId = searchParams.get("id");
 
-  const handleEdit = (monId) => {
+  const handleEdit = () => {
     navigate(`/contact/?mode=edit&id=${monId}`);
   };
 
-  const handleDelete = (monId) => {
-    const updatedContacts = contacts.filter((contact) => contact.id !== monId);
-    setContacts(updatedContacts);
+  const handleDelete = () => {
+    // const updatedContacts = contacts.filter((contact) => contact.id !== monId);
+    // setContacts(updatedContacts);
+    navigate(`/contact/?mode=delete&id=${monId}`);
   };
 
   const handleFormRedirect = () => {
