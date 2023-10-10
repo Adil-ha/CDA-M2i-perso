@@ -37,7 +37,11 @@ function Menu() {
           </div>
         </nav>
       </header>
-      <Outlet />
+      <main>
+        <div className="container">
+          <Outlet />
+        </div>
+      </main>
     </>
   );
 }
