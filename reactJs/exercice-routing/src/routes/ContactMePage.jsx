@@ -1,10 +1,19 @@
-import { useRef, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useRef, useContext, useEffect, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import Contact from "../models/Contact";
 import ContactContext from "../contexts/ContactContext";
 
 const ContactMePage = () => {
-  const { setContacts } = useContext(ContactContext);
+  const { setContacts, contacts } = useContext(ContactContext);
+  console.log(contacts);
+  const [searchParams] = useSearchParams();
+  const monId = searchParams.get("id");
+  const mode = searchParams.get("mode");
+
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [email, setEmail] = useState("");
+  const [telephone, setTelephone] = useState("");
 
   const firstnameRef = useRef();
   const lastnameRef = useRef();
@@ -13,33 +22,59 @@ const ContactMePage = () => {
 
   const navigate = useNavigate();
 
+  const editContact = () => {
+    if (mode === "edit" && monId) {
+      const contactToEdit = contacts.find((contact) => contact.id == monId);
+      if (contactToEdit) {
+        setFirstname(contactToEdit.firstname);
+        setLastname(contactToEdit.lastname);
+        setEmail(contactToEdit.email);
+        setTelephone(contactToEdit.telephone);
+      }
+      console.log(contactToEdit);
+    }
+  };
+
+  useEffect(() => {
+    editContact();
+  }, [mode, monId, contacts]);
+
   const submitFormHandler = (e) => {
     e.preventDefault();
 
-    const firstname = firstnameRef.current.value;
-    const lastname = lastnameRef.current.value;
-    const email = emailRef.current.value;
-    const telephone = telephoneRef.current.value;
+    const newFirstname = firstnameRef.current.value;
+    const newLastname = lastnameRef.current.value;
+    const newEmail = emailRef.current.value;
+    const newTelephone = telephoneRef.current.value;
 
-    if (!firstname || !lastname || !email || !telephone) {
+    if (!newFirstname || !newLastname || !newEmail || !newTelephone) {
       return;
     }
 
-    const newContact = new Contact(firstname, lastname, email, telephone);
+    if (mode === "edit" && monId) {
+      const updatedContactsList = contacts.map((contact) => {
+        if (contact.id == monId) {
+          return new Contact(newFirstname, newLastname, newEmail, newTelephone);
+        }
+        return contact;
+      });
+      setContacts(updatedContactsList);
+    } else {
+      const newContact = new Contact(
+        newFirstname,
+        newLastname,
+        newEmail,
+        newTelephone
+      );
+      setContacts((prevContacts) => [...prevContacts, newContact]);
+    }
 
-    setContacts((prevContacts) => [...prevContacts, newContact]);
-
-    firstnameRef.current.value = "";
-    lastnameRef.current.value = "";
-    emailRef.current.value = "";
-    telephoneRef.current.value = "";
-
-    navigate(`/ListContact/${newContact.id}`);
+    navigate("/ListContact");
   };
 
   return (
     <>
-      <h3>Form Contact</h3>
+      <h3>{mode === "edit" ? "Edit Contact" : "Add Contact"}</h3>
       <hr />
       <form onSubmit={submitFormHandler}>
         <div className="mb-3">
@@ -49,6 +84,8 @@ const ContactMePage = () => {
           <input
             type="text"
             id="firstname"
+            value={firstname}
+            onChange={(e) => setFirstname(e.target.value)}
             ref={firstnameRef}
             className="form-control"
             required
@@ -61,6 +98,8 @@ const ContactMePage = () => {
           <input
             type="text"
             id="lastname"
+            value={lastname}
+            onChange={(e) => setLastname(e.target.value)}
             ref={lastnameRef}
             className="form-control"
             required
@@ -73,6 +112,8 @@ const ContactMePage = () => {
           <input
             type="email"
             id="senderMail"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             ref={emailRef}
             className="form-control"
             required
@@ -83,8 +124,10 @@ const ContactMePage = () => {
             Téléphone
           </label>
           <input
-            type="tel"
+            type="number"
             id="telephone"
+            value={telephone}
+            onChange={(e) => setTelephone(e.target.value)}
             ref={telephoneRef}
             className="form-control"
             required
@@ -93,7 +136,8 @@ const ContactMePage = () => {
 
         <div className="text-end">
           <button type="submit" className="btn btn-outline-light">
-            <i className="bi bi-send"></i> Ajouter
+            <i className="bi bi-send"></i>{" "}
+            {mode === "edit" ? "Éditer" : "Ajouter"}
           </button>
         </div>
       </form>

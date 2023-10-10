@@ -12,18 +12,20 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "/listContact/:id",
+        path: "/listContact/",
         element: <ListContact />,
+        errorElement: <ErrorPage />,
       },
       {
         path: "/",
         element: <HomePage />,
+        errorElement: <ErrorPage />,
       },
 
       {
-        // path: "/contact/:firstname/:lastname/:email/:telephone",
         path: "/contact",
         element: <ContactMePage />,
+        errorElement: <ErrorPage />,
       },
     ],
   },

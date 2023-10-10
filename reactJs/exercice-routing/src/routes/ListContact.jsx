@@ -1,19 +1,19 @@
 import React, { useContext } from "react";
-import { useNavigate, useParams } from "react-router-dom"; // Import useParams
+import { useNavigate, useSearchParams } from "react-router-dom";
 import ContactContext from "../contexts/ContactContext";
 
 const ListContact = () => {
   const { contacts, setContacts } = useContext(ContactContext);
   const navigate = useNavigate();
-  const { id } = useParams(); // Get the contact ID from the URL
+  const [searchParams] = useSearchParams();
+  const monId = searchParams.get("id");
 
-  const handleEdit = (id) => {
-    // Implement your edit logic here using the contact ID
-    // Example: navigate(`/EditContact/${id}`)
+  const handleEdit = (monId) => {
+    navigate(`/contact/?mode=edit&id=${monId}`);
   };
 
-  const handleDelete = (id) => {
-    const updatedContacts = contacts.filter((contact) => contact.id !== id);
+  const handleDelete = (monId) => {
+    const updatedContacts = contacts.filter((contact) => contact.id !== monId);
     setContacts(updatedContacts);
   };
 
