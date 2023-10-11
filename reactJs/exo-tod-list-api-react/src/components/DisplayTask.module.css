@@ -1,0 +1,27 @@
+.ul {
+    text-align: left;
+}
+.ul .li {
+    list-style: none;
+    padding: 0.7rem;
+    position: relative;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+.ul .li:before {
+    content: "✽";
+    padding: 0.6rem;
+    font-size: 1.3rem;
+    color: #fd4a1d;
+}
+.li{
+    position: relative;
+}
+
+.btnClose{
+    position: absolute;
+    right: 0;
+    padding: 5px;
+    color: white;
+    background-color: red;
+}
