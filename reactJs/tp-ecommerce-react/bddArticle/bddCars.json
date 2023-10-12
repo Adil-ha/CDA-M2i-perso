@@ -1,0 +1,32 @@
+{
+  "cars": [
+    {
+      "id": 1,
+      "title": "Bmw",
+      "description": "lorem3",
+      "price": 50000,
+      "picture": ""
+    },
+    {
+      "id": 2,
+      "title": "Mercedes",
+      "description": "lorem3",
+      "price": 50000,
+      "picture": ""
+    },
+    {
+      "id": 3,
+      "title": "Audi",
+      "description": "lorem3",
+      "price": 50000,
+      "picture": ""
+    },
+    {
+      "id": 4,
+      "title": "Volkswagen",
+      "description": "lorem3",
+      "price": 50000,
+      "picture": ""
+    }
+  ]
+}

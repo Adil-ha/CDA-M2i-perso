@@ -14,7 +14,7 @@ const DisplayTask = () => {
       .get("http://localhost:5000/tasks")
       .then((response) => {
         console.log(response.data);
-        setTasks(response.data);
+        setTasks((prev) => [...response.data]);
       })
       .catch((error) => {
         console.error("Erreur : ", error);
@@ -26,7 +26,7 @@ const DisplayTask = () => {
       .then(() => {
         console.log("tâche avec id " + taskId + " supprimer");
         const updatedTasks = tasks.filter((task) => task.id !== taskId);
-        setTasks(updatedTasks);
+        setTasks((prev) => [...updatedTasks]);
       })
       .catch((error) => {
         console.error("Erreur : ", error);

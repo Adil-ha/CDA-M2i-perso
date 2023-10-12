@@ -51,21 +51,12 @@ const FormTask = () => {
       axios
         .put(`http://localhost:5000/tasks/${monId}`, newTask)
         .then((response) => {
-          const updatedTasksList = tasks.map((task) => {
-            if (task.id === monId) {
-              return new Task(nameTaskValue, deadlineTaskValue);
-            }
-            return task;
-          });
-
-          setTasks(updatedTasksList);
-          console.log("log", tasks);
+          console.log(response.data);
         })
         .catch((error) => {
           console.error("Erreur : ", error);
+          navigate("/");
         });
-
-      navigate("/");
     } else {
       axios
         .post("http://localhost:5000/tasks", newTask)
@@ -77,9 +68,8 @@ const FormTask = () => {
           console.error("Erreur : ", error);
         });
     }
-
-    nameTaskRef.current.value = "";
-    deadlineTaskRef.current.value = "";
+    setNameTask("");
+    setDate("");
   };
 
   return (
