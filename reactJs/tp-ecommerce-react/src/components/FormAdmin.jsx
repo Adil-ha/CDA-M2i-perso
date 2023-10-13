@@ -22,6 +22,7 @@ const FormAdmin = () => {
     <>
       <form onSubmit={handleFormSubmit}>
         <h1>Authentification administrateur</h1>
+        <hr />
         <div className="mb-3">
           <label htmlFor="username" className="form-label">
             Username
@@ -32,9 +33,6 @@ const FormAdmin = () => {
             id="username"
             ref={usernameRef}
           />
-          <div id="emailHelp" className="form-text">
-            We'll never share your email with anyone else.
-          </div>
         </div>
         <div className="mb-3">
           <label htmlFor="password" className="form-label">

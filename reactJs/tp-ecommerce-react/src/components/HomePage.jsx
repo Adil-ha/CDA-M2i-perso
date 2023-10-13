@@ -11,7 +11,7 @@ const HomePage = () => {
     axios
       .get("http://localhost:5000/cars")
       .then((response) => {
-        console.log(response.data);
+        
         setCars((prev) => [...response.data]);
       })
       .catch((error) => {
@@ -22,21 +22,30 @@ const HomePage = () => {
   const viewDetails = (id) => {
     navigate(`/DescriptionCar/${id}`);
   };
+
   return (
     <>
-      {cars.map((car) => (
-        <div className="card" key={car.id}>
-          <img src="..." className="card-img-top" alt="..." />
-          <div className="card-body">
-            <h5 className="card-title">{car.title}</h5>
-
-            <a onClick={() => viewDetails(car.id)} className="btn btn-primary">
-              Voir details
-            </a>
-          </div>
-        </div>
-      ))}
+    <h1>Nos voitures</h1>
+    <hr />
+      {cars.length === 0 ? (
+        <p>Aucun véhicule disponible pour le moment.</p>
+      ) : (
+        cars.map((car, index) => (
+       
+            <div className="card w-75 m-auto my-3" key={index}>
+              <img src="..." className="card-img-top" alt="..." />
+              <div className="card-body">
+                <h5 className="card-title">{car.title}</h5>
+                <a onClick={() => viewDetails(car.id)} className="btn btn-primary">
+                  Voir les détails
+                </a>
+              </div>
+            </div>
+        
+        ))
+      )}
     </>
   );
 };
+
 export default HomePage;
