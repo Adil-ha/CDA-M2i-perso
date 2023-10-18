@@ -135,7 +135,7 @@ function closeModal():void {
   }
 }
 
-function displayIngredientsInSelect():void{
+function displayIngredientsInSelect():void {
   const uniqueIngredients:Set<string> = new Set<string>();
 
   recipeList.forEach((recipe) => {

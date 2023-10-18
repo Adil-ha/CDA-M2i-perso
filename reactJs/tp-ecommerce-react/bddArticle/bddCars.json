@@ -1,32 +1,32 @@
 {
   "cars": [
     {
-      "id": 1,
-      "title": "Bmw",
-      "description": "lorem3",
-      "price": 50000,
-      "picture": ""
+      "id": 1697135892951,
+      "title": "bmw",
+      "description": "530d",
+      "price": 75000,
+      "picture": null
     },
     {
-      "id": 2,
-      "title": "Mercedes",
-      "description": "lorem3",
-      "price": 50000,
-      "picture": ""
+      "id": 1697135968002,
+      "title": "mercedes",
+      "description": "gle 350 d",
+      "price": 150000,
+      "picture": null
     },
     {
-      "id": 3,
-      "title": "Audi",
-      "description": "lorem3",
-      "price": 50000,
-      "picture": ""
+      "id": 1697137290023,
+      "title": "audi",
+      "description": "q3",
+      "price": 60000,
+      "picture": null
     },
     {
-      "id": 4,
-      "title": "Volkswagen",
-      "description": "lorem3",
-      "price": 50000,
-      "picture": ""
+      "id": 1697182168218,
+      "title": "Citroen",
+      "description": "ds7",
+      "price": 40000,
+      "picture": null
     }
   ]
 }
