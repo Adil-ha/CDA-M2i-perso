@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { BASE_DB_URL } from "../../fireBaseConfig";
 
-export const fetchAlbums = createAsyncThunk(
-  "albumItems/fetchAlbums",
+export const fetchAlbum = createAsyncThunk(
+  "albumItems/fetchAlbum",
   async () => {
     const response = await fetch(BASE_DB_URL + "/eAlbum.json");
     const data = await response.json();
@@ -17,7 +17,8 @@ export const fetchAlbums = createAsyncThunk(
 export const postAlbum = createAsyncThunk(
   "albumItems/postAlbum",
   async (newAlbum) => {
-    const response = await fetch(BASE_DB_URL + "/eAlbum.json", {
+    const token = localStorage.getItem("token");
+    const response = await fetch(`${BASE_DB_URL}/eAlbum.json?auth=${token}`, {
       method: "POST",
       headers: {
         "Content-Type": "application.json",
@@ -35,9 +36,15 @@ export const postAlbum = createAsyncThunk(
 export const updateAlbum = createAsyncThunk(
   "albumItems/updateAlbum",
   async (updatedAlbum) => {
-    // Envoyez une requête pour mettre à jour l'album avec les nouvelles données
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("No token found in local storage. Please log in.");
+      return thunkAPI.rejectWithValue(
+        "Aucun jeton trouvé dans le stockage local"
+      );
+    }
     const response = await fetch(
-      `${BASE_DB_URL}/eAlbum/${updatedAlbum.id}.json`,
+      `${BASE_DB_URL}/eAlbum/${updatedAlbum.id}.json?auth=${token}`,
       {
         method: "PATCH",
         headers: {
@@ -47,9 +54,8 @@ export const updateAlbum = createAsyncThunk(
       }
     );
     if (response.ok) {
-      return updatedAlbum; // Retournez les données mises à jour de l'album
+      return updatedAlbum;
     } else {
-      // Gérez les erreurs ici si la mise à jour a échoué
       throw new Error("La mise à jour de l'album a échoué.");
     }
   }
@@ -58,10 +64,19 @@ export const updateAlbum = createAsyncThunk(
 export const deleteAlbum = createAsyncThunk(
   "albumItems/deleteAlbum",
   async (albumId) => {
-    // Envoyez une requête pour supprimer l'album correspondant à l'ID
-    const response = await fetch(`${BASE_DB_URL}/eAlbum/${albumId}.json`, {
-      method: "DELETE",
-    });
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("No token found in local storage. Please log in.");
+      return thunkAPI.rejectWithValue(
+        "Aucun jeton trouvé dans le stockage local"
+      );
+    }
+    const response = await fetch(
+      `${BASE_DB_URL}/eAlbum/${albumId}.json?auth=${token}`,
+      {
+        method: "DELETE",
+      }
+    );
     if (response.ok) {
       return albumId; // Retournez l'ID de l'album supprimé
     } else {
@@ -83,7 +98,7 @@ const albumItemsSlice = createSlice({
         .pending -> L'action se déclenche pendant la requête
     */
   extraReducers: (builder) => {
-    builder.addCase(fetchAlbums.fulfilled, (state, action) => {
+    builder.addCase(fetchAlbum.fulfilled, (state, action) => {
       state.albums = action.payload;
       console.log(state.albums);
     });

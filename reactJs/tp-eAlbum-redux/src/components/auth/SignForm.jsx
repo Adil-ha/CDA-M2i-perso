@@ -5,6 +5,7 @@ import { useRef } from "react";
 
 const SignForm = () => {
   const authMode = useSelector((state) => state.auth.authMode);
+  const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
 
   const emailRef = useRef();
@@ -46,6 +47,9 @@ const SignForm = () => {
 
       localStorage.setItem("token", data.idToken);
       dispatch(setUser(data));
+      if (user) {
+        dispatch(setAuthMode(""));
+      }
     } catch (error) {
       console.error(error.message);
     }
