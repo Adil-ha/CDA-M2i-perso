@@ -80,7 +80,7 @@ const SignForm = () => {
         </div>
         <button className="btn btn-primary">{authMode}</button>
         <button
-          className="btn btn-success"
+          className="btn btn-success mt-2"
           onClick={() =>
             dispatch(
               setAuthMode(

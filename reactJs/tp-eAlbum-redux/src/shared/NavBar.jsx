@@ -5,7 +5,6 @@ import Modal from "./Modal";
 import SignForm from "../components/auth/SignForm";
 
 const NavBar = () => {
-  const user = useSelector((state) => state.auth.user);
   const authMode = useSelector((state) => state.auth.authMode);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -15,6 +14,8 @@ const NavBar = () => {
     localStorage.removeItem("token");
     navigate("/");
   };
+
+  const token = localStorage.getItem("token");
 
   return (
     <>
@@ -46,13 +47,16 @@ const NavBar = () => {
             </ul>
           </div>
           <button
-            onClick={
-              () =>
-                !user ? dispatch(setAuthMode("Se connecter")) : handleLogout() // Call the handleLogout function
-            }
+            onClick={() => {
+              if (token) {
+                handleLogout();
+              } else {
+                dispatch(setAuthMode("Se connecter"));
+              }
+            }}
             className="ms-auto btn btn-info"
           >
-            {user ? "Déconnexion" : "Se connecter"}
+            {token ? "Déconnexion" : "Se connecter"}
           </button>
         </div>
       </nav>

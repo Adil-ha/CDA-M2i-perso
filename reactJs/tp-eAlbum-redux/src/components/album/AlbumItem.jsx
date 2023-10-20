@@ -2,6 +2,21 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { deleteAlbum } from "./albumSlice";
 import { useNavigate } from "react-router-dom";
+import "font-awesome/css/font-awesome.min.css";
+// import img from "./assets/cover/2pac.jpg"
+
+
+
+// Cette fonction convertit le score en étoiles
+const renderStars = (score, maxScore = 5) => {
+  const starArray = [];
+  for (let i = 1; i <= maxScore; i++) {
+    starArray.push(
+      <span key={i} className={`fa fa-star${i <= score ? " checked" : ""}`} ></span>
+    );
+  }
+  return starArray;
+};
 
 const AlbumItem = (props) => {
   const navigate = useNavigate();
@@ -21,11 +36,13 @@ const AlbumItem = (props) => {
     <div className="card mb-3">
       <h3 className="card-header">{album.title}</h3>
       <img
-        src={album.cover}
+        src={`./cover/${album.cover}.jpg`}
+     
+
         alt={album.title}
-        className="d-block user-select-none"
+        className="d-block user-select-none object-fit-fill"
         width="100%"
-        height="150"
+        height="200"
         aria-label={`Album Cover: ${album.title}`}
         focusable="false"
         role="img"
@@ -37,7 +54,8 @@ const AlbumItem = (props) => {
         <hr />
         <p className="card-text">{album.releaseDate}</p>
         <hr />
-        <p className="card-text">{album.score}</p>
+        
+        <div className="card-text">{renderStars(album.score)}</div>
       </div>
       <div className="card-footer d-flex justify-content-end">
         {hasToken && (

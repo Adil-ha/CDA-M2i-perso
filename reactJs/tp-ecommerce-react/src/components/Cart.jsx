@@ -73,7 +73,7 @@ const Cart = () => {
             {cart.map((car) => (
               <li
                 key={car.id}
-                className="d-flex justify-content-between my-2" // Ajoutez cette classe
+                className="d-flex justify-content-between my-2" 
               >
                 <strong>{car.title}</strong> - {car.price} € x {car.quantity}
                 <button className="btn btn-danger" onClick={() => removeCarFromCart(car.id)}>Supprimer</button>

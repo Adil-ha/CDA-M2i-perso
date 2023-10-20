@@ -78,9 +78,8 @@ export const deleteAlbum = createAsyncThunk(
       }
     );
     if (response.ok) {
-      return albumId; // Retournez l'ID de l'album supprimé
+      return albumId;
     } else {
-      // Gérez les erreurs ici si la suppression a échoué
       throw new Error("La suppression de l'album a échoué.");
     }
   }
@@ -106,13 +105,11 @@ const albumItemsSlice = createSlice({
       state.albums.push(action.payload);
     });
     builder.addCase(deleteAlbum.fulfilled, (state, action) => {
-      // Supprimez l'album de state.albums en utilisant action.payload (qui contient l'ID de l'album supprimé)
       state.albums = state.albums.filter(
         (album) => album.id !== action.payload
       );
     });
     builder.addCase(updateAlbum.fulfilled, (state, action) => {
-      // Mettez à jour l'album dans state.albums avec les données mises à jour
       const index = state.albums.findIndex(
         (album) => album.id === action.payload.id
       );

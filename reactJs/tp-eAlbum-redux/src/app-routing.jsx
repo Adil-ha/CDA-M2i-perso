@@ -4,7 +4,6 @@ import ErrorPage from "./components/ErrorPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AlbumDisplay from "./components/album/AlbumDisplay";
 import AlbumForm from "./components/album/AlbumForm";
-import SignForm from "./components/auth/SignForm";
 import AlbumItem from "./components/album/AlbumItem";
 
 const router = createBrowserRouter([
@@ -21,10 +20,6 @@ const router = createBrowserRouter([
             element: <AlbumItem />,
           },
         ],
-      },
-      {
-        path: "/formAdmin",
-        element: <SignForm />,
       },
       {
         path: "/addAlbum",

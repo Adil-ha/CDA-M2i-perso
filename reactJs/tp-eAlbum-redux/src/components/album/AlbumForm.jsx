@@ -19,12 +19,12 @@ const AlbumForm = () => {
   const scoreRef = useRef();
   const coverRef = useRef();
 
-  // Function to find the album by ID
+
   const findAlbumById = (albumId) => {
     return albums.find((album) => album.id === albumId);
   };
 
-  // Function to populate the form inputs with album data
+
   const populateForm = (album) => {
     titleRef.current.value = album.title;
     releaseDateRef.current.value = album.releaseDate;
@@ -32,15 +32,15 @@ const AlbumForm = () => {
     scoreRef.current.value = album.score;
     coverRef.current.value = album.cover;
   };
+  
+
 
   useEffect(() => {
-    // Check if in "Edit" mode and an ID is provided
+  
     if (mode === "edit" && id) {
       const albumToEdit = findAlbumById(id);
       if (albumToEdit) {
         populateForm(albumToEdit);
-      } else {
-        // Handle the case where the album with the given ID is not found
       }
     }
   }, [mode, id]);
