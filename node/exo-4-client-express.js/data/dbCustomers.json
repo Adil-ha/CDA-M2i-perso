@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1698242424240,
+    "lastname": "Dupont",
+    "firstname": "Michel",
+    "telephone": "0000000000"
+  },
+  {
+    "id": 1698244994116,
+    "lastname": "test1",
+    "firstname": "test2",
+    "telephone": "0000000000"
+  },
+  {
+    "id": 1698245397604,
+    "lastname": "test2",
+    "firstname": "test3",
+    "telephone": "0000000000"
+  }
+]
