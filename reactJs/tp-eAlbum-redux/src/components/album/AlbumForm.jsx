@@ -57,12 +57,10 @@ const AlbumForm = () => {
     };
 
     if (mode === "edit" && id) {
-      // Update an existing album
       const updatedAlbum = { id, ...albumData };
 
       dispatch(updateAlbum(updatedAlbum));
     } else {
-      // Add a new album
 
       dispatch(postAlbum(albumData));
     }

@@ -1,0 +1,27 @@
+# Dossiers Node.js
+node_modules/
+
+# Fichiers de journalisation
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Fichiers générés par le système
+*.log
+*.pid
+*.lock
+*.swp
+
+# Environnement spécifique
+.env
+
+# Dossiers de build et fichiers générés
+dist/
+build/
+
+# Fichiers de configuration locaux
+config.js
+
+# Dossiers de sauvegarde de l'éditeur
+.vscode/
+.idea/

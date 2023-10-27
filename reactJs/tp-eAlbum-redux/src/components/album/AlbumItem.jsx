@@ -3,11 +3,7 @@ import { useDispatch } from "react-redux";
 import { deleteAlbum } from "./albumSlice";
 import { useNavigate } from "react-router-dom";
 import "font-awesome/css/font-awesome.min.css";
-// import img from "./assets/cover/2pac.jpg"
 
-
-
-// Cette fonction convertit le score en étoiles
 const renderStars = (score, maxScore = 5) => {
   const starArray = [];
   for (let i = 1; i <= maxScore; i++) {
