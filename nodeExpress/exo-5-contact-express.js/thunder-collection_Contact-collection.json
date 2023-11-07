@@ -1,0 +1,89 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Contact-collection",
+    "dateExported": "2023-10-27T09:42:22.540Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "5a76a32b-cf8c-45b4-ae93-599d18a7a772",
+            "colId": "b1428610-6e7a-4c5a-bcc6-1f5c4f9c0c5e",
+            "containerId": "",
+            "name": "create-contact",
+            "url": "http://127.0.0.1:3001/Contacts",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-10-27T09:23:55.059Z",
+            "modified": "2023-10-27T09:28:28.626Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n  \"lastname\": \"Aupif\",\r\n  \"firstname\": \"Serge\",\r\n  \"PhoneNumber\": \"0000000000\"\r\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "bbbed38f-974a-4fe0-b184-c0aa10894075",
+            "colId": "b1428610-6e7a-4c5a-bcc6-1f5c4f9c0c5e",
+            "containerId": "",
+            "name": "getAll-contacts",
+            "url": "http://127.0.0.1:3001/contacts",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2023-10-27T09:30:16.579Z",
+            "modified": "2023-10-27T09:30:32.697Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "d036d7b5-66e7-4978-97d1-c102ca643395",
+            "colId": "b1428610-6e7a-4c5a-bcc6-1f5c4f9c0c5e",
+            "containerId": "",
+            "name": "get-one-contact",
+            "url": "http://127.0.0.1:3001/contacts/1698398908620",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2023-10-27T09:31:10.653Z",
+            "modified": "2023-10-27T09:31:40.357Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "17f4df06-d723-4840-a4a2-ea3141925623",
+            "colId": "b1428610-6e7a-4c5a-bcc6-1f5c4f9c0c5e",
+            "containerId": "",
+            "name": "delete-contact",
+            "url": "http://127.0.0.1:3001/contacts/1698398908620",
+            "method": "DELETE",
+            "sortNum": 40000,
+            "created": "2023-10-27T09:32:00.411Z",
+            "modified": "2023-10-27T09:32:21.352Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "e25790d7-264d-4db7-a345-a0840a1ac06f",
+            "colId": "b1428610-6e7a-4c5a-bcc6-1f5c4f9c0c5e",
+            "containerId": "",
+            "name": "update-contact",
+            "url": "http://127.0.0.1:3001/contacts/1698398880150",
+            "method": "PUT",
+            "sortNum": 50000,
+            "created": "2023-10-27T09:35:28.551Z",
+            "modified": "2023-10-27T09:37:31.103Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n  \"lastname\": \"Doe\",\r\n  \"firstname\": \"John\",\r\n  \"PhoneNumber\": \"0000000000\"\r\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}

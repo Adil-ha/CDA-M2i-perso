@@ -99,7 +99,6 @@ const albumItemsSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchAlbum.fulfilled, (state, action) => {
       state.albums = action.payload;
-      console.log(state.albums);
     });
     builder.addCase(postAlbum.fulfilled, (state, action) => {
       state.albums.push(action.payload);

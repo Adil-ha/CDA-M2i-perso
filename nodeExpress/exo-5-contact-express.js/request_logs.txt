@@ -1,0 +1,21 @@
+Date: Fri, 27 Oct 2023 09:29:45 GMT, URL: /contacts/1698398880150, Method: GET
+Date: Fri, 27 Oct 2023 09:30:32 GMT, URL: /contacts, Method: GET
+Date: Fri, 27 Oct 2023 09:31:23 GMT, URL: /contacts/1698398880150, Method: GET
+Date: Fri, 27 Oct 2023 09:31:29 GMT, URL: /contacts, Method: GET
+Date: Fri, 27 Oct 2023 09:31:40 GMT, URL: /contacts/1698398908620, Method: GET
+Date: Fri, 27 Oct 2023 09:32:21 GMT, URL: /contacts/1698398908620, Method: DELETE
+Date: Fri, 27 Oct 2023 09:32:46 GMT, URL: /contacts/1698398908620, Method: DELETE
+Date: Fri, 27 Oct 2023 09:32:51 GMT, URL: /contacts, Method: GET
+Date: Fri, 27 Oct 2023 09:33:44 GMT, URL: /contacts/1698398908620, Method: DELETE
+Date: Fri, 27 Oct 2023 09:35:01 GMT, URL: /contacts/1698398908620, Method: DELETE
+Date: Fri, 27 Oct 2023 09:35:04 GMT, URL: /contacts, Method: GET
+Date: Fri, 27 Oct 2023 09:37:31 GMT, URL: /contacts/1698398880150, Method: PUT
+Date: Fri, 27 Oct 2023 09:43:30 GMT, URL: /Contacts, Method: POST, Status Code: 200
+Date: Fri, 27 Oct 2023 09:43:33 GMT, URL: /contacts, Method: GET, Status Code: 200
+Date: Fri, 27 Oct 2023 09:47:21 GMT, URL: /contacts/1698398880150, Method: DELETE, Status Code: 200
+Date: Fri, 27 Oct 2023 09:47:36 GMT, URL: /contacts/1698399810040, Method: DELETE, Status Code: 200
+Date: Fri, 27 Oct 2023 09:47:38 GMT, URL: /contacts, Method: GET, Status Code: 200
+Date: Fri, 27 Oct 2023 09:47:45 GMT, URL: /Contacts, Method: POST, Status Code: 200
+Date: Fri, 27 Oct 2023 09:48:06 GMT, URL: /Contacts, Method: POST, Status Code: 200
+Date: Fri, 27 Oct 2023 09:48:07 GMT, URL: /contacts, Method: GET, Status Code: 200
+Date: Fri, 27 Oct 2023 09:48:52 GMT, URL: /contacts/1698400086310, Method: PUT, Status Code: 200
