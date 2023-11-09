@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
     textAlign: 'right',
   },
   display: {
-    fontSize: 48,
+    fontSize: 90,
     marginBottom: 20,
     color: 'gray',
   },
