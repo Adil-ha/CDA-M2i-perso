@@ -10,8 +10,7 @@ import axios from 'axios';
 export default function App() {
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
-  const [localizedName, setLocalizedName] = useState(null); // Ajout du state localizedName
-
+  const [localizedName, setLocalizedName] = useState(null);
   useEffect(() => {
     Geolocation.requestAuthorization();
     Geolocation.getCurrentPosition(
@@ -26,12 +25,11 @@ export default function App() {
 
   const handleLocalisation = () => {
     axios
-      .post(
+      .get(
         `http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=%09L5hJESVwQBdm0rvNd1lGG7LhqNhm8jCY&q=${latitude}%2C${longitude}`,
-        {latitude: latitude, longitude: longitude},
       )
       .then(response => {
-        setLocalizedName(response.data.LocalizedName); // Stockage de LocalizedName dans le state
+        setLocalizedName(response.data.LocalizedName);
         console.log(response.data.LocalizedName);
       })
       .catch(error => {
@@ -47,7 +45,7 @@ export default function App() {
       />
       <Text>Latitude : {latitude}</Text>
       <Text>Longitude : {longitude}</Text>
-      <Text>LocalizedName : {localizedName}</Text> // Affichage de LocalizedName
+      <Text>LocalizedName : {localizedName}</Text>
     </View>
   );
 }
