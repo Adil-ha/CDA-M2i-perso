@@ -22,7 +22,11 @@ public class Main {
 //        ExerciceCondition.exoNeuf();
 //        StructureIterative.exoOnze();
 //        tpVendredi.exoCinqTrois();
-        tpVendredi.exoCinqQuatre();
+//        tpVendredi.exoCinqQuatre();
+//        tpVendredi.exoCinqCinq();
+//        tpVendredi.exoCinqSix();
+//        tpVendredi.exoCinqSept();
+        tpVendredi.exoCinqHuit();
 
     }
 }

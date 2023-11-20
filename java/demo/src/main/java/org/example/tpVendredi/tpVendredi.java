@@ -140,7 +140,7 @@ public class tpVendredi {
     public static void exoCinqDeux(){
         int[] array = {2, 2, 2, 5, 2};
         boolean bool = false;
-        for (int i = 0; i < array.length; i++) {
+        for (int i = 0; i < array.length-1; i++) {
             if (array[i]>array[i+1]){
                 bool= true;
                 break;
@@ -183,6 +183,86 @@ public class tpVendredi {
 
         for (int j = 0; j < array.length; j++) {
             System.out.println(array[j]);
+        }
+    }
+
+    public static void exoCinqCinq(){
+        int [] array = {1,2,3,4,5,6};
+        int longueur = array.length;
+
+        for (int i = 0; i < longueur / 2; i++) {
+            int temp = array[i];
+            array[i] = array[longueur - 1 - i];
+            array[longueur - 1 - i] = temp;
+        }
+        for (int i = 0; i < array.length; i++) {
+            System.out.println(array[i]);
+        }
+    }
+
+    public static void exoCinqSix(){
+        int [] array = {50,2,19,9,1,2};
+
+        for (int i = 0; i < array.length-1; i++) {
+            int min = i;
+            for (int j = i+1; j < array.length; j++) {
+                if(array[j]< array[min]){
+                    min = j;
+                }
+            }
+            int temp  = array[min];
+            array[min]= array[i];
+            array[i]= temp;
+        }
+
+        for (int i = 0; i < array.length; i++) {
+            System.out.println(array[i]);
+        }
+    }
+
+    public static void exoCinqSept(){
+        int [] array = {50,2,19,9,1,2};
+
+        for (int i = 0; i < array.length-1; i++) {
+            for (int j = 0; j < array.length-1-i; j++) {
+                if (array[j]>array[j+1]){
+                    int temp  = array[j];
+                    array[j]= array[j+1];
+                    array[j+1]= temp;
+                }
+            }
+        }
+        for (int i = 0; i < array.length; i++) {
+            System.out.println(array[i]);
+        }
+    }
+    public static void exoCinqHuit(){
+       int[] t1 = {1,2,3,4,5,6};
+       int[] t2 = {1,2,3,4,5,6};
+       boolean bool = false;
+
+        if (t1.length == t2.length){
+            bool = true;
+        }else{
+            bool = false;
+        }
+
+//        if(bool = true){
+//            System.out.println("De meme dimension");
+//        }else{
+//            System.out.println("pas la meme dimension");
+//        }
+
+        if(bool = true){
+            int [] t3 = new int[t1.length];
+
+            for (int i = 0; i < t3.length; i++) {
+                t3[i]= t1[i] + t2[i];
+            }
+            for (int i = 0; i < t3.length; i++) {
+                System.out.println(t3[i]);
+            }
+
         }
     }
 }
