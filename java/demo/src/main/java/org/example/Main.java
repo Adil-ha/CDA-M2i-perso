@@ -7,6 +7,7 @@ import org.example.readFromConsole.ReadFromConsole;
 import org.example.structure.Structure;
 import org.example.structure.Structure2;
 import org.example.structureIteratve.StructureIterative;
+import org.example.tpVendredi.tpVendredi;
 import org.example.variable.Variable;
 
 public class Main {
@@ -19,6 +20,9 @@ public class Main {
 //        ReadFromConsole.getReadWrite();
 //        ExerciceCondition.exoCinq();
 //        ExerciceCondition.exoNeuf();
-        StructureIterative.exoOnze();
+//        StructureIterative.exoOnze();
+//        tpVendredi.exoCinqTrois();
+        tpVendredi.exoCinqQuatre();
+
     }
 }

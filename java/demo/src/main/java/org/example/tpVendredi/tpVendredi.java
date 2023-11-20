@@ -1,7 +1,8 @@
+package org.example.tpVendredi;
+
 import java.util.Scanner;
 
-public class ExoArray {
-
+public class tpVendredi {
     static Scanner scanner = new Scanner(System.in);
 
     public static void exoUn() {
@@ -102,14 +103,14 @@ public class ExoArray {
         System.out.println("somme tableau un :  " + sommeArray );
         System.out.println("somme tableau deux :  " + sommeArray1 );
     }
-    
+
     public static void exoSept(){
         int max = 100;
         int min = 1;
         int range = max - min + 1;
         int [] array = new int [10];
         int plusGrand = 0;
-     
+
         for (int i = 0; i < array.length; i++) {
             int rand = (int)(Math.random() * range) + min;
             array[i] = rand;
@@ -156,7 +157,7 @@ public class ExoArray {
         int[] tableau = {3, 7, 1, 9, 5};
         int taille = tableau.length;
         int maxEcart = 0;
-        
+
 
         for (int i = 0; i < taille - 1; i++) {
             for (int j = i + 1; j < taille; j++) {
@@ -168,5 +169,20 @@ public class ExoArray {
         }
 
         System.out.println(maxEcart); ;
+    }
+
+    public static void exoCinqQuatre(){
+        int[] array = {3, 7, 1, 9, 5};
+        int temp = array[0];
+
+        for (int i = 0; i < array.length - 1; i++) {
+            array[i] = array[i + 1];
+        }
+
+        array[array.length - 1] = temp;
+
+        for (int j = 0; j < array.length; j++) {
+            System.out.println(array[j]);
+        }
     }
 }
