@@ -2,6 +2,7 @@ package org.example;
 
 
 import org.example.exerciceCondition.ExerciceCondition;
+import org.example.matrix.Matrix;
 import org.example.operator.Operator;
 import org.example.readFromConsole.ReadFromConsole;
 import org.example.string.StringExo;
@@ -30,10 +31,16 @@ public class Main {
 //        tpVendredi.exoCinqHuit();
 //        StringExo.exo1("Bonjour les ");
 //        StringExo.exo2("ssss");
-        String word1 = "listen";
-        String word2 = "bonjour";
+//        String word1 = "listen";
+//        String word2 = "bonjour";
+//
+//        StringExo.exo3(word1, word2);
 
-        StringExo.exo3(word1, word2);
+//        System.out.println(StringExo.exo4("kayak"));
+
+//        StringExo.pyramide();
+
+        Matrix.exo2();
 
     }
 }
