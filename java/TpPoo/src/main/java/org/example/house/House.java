@@ -4,13 +4,15 @@ import org.example.house.Door;
 
 public class House {
     protected int surface;
+    protected Door door;
 
     public House(int surface, Door door) {
         this.surface = surface;
+        this.door = door;
     }
 
-    public void getDoor(){
-
+    public Door getDoor() {
+        return door;
     }
 
     public int getSurface() {
