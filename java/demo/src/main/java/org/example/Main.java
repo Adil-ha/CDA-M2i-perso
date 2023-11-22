@@ -6,6 +6,7 @@ import org.example.function.Function;
 import org.example.matrix.Matrix;
 import org.example.operator.Operator;
 import org.example.readFromConsole.ReadFromConsole;
+import org.example.recursive.FactRec;
 import org.example.string.StringExo;
 import org.example.structure.Structure;
 import org.example.structure.Structure2;
@@ -17,53 +18,11 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
 
-//        exo 1
-//        System.out.print("Entrer la taille du tableau: ");
-//        int size = scanner.nextInt();
-//        int[] array = new int[size];
-//
-//        for (int i = 0; i < size; i++) {
-//            System.out.print("Entrer un nombre : ");
-//            array[i] = scanner.nextInt();
-//        }
-//
-//        System.out.println(Function.findMaxIntArray(array));
-
-//        exo 2
-//        System.out.println("Entrer la hauteur du rectangle");
-//        int hauteur = scanner.nextInt();
-//
-//        System.out.println("Entrer la largeur du rectangle");
-//        int largeur = scanner.nextInt();
-//
-//        Function.drawRectangle(hauteur,largeur);
-
-//        exo 3
-//        System.out.print("Entrer une phrase: ");
-//        String s = scanner.nextLine();
-//
-//        Function.getWordsAmount(s);
-
-//        exo 4
-
-        System.out.print("Entrer le nombre de mots: ");
-        int size = scanner.nextInt();
-        String[] mots = new String[size];
-
-        for (int i = 0; i < size; i++) {
-            System.out.print("Entrer un mots : ");
-            mots[i] = scanner.next();
-        }
-
-        System.out.print("Entrer la longueur minimale: ");
-        int minLength = scanner.nextInt();
-
-
-        String[] motsFiltres = Function.filterWordsByLength(minLength,mots);
-        for (String mot : motsFiltres) {
-            System.out.println(mot);
-        }
+        System.out.println( "0! == " + FactRec.factRec( 0 ) );  // 1
+        System.out.println( "1! == " + FactRec.factRec( 1 ) );  // 1
+        System.out.println( "3! == " + FactRec.factRec( 3 ) );  // 6
+        System.out.println( "5! == " + FactRec.factRec( 5 ) );  // 120
+        System.out.println( "6! == " + FactRec.factRec( 6 ) );  // 720
     }
 }
