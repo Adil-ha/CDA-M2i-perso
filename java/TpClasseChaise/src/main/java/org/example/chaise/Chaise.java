@@ -1,6 +1,6 @@
-package org.example;
+package org.example.chaise;
 
-public class Chaise {
+public  class Chaise {
     private int npPied;
 
     private String couleur;
@@ -22,4 +22,3 @@ public class Chaise {
         System.out.printf(phrase, getClass().getName(),this.npPied, this.materiau, this.couleur);
     }
 }
-

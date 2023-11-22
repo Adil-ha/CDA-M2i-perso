@@ -1,6 +1,6 @@
-package org.example;
+package org.example.bank;
 
-public class EpargneCompte extends Compte{
+public class EpargneCompte extends Compte {
     private float tauxInteret;
 
     public EpargneCompte(float solde, float tauxInteret) {

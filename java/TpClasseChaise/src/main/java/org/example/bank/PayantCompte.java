@@ -1,4 +1,4 @@
-package org.example;
+package org.example.bank;
 
 public class PayantCompte extends Compte {
 

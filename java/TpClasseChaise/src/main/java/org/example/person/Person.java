@@ -1,4 +1,4 @@
-package org.example;
+package org.example.person;
 
 public class Person {
     protected int age;
@@ -20,4 +20,6 @@ public class Person {
     public void setAge(int n) {
         this.age = n;
     }
+
+
 }

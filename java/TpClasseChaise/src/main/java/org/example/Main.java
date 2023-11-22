@@ -1,6 +1,8 @@
 package org.example;
 
 
+import org.example.bank.PayantCompte;
+
 public class Main {
     public static void main(String[] args) {
 //        exo1

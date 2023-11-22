@@ -1,6 +1,8 @@
-package org.example;
+package org.example.person;
 
-public class Teacher extends Person{
+import org.example.person.Person;
+
+public class Teacher extends Person {
     private String subject;
 
     public Teacher(int age) {

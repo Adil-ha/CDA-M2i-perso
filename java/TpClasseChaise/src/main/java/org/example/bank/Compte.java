@@ -1,4 +1,4 @@
-package org.example;
+package org.example.bank;
 
 public class Compte {
     protected static int cpt ;

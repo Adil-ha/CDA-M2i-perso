@@ -1,4 +1,6 @@
-package org.example;
+package org.example.person;
+
+import org.example.person.Person;
 
 public class Student extends Person {
 

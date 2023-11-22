@@ -1,4 +1,4 @@
-package org.example;
+package org.example.bank;
 
 public class SimpleCompte extends Compte {
     private int discovery;
