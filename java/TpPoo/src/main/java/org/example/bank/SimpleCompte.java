@@ -8,7 +8,7 @@ public class SimpleCompte extends Compte {
         this.discovery = discovery;
     }
 
-    public void debit(int sum) {
+    public void debit(float sum) {
         float availableBalance = getSolde() + discovery;
 
         if (availableBalance >= sum) {

@@ -28,7 +28,7 @@ public class Main {
 
 //        exo2 b
         Door door = new Door("bleu");
-        Apartment apartment = new Apartment(door);
+        Apartment apartment = new Apartment();
         Person person = new Person("Thomas",apartment);
         person.display();
 

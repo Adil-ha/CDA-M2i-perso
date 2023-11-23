@@ -12,7 +12,8 @@ public class PayantCompte extends Compte {
         setSolde(getSolde()+sum -r);
     }
 
-    public void debit(int sum){
+
+        public void debit(float sum){
         if (getSolde() >= sum) {
             float r = sum * (INTERERT/100);
             setSolde(getSolde() -sum -r);

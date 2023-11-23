@@ -6,9 +6,9 @@ public class House {
     protected int surface;
     protected Door door;
 
-    public House(int surface, Door door) {
+    public House(int surface) {
         this.surface = surface;
-        this.door = door;
+        this.door = new Door();
     }
 
     public Door getDoor() {

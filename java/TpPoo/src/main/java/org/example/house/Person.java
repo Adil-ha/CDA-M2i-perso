@@ -19,7 +19,7 @@ public class Person {
     }
 
     public void display() {
-        System.out.println("Je m'appelle " + getName() +
+        System.out.println("Je m'appelle " + this.name +
                 "\nJe suis " + (house instanceof Apartment ? "un appartement" : " une maison") +
                 ", ma surface est de " + house.getSurface() + "m2" +
                 "\nLa porte de ma maison est de couleur " + house.getDoor().getColor());

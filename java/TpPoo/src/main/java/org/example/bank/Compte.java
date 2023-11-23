@@ -2,7 +2,6 @@ package org.example.bank;
 
 public class Compte {
     protected static int cpt ;
-
     protected int code;
     protected float solde;
 
@@ -18,7 +17,7 @@ public class Compte {
         solde += sum;
     }
 
-    public void debit(double sum) {
+    public void debit(float sum) {
         if (solde >= sum) {
             solde -= sum;
             System.out.println("Débit effectué avec succès. Nouveau solde : " + getSolde());

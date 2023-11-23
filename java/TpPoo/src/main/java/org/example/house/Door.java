@@ -4,7 +4,9 @@ public class Door  {
     private String color;
 
 
-
+    public Door(){
+        this.color = "bleu";
+    }
     public Door(String color) {
         this.color = color;
     }
@@ -18,6 +20,6 @@ public class Door  {
     }
 
     public void display(){
-        System.out.println("Je suis une porte, ma couleur est "+ getColor() );
+        System.out.println("Je suis une porte, ma couleur est "+ this.color );
     }
 }
