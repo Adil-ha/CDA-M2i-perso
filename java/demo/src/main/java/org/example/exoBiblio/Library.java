@@ -13,24 +13,21 @@ public class Library {
         this.loanList = new ArrayList<Loan>();
     }
 
-    public void addBook(Book book) {
-        bookList.add(book);
+    public boolean addBook(Book book) {
+        return bookList.add(book);
 
     }
 
-    public void removeBook(int bookId) {
-        Book bookToRemove = null;
+    public boolean removeBook(int bookId) {
+
 
         for (Book book : bookList) {
             if (book.getId()==(bookId)) {
-                bookToRemove = book;
-                break;
+                bookList.remove(book);
+                return true;
             }
         }
-        if (bookToRemove != null) {
-            bookList.remove(bookToRemove);
-            System.out.printf("Votre livre %s à bien été supprimer", bookToRemove);
-        }
+        return false;
     }
 
     public List<Book> findBooksByTitle(String title) {
