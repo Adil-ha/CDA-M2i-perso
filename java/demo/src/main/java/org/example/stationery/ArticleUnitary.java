@@ -1,6 +1,6 @@
 package org.example.stationery;
 
-public class ArticleUnitary extends Article {
+public abstract class ArticleUnitary extends Article {
     protected String name;
     protected Double price;
 

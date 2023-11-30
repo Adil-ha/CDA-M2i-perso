@@ -7,7 +7,7 @@ public class Demo {
         ArticleUnitary reamArticle = new Ream("Printer Paper", 5.0, 80);
 
         // Création d'un lot
-        Batch batch = new Batch(penArticle, 3, 10);
+        Batch batch = new Batch(penArticle, 5, 10);
 
         // Création d'une facture
         Invoice invoice = new Invoice("John Doe", "2023-11-29");

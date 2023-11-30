@@ -1,6 +1,6 @@
 package org.example.stationery;
 
-public class Article {
+public abstract class Article {
 
     protected static int cpt;
 
