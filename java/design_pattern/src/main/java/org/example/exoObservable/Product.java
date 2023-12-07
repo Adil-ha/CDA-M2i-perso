@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 public class Product implements Subject {
     private int stockLevel;
-    List<Observer> observers;
+    private List<Observer> observers;
 
     public Product(){
         observers = new ArrayList<>();
