@@ -1,11 +1,22 @@
 package org.example.builder;
 
-import lombok.Data;
+import org.example.entity.Animal;
 
 public abstract class AnimalBuilder {
+
+    protected String name;
+    protected int size;
     public abstract AnimalBuilder name(String name);
     public abstract AnimalBuilder size(int size);
-    public abstract AnimalBuilder build();
+    public abstract Animal build();
+
+    public String getName() {
+        return name;
+    }
+
+    public int getSize() {
+        return size;
+    }
 
 
 }

@@ -1,17 +1,18 @@
 package org.example.entity;
 
-import org.example.builder.LionBuilder;
+import org.example.builder.ElephantBuilder;
 
-public class Lion extends Animal{
+public class Elephant extends Animal{
 
 
-    public Lion(LionBuilder builder) {
+    public Elephant(ElephantBuilder builder) {
         this.name = builder.getName();
         this.size = builder.getSize();
     }
 
+
     @Override
     public String getSound() {
-        return "Rugissement";
+        return "barrissement ";
     }
 }

@@ -1,10 +1,10 @@
 package org.example.builder;
 
 import org.example.entity.Animal;
-import org.example.entity.Lion;
+import org.example.entity.Elephant;
 
+public class ElephantBuilder extends AnimalBuilder{
 
-public class LionBuilder extends AnimalBuilder{
 
     @Override
     public AnimalBuilder name(String name) {
@@ -20,7 +20,6 @@ public class LionBuilder extends AnimalBuilder{
 
     @Override
     public Animal build() {
-        return new Lion(this);
+        return new Elephant(this);
     }
-
 }
