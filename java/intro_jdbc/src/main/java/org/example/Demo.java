@@ -1,37 +1,17 @@
 package org.example;
 
-import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Properties;
 
 public class Demo {
-    public static void main(String[] args) throws Exception {
-        Properties props = new Properties();
-        try (FileInputStream fis = new FileInputStream("C:/Users/hanou/Desktop/CDA-M2i-perso/java/intro_jdbc/src/main/java/org/example/conf.properties")) {
-            props.load(fis);
-        }
-
-        String jdbcUrl = props.getProperty("jdbc.url");
-        String jdbcUser = props.getProperty("jdbc.login");
-        String jdbcPassword = props.getProperty("jdbc.password");
-
-        try (Connection connection = DriverManager.getConnection(jdbcUrl, jdbcUser, jdbcPassword);
+    public static void main(String[] args) {
+        try (Connection connection = DatabaseSingleton.getConnection();
              Statement stm = connection.createStatement()) {
 
-
-                // Ajout user dans la table user
-
-//            String strSql = "INSERT INTO user (username, email, password, connectionNumber) " +
-//                    "VALUES ('Bourne', 'bourne@gmail.com', 'motdepasse6', 3)";
-//
-//            stm.executeUpdate(strSql);
-
             ResultSet resultSet = stm.executeQuery("SELECT * FROM user");
-
 
             while (resultSet.next()) {
                 int rsId = resultSet.getInt(1);
@@ -44,7 +24,7 @@ public class Demo {
 
             resultSet.close();
 
-        } catch (SQLException e) {
+        } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
     }
