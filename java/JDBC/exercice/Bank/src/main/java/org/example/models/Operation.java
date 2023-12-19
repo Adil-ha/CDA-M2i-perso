@@ -10,4 +10,15 @@ public class Operation {
     private int id;
     private double amount;
     private TransactionType transactionType;
+    private BankAccount account;
+
+    public Operation(){
+
+    }
+
+    public void setAccount(BankAccount account) {
+        this.account = account;
+    }
 }
+
+

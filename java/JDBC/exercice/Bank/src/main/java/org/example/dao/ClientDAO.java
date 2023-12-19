@@ -16,15 +16,19 @@ public class ClientDAO extends BaseDAO<Client> {
 
     public boolean save(Client client) throws SQLException {
         String query = "INSERT INTO T_CLIENT (last_name, first_name, phone_number) VALUES (?, ?, ?)";
-        statement = _connection.prepareStatement(query);
+        statement = _connection.prepareStatement(query, statement.RETURN_GENERATED_KEYS);
         statement.setString(1, client.getLastName());
         statement.setString(2, client.getFirstName());
         statement.setString(3, client.getPhoneNumber());
+
         int rowsAffected = statement.executeUpdate();
+        resultSet = statement.getGeneratedKeys();
+
+        if(resultSet.next()) {
+            client.setId(resultSet.getInt(1));
+        }
         return rowsAffected > 0;
     }
-
-
 
 
     public Client getClientById(int id) throws SQLException {
@@ -42,6 +46,15 @@ public class ClientDAO extends BaseDAO<Client> {
             );
         }
         return client;
+    }
+
+    public boolean delete(int clientId) throws SQLException {
+        String query = "DELETE FROM T_CLIENT WHERE client_id = ?";
+        statement = _connection.prepareStatement(query);
+        statement.setInt(1, clientId);
+
+        int rowsAffected = statement.executeUpdate();
+        return rowsAffected > 0;
     }
 
 
