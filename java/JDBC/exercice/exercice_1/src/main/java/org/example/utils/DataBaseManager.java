@@ -1,20 +1,20 @@
-package org.example.ConnectionUtils;
+package org.example.utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class ConnectionUtils {
-    private static ConnectionUtils instance;
+public class DataBaseManager {
+    private static DataBaseManager instance;
     private Connection connection;
 
-    private ConnectionUtils() {
+    private DataBaseManager() {
 
     }
 
-    public static synchronized ConnectionUtils getInstance() {
+    public static synchronized DataBaseManager getInstance() {
         if (instance == null) {
-            instance = new ConnectionUtils();
+            instance = new DataBaseManager();
         }
         return instance;
     }

@@ -1,6 +1,6 @@
 package org.example.dao;
 
-import org.example.ConnectionUtils.ConnectionUtils;
+import org.example.utils.DataBaseManager;
 import org.example.models.Student;
 
 import java.sql.*;
@@ -10,34 +10,32 @@ import java.util.List;
 public class StudentDao {
     private Connection connection;
 
-    public StudentDao() {
-        try {
-            this.connection = ConnectionUtils.getInstance().getMySQLConnection();
-        } catch (SQLException e) {
-            throw new RuntimeException("Erreur lors de l'obtention de la connexion.", e);
-        }
+    public StudentDao() throws SQLException {
+
+
+        this.connection = DataBaseManager.getInstance().getMySQLConnection();
+
     }
 
-    public void addStudent(Student student) {
-        try {
-            String request = "INSERT INTO T_student (last_name, first_name, number_class, date_diplome) VALUES (?, ?, ?, ?);";
-            try (PreparedStatement statement = connection.prepareStatement(request)) {
-                statement.setString(1, student.getLastName());
-                statement.setString(2, student.getFirstName());
-                statement.setInt(3, student.getNumberClass());
-                statement.setDate(4, new java.sql.Date(student.getDateDiplome().getTime()));
+    public boolean addStudent(Student student) throws SQLException {
 
-                int rows = statement.executeUpdate();
-                System.out.println(rows + " ligne(s) insérée(s) avec succès.");
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        String request = "INSERT INTO T_student (last_name, first_name, number_class, date_diplome) VALUES (?, ?, ?, ?);";
+        int rows;
+        try (PreparedStatement statement = connection.prepareStatement(request)) {
+            statement.setString(1, student.getLastName());
+            statement.setString(2, student.getFirstName());
+            statement.setInt(3, student.getNumberClass());
+            statement.setDate(4, new java.sql.Date(student.getDateDiplome().getTime()));
+
+            rows = statement.executeUpdate();
+            System.out.println(rows + " ligne(s) insérée(s) avec succès.");
         }
+        return rows == 1;
     }
 
-    public List<Student> getAllStudents() {
+    public List<Student> getAllStudents() throws SQLException {
         List<Student> students = new ArrayList<>();
-        try {
+
             String request = "SELECT * FROM T_student;";
             try (Statement statement = connection.createStatement();
                  ResultSet resultSet = statement.executeQuery(request)) {
@@ -47,15 +45,13 @@ public class StudentDao {
                     students.add(student);
                 }
             }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+
         return students;
     }
 
-    public List<Student> getStudentsByClass(int numberClass) {
+    public List<Student> getStudentsByClass(int numberClass) throws SQLException {
         List<Student> students = new ArrayList<>();
-        try {
+
             String request = "SELECT * FROM T_student WHERE number_class = ?;";
             try (PreparedStatement statement = connection.prepareStatement(request)) {
                 statement.setInt(1, numberClass);
@@ -67,24 +63,46 @@ public class StudentDao {
                     }
                 }
             }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+
+        return students;
+    }
+
+
+    public List<Student> getStudentsByLastName(String lastName) throws SQLException {
+        List<Student> students = new ArrayList<>();
+        String request = "SELECT * FROM T_student WHERE last_name = ?;";
+        try (PreparedStatement statement = connection.prepareStatement(request)) {
+            statement.setString(1, lastName);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    Student student = createStudentFromResultSet(resultSet);
+                    students.add(student);
+                }
+            }
+
+            if (students.isEmpty()) {
+                System.out.println("Aucun étudiant trouvé avec le nom : " + lastName);
+            }
         }
         return students;
     }
 
-    public void deleteStudent(int studentId) {
-        try {
-            String request = "DELETE FROM T_student WHERE id = ?;";
-            try (PreparedStatement statement = connection.prepareStatement(request)) {
-                statement.setInt(1, studentId);
 
-                int rows = statement.executeUpdate();
-                System.out.println(rows + " ligne(s) supprimée(s) avec succès.");
+    public boolean deleteStudent(int studentId) throws SQLException {
+        String request = "DELETE FROM T_student WHERE id = ?;";
+        int rowsAffected;
+        try (PreparedStatement statement = connection.prepareStatement(request)) {
+            statement.setInt(1, studentId);
+
+            rowsAffected = statement.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println(rowsAffected + " ligne(s) supprimée(s) avec succès.");
+            } else {
+                System.out.println("Aucun étudiant trouvé avec l'ID : " + studentId);
             }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
         }
+        return rowsAffected == 1;
     }
 
 

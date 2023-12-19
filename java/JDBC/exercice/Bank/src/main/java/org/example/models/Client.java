@@ -1,0 +1,28 @@
+package org.example.models;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+import java.util.List;
+
+@Data
+@AllArgsConstructor
+public class Client {
+    private int id;
+    private String lastName;
+    private String firstName;
+    private List<BankAccount> accounts;
+    private String phoneNumber;
+
+    public Client(){
+
+    }
+
+    public Client(int id, String lastName, String firstName, String phoneNumber) {
+        this.id = id;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.phoneNumber = phoneNumber;
+    }
+
+}
