@@ -1,11 +1,11 @@
 package org.example.dao;
 
 import org.example.models.BankAccount;
+import org.example.models.Client;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class BankAccountDAO extends BaseDAO<BankAccount> {
 
@@ -32,17 +32,28 @@ public class BankAccountDAO extends BaseDAO<BankAccount> {
         return rowsAffected > 0;
     }
 
+
     public BankAccount getBankAccountByAccountNumber(int accountNumber) throws SQLException {
-        String query = "SELECT * FROM T_BANK_ACCOUNT WHERE account_id=?";
+        String query = "SELECT T_BANK_ACCOUNT.account_id, balance, last_name, first_name " +
+                "FROM T_BANK_ACCOUNT " +
+                "JOIN T_CLIENT ON T_BANK_ACCOUNT.client_id = T_CLIENT.client_id " +
+                "WHERE T_BANK_ACCOUNT.account_id=?";
+
         statement = _connection.prepareStatement(query);
         statement.setInt(1, accountNumber);
         resultSet = statement.executeQuery();
+
         BankAccount bankAccount = null;
         if (resultSet.next()) {
-            bankAccount = new BankAccount(
-                    resultSet.getInt("account_id"),
-                    resultSet.getDouble("balance")
-            );
+
+            int accountId = resultSet.getInt("account_id");
+            double balance = resultSet.getDouble("balance");
+
+            String lastName = resultSet.getString("last_name");
+            String firstName = resultSet.getString("first_name");
+
+            Client client = new Client(lastName, firstName);
+            bankAccount = new BankAccount(accountId, balance, client);
         }
         return bankAccount;
     }

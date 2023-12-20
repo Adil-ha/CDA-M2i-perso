@@ -25,4 +25,11 @@ public class Client {
         this.phoneNumber = phoneNumber;
     }
 
+    public Client(String lastName, String firstName) {
+
+        this.lastName = lastName;
+        this.firstName = firstName;
+
+    }
+
 }

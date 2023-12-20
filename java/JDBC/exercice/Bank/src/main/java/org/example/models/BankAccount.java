@@ -26,6 +26,12 @@ public class BankAccount {
         this.id = id;
         this.balance = balance;
     }
+
+    public BankAccount(int id, double balance, Client client){
+        this.id = id;
+        this.balance = balance;
+        this.client = client;
+    }
 }
 
 
