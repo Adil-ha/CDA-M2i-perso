@@ -167,7 +167,7 @@ public class BankService {
             if (client != null) {
                 return bankAccountDAO.getAccountsByClient(client);
             } else {
-                return Collections.emptyList();
+                return null;
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

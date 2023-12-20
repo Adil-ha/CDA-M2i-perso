@@ -155,7 +155,7 @@ public class ConsoleIHM {
 
         List<BankAccount> accounts = bankService.viewClientAccounts(clientId);
 
-        if (!accounts.isEmpty()) {
+        if (accounts != null) {
             System.out.println("Liste comptes :");
             for (BankAccount account : accounts) {
                 System.out.println("compte n°: " + account.getId());
