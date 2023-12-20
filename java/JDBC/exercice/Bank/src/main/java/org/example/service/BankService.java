@@ -12,6 +12,8 @@ import org.example.utils.DataBaseManager;
 import java.sql.Connection;
 
 import java.sql.SQLException;
+import java.util.Collections;
+import java.util.List;
 
 public class BankService {
     private ClientDAO clientDAO;
@@ -113,8 +115,6 @@ public class BankService {
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
-
-
         }
 
     }
@@ -122,6 +122,53 @@ public class BankService {
     public BankAccount getAccountByNumber(int accountNumber) {
         try {
             return bankAccountDAO.getBankAccountByAccountNumber(accountNumber);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public boolean addClientWithoutAccount(String lastName,String firstname,String phoneNumber){
+        Client client = new Client();
+        client.setLastName(lastName);
+        client.setFirstName(firstname);
+        client.setPhoneNumber(phoneNumber);
+
+        try {
+            if (clientDAO.save(client)) {
+              return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public boolean addAccountForClient(int clientId) {
+        try {
+            Client client = clientDAO.getClientById(clientId);
+            if(client != null){
+                BankAccount bankAccount = new BankAccount(client);
+                bankAccountDAO.save(bankAccount);
+                return true;
+            }
+            else {
+                return false;
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<BankAccount> viewClientAccounts(int clientId) {
+        try {
+            Client client = clientDAO.getClientById(clientId);
+            if (client != null) {
+                return bankAccountDAO.getAccountsByClient(client);
+            } else {
+                return Collections.emptyList();
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

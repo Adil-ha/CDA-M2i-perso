@@ -5,6 +5,8 @@ import org.example.models.Client;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class BankAccountDAO extends BaseDAO<BankAccount> {
@@ -60,9 +62,21 @@ public class BankAccountDAO extends BaseDAO<BankAccount> {
 
 
 
+    public List<BankAccount> getAccountsByClient(Client client) throws SQLException {
+        List<BankAccount> accounts = new ArrayList<>();
+        String query = "SELECT * FROM T_BANK_ACCOUNT WHERE client_id = ?";
+        statement = _connection.prepareStatement(query);
+        statement.setInt(1, client.getId());
+        resultSet = statement.executeQuery();
 
+        while (resultSet.next()) {
+            BankAccount account = new BankAccount();
+            account.setId(resultSet.getInt("account_id"));
+            accounts.add(account);
+        }
 
-
+        return accounts;
+    }
 
 
 

@@ -1,11 +1,13 @@
 package org.example.dao;
 
+import org.example.models.BankAccount;
 import org.example.models.Client;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class ClientDAO extends BaseDAO<Client> {
 
@@ -30,23 +32,27 @@ public class ClientDAO extends BaseDAO<Client> {
         return rowsAffected > 0;
     }
 
-
-    public Client getClientById(int id) throws SQLException {
-        String query = "SELECT * FROM T_CLIENT WHERE client_id=?";
+    public Client getClientById(int clientId) throws SQLException {
+        String query = "SELECT * FROM T_CLIENT WHERE client_id = ?";
         statement = _connection.prepareStatement(query);
-        statement.setInt(1, id);
+        statement.setInt(1, clientId);
+
         resultSet = statement.executeQuery();
-        Client client = null;
+
         if (resultSet.next()) {
-            client = new Client(
-                    resultSet.getInt("client_id"),
-                    resultSet.getString("last_name"),
-                    resultSet.getString("first_name"),
-                    resultSet.getString("phone_number")
-            );
+            Client client = new Client();
+            client.setId(resultSet.getInt("client_id"));
+            client.setLastName(resultSet.getString("last_name"));
+            client.setFirstName(resultSet.getString("first_name"));
+            client.setPhoneNumber(resultSet.getString("phone_number"));
+
+            return client;
+        } else {
+
+            return null;
         }
-        return client;
     }
+
 
     public boolean delete(int clientId) throws SQLException {
         String query = "DELETE FROM T_CLIENT WHERE client_id = ?";
@@ -56,6 +62,8 @@ public class ClientDAO extends BaseDAO<Client> {
         int rowsAffected = statement.executeUpdate();
         return rowsAffected > 0;
     }
+
+
 
 
 

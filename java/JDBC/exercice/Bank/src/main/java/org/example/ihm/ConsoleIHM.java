@@ -2,7 +2,9 @@ package org.example.ihm;
 
 import org.example.models.BankAccount;
 import org.example.service.BankService;
+import org.example.utils.DataBaseManager;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class ConsoleIHM {
@@ -12,10 +14,11 @@ public class ConsoleIHM {
     private static Scanner scanner = new Scanner(System.in);
 
     public void start() {
+        try{
             int choice;
             do {
                 displayMenu();
-                System.out.println("Enter your choice: ");
+                System.out.println("Entrer votre choix : ");
                 choice = scanner.nextInt();
                 scanner.nextLine();
 
@@ -32,13 +35,26 @@ public class ConsoleIHM {
                     case 4 :
                         displayAccountDetails();
                         break;
+                    case 5 :
+                        addAccountForClient();
+                        break;
+                    case 6 :
+                        viewClientAccounts();
+                        break;
+                    case 7 :
+                        createClientWithoutAccount();
+                        break;
                     case 0:
-                        System.out.println("Exiting the application. Goodbye!");
+                        System.out.println("Goodbye!");
                         break;
                     default:
-                        System.out.println("Invalid choice. Please try again.");
+                        System.out.println("choix invalide.");
                 }
             } while (choice != 0);
+        }finally {
+            DataBaseManager.getInstance().closeConnection();
+        }
+
         }
 
     private void displayMenu() {
@@ -105,6 +121,47 @@ public class ConsoleIHM {
             System.out.println("Client: " + account.getClient().getFirstName() + " " + account.getClient().getLastName());
         } else {
             System.out.println("Le compte n'existe pas.");
+        }
+    }
+
+    public void createClientWithoutAccount(){
+        System.out.println("Merci de saisir le nom");
+        String lastName = scanner.nextLine();
+        System.out.println("Merci de saisir le prenom");
+        String firstname = scanner.nextLine();
+        System.out.println("Merci de saisir le numero de telephone");
+        String phoneNumber = scanner.nextLine();
+
+        if (bankService.addClientWithoutAccount(lastName,firstname,phoneNumber)){
+            System.out.println("Client ajouter avec succés");
+        }else {
+            System.out.println("Erreur");
+        }
+    }
+
+    public void addAccountForClient(){
+        System.out.println("Merci de saisir l'id du client");
+        int id = scanner.nextInt();
+        if (bankService.addAccountForClient(id)){
+            System.out.println("Nouveau compte ajouter au client n°"+ id);
+        }else{
+            System.out.println("Erreur");
+        }
+    }
+
+    public void viewClientAccounts() {
+        System.out.println("Entrer l'id du client");
+        int clientId = scanner.nextInt();
+
+        List<BankAccount> accounts = bankService.viewClientAccounts(clientId);
+
+        if (!accounts.isEmpty()) {
+            System.out.println("Liste comptes :");
+            for (BankAccount account : accounts) {
+                System.out.println("compte n°: " + account.getId());
+            }
+        } else {
+            System.out.println("Erreur");
         }
     }
 

@@ -11,14 +11,11 @@ public class DataBaseManager {
 
     private static DataBaseManager instance;
 
+    private Connection connection;
+
 
     private DataBaseManager() {
-        try {
-            // Load the JDBC driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+
     }
 
 
@@ -32,5 +29,16 @@ public class DataBaseManager {
 
     public Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URI, USER, PASSWORD);
+    }
+
+    public void closeConnection() {
+        try {
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+                System.out.println("Connection closed.");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error closing the database connection.", e);
+        }
     }
 }

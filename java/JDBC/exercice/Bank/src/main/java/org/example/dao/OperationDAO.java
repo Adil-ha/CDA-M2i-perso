@@ -4,8 +4,7 @@ import org.example.models.Operation;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class OperationDAO extends BaseDAO<Operation> {
 
@@ -23,12 +22,6 @@ public class OperationDAO extends BaseDAO<Operation> {
         int rowsAffected = statement.executeUpdate();
         return rowsAffected > 0;
     }
-
-
-
-
-
-
 
 
 }
