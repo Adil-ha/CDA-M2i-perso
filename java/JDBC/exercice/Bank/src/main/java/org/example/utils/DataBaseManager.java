@@ -39,6 +39,8 @@ public class DataBaseManager {
             }
         } catch (SQLException e) {
             throw new RuntimeException("Error closing the database connection.", e);
+        }finally {
+            connection = null;
         }
     }
 }

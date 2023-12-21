@@ -13,7 +13,6 @@ public class Operation {
     private BankAccount account;
 
     public Operation(){
-
     }
 
     public void setAccount(BankAccount account) {

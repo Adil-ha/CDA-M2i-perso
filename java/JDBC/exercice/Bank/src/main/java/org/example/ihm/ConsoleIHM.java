@@ -9,9 +9,9 @@ import java.util.Scanner;
 
 public class ConsoleIHM {
 
-    private static BankService bankService = new BankService();
+    private  BankService bankService = new BankService();
 
-    private static Scanner scanner = new Scanner(System.in);
+    private  Scanner scanner = new Scanner(System.in);
 
     public void start() {
         try{
@@ -53,6 +53,7 @@ public class ConsoleIHM {
             } while (choice != 0);
         }finally {
             DataBaseManager.getInstance().closeConnection();
+            scanner.close();
         }
 
         }
@@ -65,7 +66,7 @@ public class ConsoleIHM {
         System.out.println("4. Affichage compte");
         System.out.println("5. Ajouter un compte à un client");
         System.out.println("6. Voir tout les comptes d'un client");
-        System.out.println("7. Création de client");
+        System.out.println("7. Création d'un client");
         System.out.println("0. Exit");
         System.out.println("================");
     }

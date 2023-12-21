@@ -15,8 +15,5 @@ public abstract class BaseDAO<T> {
         _connection = connection;
     }
 
-
-
-
 }
 

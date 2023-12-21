@@ -22,10 +22,6 @@ public class BankAccount {
         this.balance = 0;
     }
 
-    public BankAccount(int id, double balance){
-        this.id = id;
-        this.balance = balance;
-    }
 
     public BankAccount(int id, double balance, Client client){
         this.id = id;

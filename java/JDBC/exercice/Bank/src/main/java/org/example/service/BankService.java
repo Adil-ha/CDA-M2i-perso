@@ -12,7 +12,6 @@ import org.example.utils.DataBaseManager;
 import java.sql.Connection;
 
 import java.sql.SQLException;
-import java.util.Collections;
 import java.util.List;
 
 public class BankService {
