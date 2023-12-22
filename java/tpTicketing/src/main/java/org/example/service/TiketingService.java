@@ -1,10 +1,12 @@
 package org.example.service;
 
+import com.mysql.cj.xdevapi.Client;
 import jdk.jshell.spi.ExecutionControl;
 import org.example.dao.CustomerDao;
 import org.example.dao.EventDao;
 import org.example.dao.PlaceDao;
 import org.example.exception.CustomFormatException;
+import org.example.model.Customer;
 import org.example.model.Event;
 import org.example.model.Place;
 import org.example.util.DatabaseManager;
@@ -105,7 +107,6 @@ public class TiketingService {
             if (eventToDelete != null) {
                 return eventDao.delete(eventToDelete);
             } else {
-                System.out.println("Aucun événement trouvé avec l'ID : " + eventId);
                 return false;
             }
         } catch (SQLException | CustomFormatException e) {
@@ -117,9 +118,131 @@ public class TiketingService {
         try {
             return eventDao.get();
         } catch (SQLException | CustomFormatException e) {
-            throw new RuntimeException("Erreur lors de la récupération des événements : " + e.getMessage());
+            throw new RuntimeException();
         }
     }
+
+    public boolean addClient(String lastName, String firstname, String email){
+        Customer customer = new Customer(lastName, firstname, email);
+
+        try{
+           return customerDao.save(customer);
+
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public boolean updateClient(int clientId, String newLastName, String newFirstName, String newEmail) {
+        try {
+            Customer existingCustomer = customerDao.get(clientId);
+
+            if (existingCustomer != null) {
+                existingCustomer.setLastname(newLastName);
+                existingCustomer.setFirstname(newFirstName);
+                existingCustomer.setEmail(newEmail);
+
+                return customerDao.update(existingCustomer);
+            } else {
+                return false;
+            }
+        } catch (SQLException e) {
+
+            throw new RuntimeException();
+        } catch (CustomFormatException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public boolean deleteClient(int clientId) {
+        try {
+            Customer existingCustomer = customerDao.get(clientId);
+
+            if (existingCustomer != null) {
+                return customerDao.delete(existingCustomer);
+            } else {
+                return false;
+            }
+        } catch (SQLException | CustomFormatException e) {
+
+            throw new RuntimeException();
+        }
+    }
+
+    public boolean buyTickets(int clientId, int eventId, int numberOfTickets) {
+        try {
+            connection.setAutoCommit(false);
+            Customer customer = customerDao.get(clientId);
+            Event event = eventDao.get(eventId);
+
+            if (customer != null && event != null) {
+                if (eventDao.buyTickets(event, numberOfTickets)) {
+                    customerDao.associateTicketsWithCustomer(customer, event, numberOfTickets);
+                    connection.commit();
+                    return true;
+                }
+            }
+
+            connection.rollback();
+            return false;
+        } catch (SQLException | CustomFormatException e) {
+            if (connection != null) {
+                try {
+                    connection.rollback();
+                } catch (SQLException rollbackException) {
+                    rollbackException.printStackTrace();
+                }
+            }
+            throw new RuntimeException(e);
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.setAutoCommit(true);
+                } catch (SQLException closeException) {
+                    closeException.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public boolean cancelTickets(int clientId, int eventId, int numberOfTickets) {
+        try {
+            connection.setAutoCommit(false);
+
+            Customer customer = customerDao.get(clientId);
+            Event event = eventDao.get(eventId);
+
+            if (customer != null && event != null) {
+                if (eventDao.cancelTickets(event, numberOfTickets)) {
+                    customerDao.disassociateTicketsWithCustomer(customer, event, numberOfTickets);
+                    connection.commit();
+                    return true;
+                }
+            }
+
+            connection.rollback();
+            return false;
+        } catch (SQLException | CustomFormatException e) {
+            if (connection != null) {
+                try {
+                    connection.rollback();
+                } catch (SQLException rollbackException) {
+                    rollbackException.printStackTrace();
+                }
+            }
+            throw new RuntimeException();
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.setAutoCommit(true);
+                } catch (SQLException closeException) {
+                    closeException.printStackTrace();
+                }
+            }
+        }
+    }
+
 
 
     public static void close(){

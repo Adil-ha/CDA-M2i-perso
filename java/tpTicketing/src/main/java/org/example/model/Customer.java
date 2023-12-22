@@ -23,6 +23,12 @@ public class Customer {
     public Customer() {
     }
 
+    public Customer(String lastname , String firstname,  String email) {
+        this.lastname = lastname;
+        this.firstname = firstname;
+        this.email = email;
+    }
+
 
     public void setEmail(String email) throws CustomFormatException {
         String pattern = "^([a-zA-Z0-9_.-]+)@([a-z0-9-]+\\.?[a-z0-9-]+)\\.([a-z]{2,6})$";
@@ -33,7 +39,4 @@ public class Customer {
     }
 
 
-    public void setEventsTicket(List<Event> eventsTicket) {
-        this.eventsTicket = eventsTicket;
-    }
 }

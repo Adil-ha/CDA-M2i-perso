@@ -107,49 +107,27 @@ public class EventDao extends BaseDao<Event> {
         return events;
     }
 
-//    @Override
-//    public Event get(int id) throws SQLException, CustomFormatException {
-//        String request = "SELECT * FROM T_EVENT WHERE id=?";
-//        try (PreparedStatement statement = _connection.prepareStatement(request)) {
-//            statement.setInt(1, id);
-//
-//            ResultSet resultSet = statement.executeQuery();
-//            if (resultSet.next()) {
-//                Event event = new Event();
-//                event.setId(resultSet.getInt("id"));
-//                event.setName(resultSet.getString("name"));
-//                event.setDate(resultSet.getDate("date").toLocalDate().atStartOfDay());
-//                // Assuming you have a method to get a Place object based on place_id
-//                // event.setPlace(getPlaceById(resultSet.getInt("place_id")));
-//                event.setPrice(resultSet.getBigDecimal("price").doubleValue());
-//                event.setTicketsSoldNumber(resultSet.getInt("tickets_sold"));
-//                return event;
-//            } else {
-//                return null; // Return null if no event with the given id is found
-//            }
-//        }
-//    }
-//
-//    @Override
-//    public List<Event> get() throws SQLException, CustomFormatException {
-//        List<Event> events = new ArrayList<>();
-//        String request = "SELECT * FROM T_EVENT";
-//        try (PreparedStatement statement = _connection.prepareStatement(request)) {
-//            ResultSet resultSet = statement.executeQuery();
-//
-//            while (resultSet.next()) {
-//                Event event = new Event();
-//                event.setId(resultSet.getInt("id"));
-//                event.setName(resultSet.getString("name"));
-//                event.setDate(resultSet.getDate("date").toLocalDate().atStartOfDay());
-//                // Assuming you have a method to get a Place object based on place_id
-//                // event.setPlace(getPlaceById(resultSet.getInt("place_id")));
-//                event.setPrice(resultSet.getBigDecimal("price").doubleValue());
-//                event.setTicketsSoldNumber(resultSet.getInt("tickets_sold"));
-//                events.add(event);
-//            }
-//        }
-//        return events;
-//    }
+    public boolean buyTickets(Event event, int numberOfTickets) throws SQLException {
+        String request = "UPDATE T_EVENT SET tickets_sold = tickets_sold + ? WHERE id = ?";
+        try (PreparedStatement statement = _connection.prepareStatement(request)) {
+            statement.setInt(1, numberOfTickets);
+            statement.setInt(2, event.getId());
+
+            int rowsAffected = statement.executeUpdate();
+            return rowsAffected > 0;
+        }
+    }
+
+    public boolean cancelTickets(Event event, int numberOfTickets) throws SQLException {
+        String request = "UPDATE T_EVENT SET tickets_sold = GREATEST(0, tickets_sold - ?) WHERE id = ?";
+        try (PreparedStatement statement = _connection.prepareStatement(request)) {
+            statement.setInt(1, numberOfTickets);
+            statement.setInt(2, event.getId());
+
+            int rowsAffected = statement.executeUpdate();
+            return rowsAffected > 0;
+        }
+    }
+
 }
 

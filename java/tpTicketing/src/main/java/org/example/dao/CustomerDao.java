@@ -2,6 +2,7 @@ package org.example.dao;
 
 import org.example.exception.CustomFormatException;
 import org.example.model.Customer;
+import org.example.model.Event;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -92,6 +93,41 @@ public class CustomerDao extends BaseDao<Customer> {
         }
         return customers;
     }
+
+    public boolean associateTicketsWithCustomer(Customer customer, Event event, int numberOfTickets) throws SQLException {
+        String request = "INSERT INTO T_TICKET (client_id, event_id) VALUES (?, ?)";
+        try (PreparedStatement statement = _connection.prepareStatement(request)) {
+            for (int i = 0; i < numberOfTickets; i++) {
+                statement.setInt(1, customer.getId());
+                statement.setInt(2, event.getId());
+                statement.addBatch();
+            }
+
+            int[] rowsAffected = statement.executeBatch();
+
+            for (int rows : rowsAffected) {
+                if (rows <= 0) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+    }
+
+    public boolean disassociateTicketsWithCustomer(Customer customer, Event event, int numberOfTickets) throws SQLException {
+        String request = "DELETE FROM T_TICKET WHERE client_id = ? AND event_id = ? LIMIT ?";
+        try (PreparedStatement statement = _connection.prepareStatement(request)) {
+            statement.setInt(1, customer.getId());
+            statement.setInt(2, event.getId());
+            statement.setInt(3, numberOfTickets);
+
+            int rowsAffected = statement.executeUpdate();
+            return rowsAffected > 0;
+        }
+    }
+
+
 }
 
 
