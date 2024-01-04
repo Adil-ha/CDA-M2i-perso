@@ -43,19 +43,6 @@ public class UserDAO {
         }
     }
 
-    public User getUserByName(String userName) {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        try {
-            return entityManager.createQuery("SELECT u FROM User u WHERE u.name = :userName", User.class)
-                    .setParameter("userName", userName)
-                    .getResultList()
-                    .stream()
-                    .findFirst()
-                    .orElse(null);
-        } finally {
-            entityManager.close();
-        }
-    }
 
     public List<User> getAllUsers() {
         EntityManager entityManager = entityManagerFactory.createEntityManager();

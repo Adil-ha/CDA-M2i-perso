@@ -81,13 +81,14 @@ public class ToDoListAppConsoleV2 {
     }
 
     private static void addTask(Scanner scanner) {
-        System.out.println("Entrez le nom de l'utilisateur : ");
-        String userName = scanner.nextLine();
+        System.out.println("Entrez l'id de l'utilisateur : ");
+        long userName = scanner.nextLong();
+        scanner.nextLine();
 
-        user = userDAO.getUserByName(userName);
+        user = userDAO.getUserById(userName);
         if (user == null) {
             user = new User();
-            user.setName(userName);
+            user.setId(userName);
             userDAO.addUser(user);
         }
 
