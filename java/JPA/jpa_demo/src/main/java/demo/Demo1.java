@@ -28,7 +28,11 @@ private static EntityManagerFactory emf = Persistence.createEntityManagerFactory
     public static void find() {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
+<<<<<<< HEAD
         Person person = em.find(Person.class,5L);
+=======
+        Person person = em.find(Person.class,2L);
+>>>>>>> f7ea50dabaaa16036e7f74153bd3910730b21c9d
         System.out.println(person);
         em.close();
         emf.close();
@@ -37,7 +41,11 @@ private static EntityManagerFactory emf = Persistence.createEntityManagerFactory
     public static void remove() {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
+<<<<<<< HEAD
         Person person = em.find(Person.class,5L);
+=======
+        Person person = em.find(Person.class,2L);
+>>>>>>> f7ea50dabaaa16036e7f74153bd3910730b21c9d
         em.remove(person);
         em.getTransaction().commit();
         em.close();
@@ -67,4 +75,13 @@ private static EntityManagerFactory emf = Persistence.createEntityManagerFactory
     }
 
 
+<<<<<<< HEAD
+=======
+
+
+
+
+
+
+>>>>>>> f7ea50dabaaa16036e7f74153bd3910730b21c9d
 }
