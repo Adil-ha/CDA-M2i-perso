@@ -2,6 +2,8 @@ package org.example.model;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name= "tasks")
@@ -20,6 +22,9 @@ public class Task {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @ManyToMany(mappedBy = "taskList")
+    private List<Category> categories = new ArrayList<>();
 
     public Task() {
     }
@@ -66,5 +71,22 @@ public class Task {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", completed=" + completed +
+                '}';
     }
 }

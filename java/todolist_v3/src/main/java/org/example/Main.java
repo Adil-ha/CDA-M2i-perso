@@ -1,6 +1,5 @@
 package org.example;
 
-import org.example.controller.ToDoListAppConsole;
 import org.example.controller.ToDoListAppConsoleV2;
 
 public class Main {
