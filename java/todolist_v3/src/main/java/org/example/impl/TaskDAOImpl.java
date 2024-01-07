@@ -143,7 +143,7 @@ public class TaskDAOImpl implements TaskDAO {
     }
   }
 
-  // Inside the TaskDAOImpl class
+
   public List<Task> getTasksByUserId(Long userId) {
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     try {
