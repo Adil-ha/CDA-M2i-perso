@@ -217,9 +217,17 @@ public class Ihm {
         int stockThreshold = scanner.nextInt();
         scanner.nextLine();
 
-        productService.getProductsByStockLessThan(stockThreshold).forEach(product -> {
-            System.out.println("Numéro : " + product.getIdProduct() + ", Référence : " + product.getReference());
-        });
+        List<Product> products = productService.getProductsByStockLessThan(stockThreshold);
+
+        if (!products.isEmpty()) {
+            System.out.println("Articles avec un stock inférieur à " + stockThreshold + " :");
+
+            for (Product product : products) {
+                System.out.println("Numéro : " + product.getIdProduct() + ", Référence : " + product.getReference());
+            }
+        } else {
+            System.out.println("Aucun article trouvé avec un stock inférieur à " + stockThreshold + ".");
+        }
     }
 
     private void displayStockValueByBrand() {
@@ -249,7 +257,10 @@ public class Ihm {
 
         if (!products.isEmpty()) {
             System.out.println("Liste des produits de la marque " + brand + " :");
-            products.forEach(product -> System.out.println(product));
+
+            for (Product product : products) {
+                System.out.println(product);
+            }
         } else {
             System.out.println("Aucun produit trouvé pour la marque spécifiée.");
         }
