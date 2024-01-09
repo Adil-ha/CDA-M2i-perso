@@ -1,7 +1,5 @@
 package org.example.util;
 
-import org.example.dao.IProductDao;
-import org.example.dao.ProductDao;
 import org.example.model.Product;
 import org.example.service.IProductService;
 import org.example.service.ProductService;
@@ -53,12 +51,27 @@ public class Ihm {
                     displayProductsPurchasedBetweenDates();
                     break;
                 case "8":
+                    displayProductsByStockLessThan();
+                    break;
+                case "9":
+                    displayStockValueByBrand();
+                    break;
+                case "10":
+                    calculateAveragePrice();
+                    break;
+                case "11":
+                    displayProductsByBrand();
+                    break;
+                case "12":
+                    deleteProductsByBrand();
+                    break;
+                case "0":
                     System.out.println("Bye");
                     break;
                 default:
                     System.out.println("Choix invalide. Veuillez réessayer.");
             }
-        } while (!choice.equals("8"));
+        } while (!choice.equals("0"));
 
     }
 
@@ -71,7 +84,12 @@ public class Ihm {
         System.out.println("5- Afficher la totalité des produits");
         System.out.println("6- Afficher la liste des produits dont le prix est supérieur à 100 euros");
         System.out.println("7- Afficher la liste des produits achetés entre deux dates");
-        System.out.println("8- Quitter");
+        System.out.println("8- Afficher numéros et référence dont le stock est inférieur à une valeur");
+        System.out.println("9- Afficher la valeur du stock des produits d'une marque choisie");
+        System.out.println("10- Calculer le prix moyen des produits");
+        System.out.println("11- Récupérer la liste des produits d'une marque choisie");
+        System.out.println("12- Supprimer les produits d'une marque choisie");
+        System.out.println("0- Quitter");
         System.out.print("Votre choix : ");
     }
 
@@ -191,6 +209,60 @@ public class Ihm {
         for (Product product : products) {
             System.out.println(product);
         }
+    }
+
+    private void displayProductsByStockLessThan() {
+        System.out.println("##### Afficher les articles dont le stock est inférieur à une valeur #####");
+        System.out.print("Stock maximal : ");
+        int stockThreshold = scanner.nextInt();
+        scanner.nextLine();
+
+        productService.getProductsByStockLessThan(stockThreshold).forEach(product -> {
+            System.out.println("Numéro : " + product.getIdProduct() + ", Référence : " + product.getReference());
+        });
+    }
+
+    private void displayStockValueByBrand() {
+        System.out.println("##### Afficher la valeur du stock des produits d'une marque choisie #####");
+        System.out.print("Marque : ");
+        String brand = scanner.nextLine();
+
+        double stockValue = productService.getStockValueByBrand(brand);
+
+        System.out.println("Valeur du stock pour la marque " + brand + " : " + stockValue);
+    }
+
+    private void calculateAveragePrice() {
+        System.out.println("##### Calculer le prix moyen des produits #####");
+
+        double averagePrice = productService.calculateAveragePrice();
+
+        System.out.println("Le prix moyen des produits est : " + averagePrice);
+    }
+
+    private void displayProductsByBrand() {
+        System.out.println("##### Récupérer la liste des produits d'une marque choisie #####");
+        System.out.print("Marque : ");
+        String brand = scanner.nextLine();
+
+        List<Product> products = productService.getProductsByBrand(brand);
+
+        if (!products.isEmpty()) {
+            System.out.println("Liste des produits de la marque " + brand + " :");
+            products.forEach(product -> System.out.println(product));
+        } else {
+            System.out.println("Aucun produit trouvé pour la marque spécifiée.");
+        }
+    }
+
+    private void deleteProductsByBrand() {
+        System.out.println("##### Supprimer les produits d'une marque choisie #####");
+        System.out.print("Marque : ");
+        String brand = scanner.nextLine();
+
+        productService.deleteProductsByBrand(brand);
+
+        System.out.println("Produits de la marque " + brand + " supprimés avec succès.");
     }
 
 

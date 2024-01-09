@@ -1,0 +1,47 @@
+<Configuration status="WARN" packages="">
+
+    <Appenders>
+        <!-- Vous pouvez activer/désactiver les appenders en décommentant/commentant les sections correspondantes -->
+
+        <!-- Console Appender -->
+        <Console name="stdout" target="SYSTEM_OUT">
+            <PatternLayout pattern="[%t] %-5p | %-60c | %m (%F:%L)%n"/>
+        </Console>
+
+        <!-- Fichier Appender -->
+        <!--
+        <File name="file" fileName="webstore.log">
+            <PatternLayout>
+                <Pattern>%p %t %c - %m%n</Pattern>
+            </PatternLayout>
+        </File>
+        -->
+
+        <!-- Socket Appender -->
+        <!--
+        <Socket name="socket" host="localhost" port="4445">
+            <SerializedLayout />
+        </Socket>
+        -->
+    </Appenders>
+
+    <Loggers>
+        <!-- Vous pouvez ajuster les niveaux de journalisation en fonction de vos besoins -->
+
+        <!-- Logger pour les requêtes SQL d'Hibernate -->
+        <Logger name="org.hibernate.SQL" level="debug" />
+
+        <!-- Logger pour les types Hibernate -->
+        <!--
+        <Logger name="org.hibernate.type" level="trace" />
+        -->
+
+        <!-- Racine Logger -->
+        <Root level="warn">
+            <!-- Vous pouvez spécifier les appenders à utiliser pour le logger racine -->
+            <!-- AppenderRef ref="file" / -->
+            <AppenderRef ref="stdout" />
+        </Root>
+    </Loggers>
+
+</Configuration>

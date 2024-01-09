@@ -20,19 +20,11 @@ public class ProductService implements IProductService {
 
 
     public ProductService() {
-        initializeSessionFactory();
-        this.productDao = new ProductDao(sessionFactory);
+        registry = new StandardServiceRegistryBuilder().configure().build();
+        sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+        productDao = new ProductDao(sessionFactory);
     }
 
-    private void initializeSessionFactory() {
-        registry = new StandardServiceRegistryBuilder().configure().build();
-        try {
-            sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
-        } catch (Exception e) {
-            StandardServiceRegistryBuilder.destroy(registry);
-            e.printStackTrace();
-        }
-    }
 
     @Override
     public Product getProductById(Long id) {
@@ -111,6 +103,55 @@ public class ProductService implements IProductService {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    @Override
+    public List<Product> getProductsByStockLessThan(int stockThreshold) {
+        try {
+            return productDao.getProductsByStockLessThan(stockThreshold);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public double getStockValueByBrand(String brand) {
+        try {
+            return productDao.getStockValueByBrand(brand);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0.0;
+        }
+    }
+
+    @Override
+    public double calculateAveragePrice() {
+        try {
+            return productDao.calculateAveragePrice();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0.0;
+        }
+    }
+
+    @Override
+    public List<Product> getProductsByBrand(String brand) {
+        try {
+            return productDao.getProductsByBrand(brand);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public void deleteProductsByBrand(String brand) {
+        try {
+            productDao.deleteProductsByBrand(brand);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

@@ -89,4 +89,54 @@ public class ProductDao implements IProductDao {
         return productList;
     }
 
+    @Override
+    public List<Product> getProductsByStockLessThan(int stockThreshold) {
+        Session session = sessionFactory.openSession();
+        Query<Product> query = session.createQuery("from Product where stock < :stockThreshold", Product.class);
+        query.setParameter("stockThreshold", stockThreshold);
+        List<Product> products = query.getResultList();
+        session.close();
+        return products;
+    }
+
+    @Override
+    public double getStockValueByBrand(String brand) {
+        Session session = sessionFactory.openSession();
+        Query<Double> query = session.createQuery("select sum(stock * price) from Product where brand = :brand", Double.class);
+        query.setParameter("brand", brand);
+        Double result = query.uniqueResult();
+        session.close();
+        return result;
+    }
+
+    @Override
+    public double calculateAveragePrice() {
+        Session session = sessionFactory.openSession();
+        Query<Double> query = session.createQuery("select avg(price) from Product", Double.class);
+        Double result = query.uniqueResult();
+        session.close();
+        return result ;
+    }
+
+    @Override
+    public List<Product> getProductsByBrand(String brand) {
+        Session session = sessionFactory.openSession();
+        Query<Product> query = session.createQuery("from Product where brand = :brand", Product.class);
+        query.setParameter("brand", brand);
+        List<Product> products = query.getResultList();
+        session.close();
+        return products;
+    }
+
+    @Override
+    public void deleteProductsByBrand(String brand) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        Query query = session.createQuery("delete from Product where brand = :brand");
+        query.setParameter("brand", brand);
+        query.executeUpdate();
+        transaction.commit();
+        session.close();
+    }
+
 }

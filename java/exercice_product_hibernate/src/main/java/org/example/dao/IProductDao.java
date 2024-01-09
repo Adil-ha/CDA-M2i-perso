@@ -15,6 +15,12 @@ public interface IProductDao {
     List<Product> getProductsByPriceGreaterThan(double price);
 
     List<Product> getProductsPurchasedBetweenDates(LocalDate startDate, LocalDate endDate);
+    List<Product> getProductsByStockLessThan(int stockThreshold);
+
+    double getStockValueByBrand(String brand);
+    double calculateAveragePrice();
+    List<Product> getProductsByBrand(String brand);
+    void deleteProductsByBrand(String brand);
 
 }
 
