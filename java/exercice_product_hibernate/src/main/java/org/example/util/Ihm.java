@@ -5,10 +5,7 @@ import org.example.dao.ProductDao;
 import org.example.model.Product;
 import org.example.service.IProductService;
 import org.example.service.ProductService;
-import org.hibernate.SessionFactory;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+
 
 import java.time.LocalDate;
 import java.util.List;
@@ -16,32 +13,18 @@ import java.util.Scanner;
 
 public class Ihm {
 
-    private static StandardServiceRegistry registry;
-    private static SessionFactory sessionFactory;
-
     private Scanner scanner;
 
     private String choice;
 
-    private IProductDao productDao;
     private IProductService productService;
 
     public Ihm() {
-        initializeSessionFactory();
-        this.productDao = new ProductDao(sessionFactory);
-        this.productService = new ProductService(productDao);
+        this.productService = new ProductService();
         this.scanner = new Scanner(System.in);
     }
 
-    private void initializeSessionFactory() {
-        registry = new StandardServiceRegistryBuilder().configure().build();
-        try {
-            sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
-        } catch (Exception e) {
-            StandardServiceRegistryBuilder.destroy(registry);
-            e.printStackTrace();
-        }
-    }
+
 
     public void start() {
         do {
@@ -75,7 +58,7 @@ public class Ihm {
                 default:
                     System.out.println("Choix invalide. Veuillez réessayer.");
             }
-        } while (!choice.equals("5"));
+        } while (!choice.equals("8"));
 
     }
 
