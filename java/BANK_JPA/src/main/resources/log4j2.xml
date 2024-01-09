@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-
-
-=======
->>>>>>> f7ea50dabaaa16036e7f74153bd3910730b21c9d
 <Configuration xmlns="http://logging.apache.org/log4j/2.0/config" status="WARN">
 
     <Appenders>
@@ -25,13 +20,8 @@
 
     <Loggers>
 
-<<<<<<< HEAD
-        <Logger name="org.hibernate.SQL" level="debug" />
-<!--        <Logger name="org.hibernate.type" level="trace" />-->
-=======
-        <!-- Logger name="org.hibernate.SQL" level="debug" / -->
-        <!-- Logger name="org.hibernate.type" level="trace" / -->
->>>>>>> f7ea50dabaaa16036e7f74153bd3910730b21c9d
+        <Logger name="org.hibernate.SQL" level="debug"/>
+<!--        <Logger name="org.hibernate.type" level="trace"/>-->
 
         <Root level="warn">
             <!-- AppenderRef ref="file" / -->
@@ -40,12 +30,4 @@
 
     </Loggers>
 
-<<<<<<< HEAD
 </Configuration>
-=======
-</Configuration>
-
-
-
-
->>>>>>> f7ea50dabaaa16036e7f74153bd3910730b21c9d

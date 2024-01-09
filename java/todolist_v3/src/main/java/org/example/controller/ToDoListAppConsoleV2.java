@@ -7,8 +7,10 @@ import java.util.Scanner;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import org.example.impl.CategoryDAO;
 import org.example.impl.TaskDAOImpl;
 import org.example.impl.UserDAO;
+import org.example.model.Category;
 import org.example.model.Task;
 import org.example.model.TaskInfo;
 import org.example.model.User;
@@ -22,11 +24,14 @@ public class ToDoListAppConsoleV2 {
 
     private static User user;
 
+    private static CategoryDAO categoryDAO;
+
 
     public static void main() {
         entityManagerFactory = Persistence.createEntityManagerFactory("todolist");
         taskDAO = new TaskDAOImpl(entityManagerFactory);
         userDAO = new UserDAO();
+        categoryDAO = new CategoryDAO();
 
 
         Scanner scanner = new Scanner(System.in);
@@ -42,7 +47,8 @@ public class ToDoListAppConsoleV2 {
             System.out.println("5. Modifier une tâche");
             System.out.println("6. Modifier les informations d'une tâche");
             System.out.println("7. Gérer les utilisateurs");
-            System.out.println("8. Quitter l'application");
+            System.out.println("8. Gérer les catégories");
+            System.out.println("9. Quitter l'application");
             System.out.println("Choix : ");
 
             choice = scanner.nextInt();
@@ -71,6 +77,9 @@ public class ToDoListAppConsoleV2 {
                     manageUsers(scanner);
                     break;
                 case 8:
+                    manageCategories(scanner);
+                    break;
+                case 9:
                     System.out.println("Bye");
                     entityManagerFactory.close();
                     break;
@@ -82,13 +91,14 @@ public class ToDoListAppConsoleV2 {
 
     private static void addTask(Scanner scanner) {
         System.out.println("Entrez l'id de l'utilisateur : ");
-        long userName = scanner.nextLong();
+
+        Long userId = scanner.nextLong();
         scanner.nextLine();
 
-        user = userDAO.getUserById(userName);
+        user = userDAO.getUserById(userId);
         if (user == null) {
             user = new User();
-            user.setId(userName);
+            user.setId(userId);
             userDAO.addUser(user);
         }
 
@@ -321,4 +331,150 @@ public class ToDoListAppConsoleV2 {
             }
         }
     }
+
+    private static void manageCategories(Scanner scanner) {
+        int categoryChoice;
+        do {
+            System.out.println("#### Gestion des Catégories ####");
+            System.out.println("1. Ajouter une catégorie");
+            System.out.println("2. Supprimer une catégorie");
+            System.out.println("3. Afficher les tâches d'une catégorie");
+            System.out.println("4. Ajouter une tâche à une catégorie");
+            System.out.println("5. Supprimer une tâche d'une catégorie");
+            System.out.println("6. Retour au menu principal");
+            System.out.println("Choix : ");
+
+            categoryChoice = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (categoryChoice) {
+                case 1:
+                    addCategory(scanner);
+                    break;
+                case 2:
+                    deleteCategory(scanner);
+                    break;
+                case 3:
+                    displayTasksByCategory(scanner);
+                    break;
+                case 4:
+                    addTaskToCategory(scanner);
+                    break;
+                case 5:
+                    removeTaskFromCategory(scanner);
+                    break;
+                case 6:
+                    System.out.println("Retour au menu principal");
+                    break;
+                default:
+                    System.out.println("Choix invalide. Veuillez réessayer.");
+            }
+        } while (categoryChoice != 6);
+    }
+
+    private static void addCategory(Scanner scanner) {
+        System.out.println("Entrez le nom de la catégorie : ");
+        String categoryName = scanner.nextLine();
+
+        Category category = new Category();
+        category.setName(categoryName);
+
+        categoryDAO.addCategory(category);
+
+        System.out.println("Catégorie ajoutée avec succès !");
+    }
+
+    private static void deleteCategory(Scanner scanner) {
+        System.out.println("Entrez l'ID de la catégorie à supprimer : ");
+        Long categoryId = scanner.nextLong();
+        scanner.nextLine();
+
+        categoryDAO.deleteCategory(categoryId);
+
+        System.out.println("Catégorie supprimée avec succès !");
+    }
+
+    private static void displayTasksByCategory(Scanner scanner) {
+        System.out.println("Entrez l'ID de la catégorie pour afficher ses tâches : ");
+        Long categoryId = scanner.nextLong();
+        scanner.nextLine();
+
+        Category category = categoryDAO.getCategoryById(categoryId);
+        if (category == null || category.getTaskList().isEmpty()) {
+            System.out.println("Aucune tâche trouvée pour cette catégorie.");
+        } else {
+            System.out.println("=== Liste des tâches de la catégorie ===");
+            for (Task task : category.getTaskList()) {
+                System.out.println(task);
+            }
+        }
+    }
+
+    private static void addTaskToCategory(Scanner scanner) {
+        System.out.println("Entrez l'ID de la tâche à ajouter à une catégorie : ");
+        Long taskId = scanner.nextLong();
+        scanner.nextLine();
+
+        Task task = taskDAO.findTaskById(taskId);
+        if (task == null) {
+            System.out.println("Tâche non trouvée.");
+            return;
+        }
+
+        System.out.println("Entrez l'ID de la catégorie à laquelle ajouter la tâche : ");
+        Long categoryId = scanner.nextLong();
+        scanner.nextLine();
+
+        Category category = categoryDAO.getCategoryByIdWithTasks(categoryId);
+        if (category != null) {
+            category.getTaskList().add(task);
+            task.getCategories().add(category);
+            if (taskDAO.updateTask(task)) {
+                System.out.println("Tâche ajoutée à la catégorie avec succès.");
+            } else {
+                System.out.println("Erreur lors de l'ajout de la tâche à la catégorie.");
+            }
+        } else {
+            System.out.println("Catégorie non trouvée.");
+        }
+    }
+
+
+    private static void removeTaskFromCategory(Scanner scanner) {
+        System.out.println("Entrez l'ID de la tâche à retirer de la catégorie : ");
+        Long taskId = scanner.nextLong();
+        scanner.nextLine();
+
+        Task task = taskDAO.findTaskById(taskId);
+        if (task == null) {
+            System.out.println("Tâche non trouvée.");
+            return;
+        }
+
+        System.out.println("Entrez l'ID de la catégorie de laquelle retirer la tâche : ");
+        Long categoryId = scanner.nextLong();
+        scanner.nextLine();
+
+        Category category = categoryDAO.getCategoryById(categoryId);
+        if (category == null) {
+            System.out.println("Catégorie non trouvée.");
+            return;
+        }
+
+
+        if (!category.getTaskList().contains(task)) {
+            System.out.println("La tâche n'est pas associée à cette catégorie.");
+            return;
+        }
+
+
+        category.getTaskList().remove(task);
+
+        if (categoryDAO.updateCategory(category)) {
+            System.out.println("Tâche retirée de la catégorie avec succès.");
+        } else {
+            System.out.println("Erreur lors du retrait de la tâche de la catégorie.");
+        }
+    }
+
 }
