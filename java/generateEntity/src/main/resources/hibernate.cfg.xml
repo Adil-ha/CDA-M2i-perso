@@ -7,11 +7,6 @@
 
 
     <session-factory>
-        <mapping class="org.example.model.Product"/>
-        <mapping class="org.example.model.Comment"/>
-        <mapping class="org.example.model.Image"/>
-        <mapping class="org.example.model.Command"/>
-
 
     </session-factory>
 

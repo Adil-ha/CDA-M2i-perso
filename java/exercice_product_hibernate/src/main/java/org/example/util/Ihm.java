@@ -1,11 +1,14 @@
 package org.example.util;
 
+import org.example.model.Command;
 import org.example.model.Product;
+import org.example.service.CommandService;
 import org.example.service.IProductService;
 import org.example.service.ProductService;
 
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -17,9 +20,12 @@ public class Ihm {
 
     private IProductService productService;
 
+    private CommandService  commandService;
+
     public Ihm() {
-        this.productService = new ProductService();
-        this.scanner = new Scanner(System.in);
+        productService = new ProductService();
+        commandService = new CommandService();
+        scanner = new Scanner(System.in);
     }
 
 
@@ -65,6 +71,25 @@ public class Ihm {
                 case "12":
                     deleteProductsByBrand();
                     break;
+                case "13":
+                    addImageToProduct();
+                    break;
+                case "14":
+                    addCommentToProduct();
+                    break;
+                case "15":
+                    displayProductsByHighRating();
+                    break;
+                case "16":
+                    createCommand();
+                    break;
+                case "17":
+                    displayAllCommands();
+                    break;
+                case "18":
+                    displayCommandsOfTheDay();
+                    break;
+
                 case "0":
                     System.out.println("Bye");
                     break;
@@ -84,11 +109,17 @@ public class Ihm {
         System.out.println("5- Afficher la totalité des produits");
         System.out.println("6- Afficher la liste des produits dont le prix est supérieur à 100 euros");
         System.out.println("7- Afficher la liste des produits achetés entre deux dates");
-        System.out.println("8- Afficher numéros et référence dont le stock est inférieur à une valeur");
+        System.out.println("8- Afficher numéros et références dont le stock est inférieur à une valeur");
         System.out.println("9- Afficher la valeur du stock des produits d'une marque choisie");
         System.out.println("10- Calculer le prix moyen des produits");
         System.out.println("11- Récupérer la liste des produits d'une marque choisie");
         System.out.println("12- Supprimer les produits d'une marque choisie");
+        System.out.println("13- Ajouter une image à un produit");
+        System.out.println("14- Ajouter un commentaire à un produit");
+        System.out.println("15- Afficher les produits avec une note de 4 ou plus");
+        System.out.println("16- Créer une commande");
+        System.out.println("17- Afficher la totalité des commandes");
+        System.out.println("18- Afficher les commandes du jour");
         System.out.println("0- Quitter");
         System.out.print("Votre choix : ");
     }
@@ -275,6 +306,107 @@ public class Ihm {
 
         System.out.println("Produits de la marque " + brand + " supprimés avec succès.");
     }
+
+    private void addImageToProduct() {
+        System.out.println("##### Ajouter une image à un produit #####");
+
+        System.out.print("ID du produit auquel ajouter une image : ");
+        Long productId = scanner.nextLong();
+        scanner.nextLine();
+
+        System.out.print("URL de l'image : ");
+        String imageUrl = scanner.nextLine();
+
+        productService.addImageToProduct(productId, imageUrl);
+
+        System.out.println("Image ajoutée au produit avec succès !");
+    }
+
+    private void addCommentToProduct() {
+        System.out.println("##### Ajouter un commentaire à un produit #####");
+
+        System.out.print("ID du produit auquel ajouter un commentaire : ");
+        Long productId = scanner.nextLong();
+        scanner.nextLine();
+
+        System.out.print("Contenu du commentaire : ");
+        String content = scanner.nextLine();
+
+        System.out.print("Note du commentaire (entre 1 et 5) : ");
+        int rating = scanner.nextInt();
+        scanner.nextLine();
+
+        productService.addCommentToProduct(productId, content, rating);
+
+        System.out.println("Commentaire ajouté au produit avec succès !");
+    }
+
+    private void displayProductsByHighRating() {
+        System.out.println("##### Afficher les produits avec une note de 4 ou plus #####");
+
+        List<Product> highRatedProducts = productService.getProductsByHighRating();
+        for (Product product : highRatedProducts) {
+            System.out.println(product);
+        }
+    }
+
+    private void createCommand() {
+        System.out.println("##### Création d'une commande #####");
+
+        List<Product> existingProducts = getExistingProductsFromUserInput();
+
+        Command command = new Command();
+        command.setProducts(existingProducts);
+
+        commandService.createCommand(command);
+
+        System.out.println("Commande créée avec succès !");
+    }
+
+    private List<Product> getExistingProductsFromUserInput() {
+        List<Product> existingProducts = new ArrayList<>();
+
+        System.out.println("##### Liste des produits existants #####");
+        List<Product> allProducts = productService.getAllProducts();
+
+        for (Product product : allProducts) {
+            System.out.println(product);
+            System.out.print("Voulez-vous ajouter ce produit à la commande ? (O/N) : ");
+            String userInput = scanner.nextLine().toUpperCase();
+
+            if (userInput.equals("O")) {
+                existingProducts.add(product);
+            }
+        }
+
+        return existingProducts;
+    }
+
+    private void displayAllCommands() {
+        System.out.println("##### Afficher la totalité des commandes #####");
+        List<Command> commands = commandService.getAllCommands();
+        if (commands != null && !commands.isEmpty()) {
+            for (Command command : commands) {
+                System.out.println(command);
+            }
+        } else {
+            System.out.println("Aucune commande trouvée.");
+        }
+    }
+
+    private void displayCommandsOfTheDay() {
+        System.out.println("##### Afficher les commandes du jour #####");
+        List<Command> commands = commandService.getCommandsOfTheDay();
+        if (commands != null && !commands.isEmpty()) {
+            for (Command command : commands) {
+                System.out.println(command);
+            }
+        } else {
+            System.out.println("Aucune commande du jour trouvée.");
+        }
+    }
+
+
 
 
 

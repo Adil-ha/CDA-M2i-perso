@@ -1,51 +1,47 @@
-<<<<<<< HEAD
-
-
-=======
->>>>>>> f7ea50dabaaa16036e7f74153bd3910730b21c9d
-<Configuration xmlns="http://logging.apache.org/log4j/2.0/config" status="WARN">
+<Configuration status="WARN" packages="">
 
     <Appenders>
+        <!-- Vous pouvez activer/désactiver les appenders en décommentant/commentant les sections correspondantes -->
 
-        <!-- <Socket name="socket" host="localhost" port="4445">
-            <SerializedLayout />
-        </Socket>  -->
-
-        <!--  <File name="file" fileName="webstore.log">
-            <PatternLayout>
-                <Pattern>%p %t %c - %m%n</Pattern>
-            </PatternLayout>
-        </File> -->
-
+        <!-- Console Appender -->
         <Console name="stdout" target="SYSTEM_OUT">
             <PatternLayout pattern="[%t] %-5p | %-60c | %m (%F:%L)%n"/>
         </Console>
 
+        <!-- Fichier Appender -->
+        <!--
+        <File name="file" fileName="webstore.log">
+            <PatternLayout>
+                <Pattern>%p %t %c - %m%n</Pattern>
+            </PatternLayout>
+        </File>
+        -->
+
+        <!-- Socket Appender -->
+        <!--
+        <Socket name="socket" host="localhost" port="4445">
+            <SerializedLayout />
+        </Socket>
+        -->
     </Appenders>
 
     <Loggers>
+        <!-- Vous pouvez ajuster les niveaux de journalisation en fonction de vos besoins -->
 
-<<<<<<< HEAD
+        <!-- Logger pour les requêtes SQL d'Hibernate -->
         <Logger name="org.hibernate.SQL" level="debug" />
-<!--        <Logger name="org.hibernate.type" level="trace" />-->
-=======
-        <!-- Logger name="org.hibernate.SQL" level="debug" / -->
-        <!-- Logger name="org.hibernate.type" level="trace" / -->
->>>>>>> f7ea50dabaaa16036e7f74153bd3910730b21c9d
 
+        <!-- Logger pour les types Hibernate -->
+        <!--
+        <Logger name="org.hibernate.type" level="trace" />
+        -->
+
+        <!-- Racine Logger -->
         <Root level="warn">
+            <!-- Vous pouvez spécifier les appenders à utiliser pour le logger racine -->
             <!-- AppenderRef ref="file" / -->
             <AppenderRef ref="stdout" />
         </Root>
-
     </Loggers>
 
-<<<<<<< HEAD
 </Configuration>
-=======
-</Configuration>
-
-
-
-
->>>>>>> f7ea50dabaaa16036e7f74153bd3910730b21c9d

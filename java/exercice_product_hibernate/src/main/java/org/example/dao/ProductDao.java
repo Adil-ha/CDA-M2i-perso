@@ -1,6 +1,8 @@
 
 package org.example.dao;
 
+import org.example.model.Comment;
+import org.example.model.Image;
 import org.example.model.Product;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -138,5 +140,52 @@ public class ProductDao implements IProductDao {
         transaction.commit();
         session.close();
     }
+
+
+    @Override
+    public void addImageToProduct(Product product, String imageUrl) {
+     Session session = sessionFactory.openSession();
+            Transaction transaction = session.beginTransaction();
+
+            Image image = new Image();
+            image.setImageUrl(imageUrl);
+            image.setProduct(product);
+
+            session.save(image);
+
+            transaction.commit();
+            session.close();
+
+    }
+
+
+    @Override
+    public void addCommentToProduct(Product product, Comment comment) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+
+        product.getComments().add(comment);
+
+        session.update(product);
+        session.save(comment);
+
+        transaction.commit();
+        session.close();
+    }
+
+    @Override
+    public List<Product> getProductsByHighRating() {
+        try {
+            Session session = sessionFactory.openSession();
+            Query<Product> query = session.createQuery("SELECT p FROM Product p JOIN p.comments c WHERE c.rating >= 4", Product.class);
+            List<Product> highRatedProducts = query.getResultList();
+            session.close();
+            return highRatedProducts;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 
 }

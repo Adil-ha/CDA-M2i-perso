@@ -1,5 +1,6 @@
 package org.example.dao;
 
+import org.example.model.Comment;
 import org.example.model.Product;
 
 import java.time.LocalDate;
@@ -22,5 +23,11 @@ public interface IProductDao {
     List<Product> getProductsByBrand(String brand);
     void deleteProductsByBrand(String brand);
 
+    void addImageToProduct(Product product, String imageUrl);
+
+
+    void addCommentToProduct(Product product, Comment comment);
+
+    List<Product> getProductsByHighRating();
 }
 

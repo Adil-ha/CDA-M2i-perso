@@ -18,6 +18,10 @@ public interface IProductService {
     double calculateAveragePrice();
     List<Product> getProductsByBrand(String brand);
     void deleteProductsByBrand(String brand);
+    void addImageToProduct(Long productId, String imageUrl);
+    void addCommentToProduct(Long productId, String content, int rating);
+
+    List<Product> getProductsByHighRating();
 
 }
 

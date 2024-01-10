@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name= "T_Product")
@@ -24,15 +25,26 @@ public class Product {
     private Double price;
     private int stock;
 
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<Image> images;
+
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Comment> comments;
+
+    @ManyToMany(mappedBy = "products")
+    private List<Command> commands;
+
+
+    public void decrementStock() {
+        this.stock--;
+    }
     @Override
     public String toString() {
-        return "Product{" +
-                "idProduct=" + idProduct +
-                ", brand='" + brand + '\'' +
-                ", reference='" + reference + '\'' +
-                ", datePurchase=" + datePurchase +
-                ", price=" + price +
-                ", stock=" + stock +
-                '}';
+        return String.format(
+                "Product{idProduct=%d, brand='%s', reference='%s', datePurchase=%s, price=%.2f, stock=%d}",
+                idProduct, brand, reference, datePurchase, price, stock
+        );
     }
 }
