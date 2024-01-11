@@ -123,12 +123,14 @@ public class IhmBank {
         scanner.nextLine();
 
         Customer associatedCustomer = customerDAO.getById(customerId);
+        associatedCustomer = entityManagerFactory.createEntityManager().merge(associatedCustomer);
         account.getCustomerList().add(associatedCustomer);
 
         accountDAO.create(account);
 
         System.out.println("Compte créé avec succès !");
     }
+
 
 
 

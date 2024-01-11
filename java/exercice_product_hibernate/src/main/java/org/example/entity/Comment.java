@@ -1,23 +1,26 @@
-package org.example.model;
+package org.example.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
-@Table(name = "T_Image")
+@Table(name = "T_Comment")
 @NoArgsConstructor
 @Getter
 @Setter
-public class Image {
+public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String imageUrl;
+    private String content;
+    private LocalDate date;
+    private int rating;
 
 
     @ManyToOne

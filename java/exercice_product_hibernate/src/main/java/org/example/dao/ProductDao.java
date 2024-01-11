@@ -1,9 +1,9 @@
 
 package org.example.dao;
 
-import org.example.model.Comment;
-import org.example.model.Image;
-import org.example.model.Product;
+import org.example.entity.Comment;
+import org.example.entity.Image;
+import org.example.entity.Product;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;

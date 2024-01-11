@@ -1,8 +1,8 @@
 package org.example.service;
 
 import org.example.dao.CommandDao;
-import org.example.model.Command;
-import org.example.model.Product;
+import org.example.entity.Command;
+import org.example.entity.Product;
 import org.example.util.HibernateUtil;
 import org.hibernate.SessionFactory;
 

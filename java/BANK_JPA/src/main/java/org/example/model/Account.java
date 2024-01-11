@@ -40,7 +40,7 @@ public class Account {
     }
 
     public void setIdAccount(Long idAccount) {
-        idAccount = idAccount;
+        this.idAccount = idAccount;
     }
 
     public String getWording() {

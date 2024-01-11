@@ -21,7 +21,10 @@ public class Customer {
 
     private LocalDate dateBirth;
 
-    @ManyToMany(mappedBy = "customerList")
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "T_Acoount_Customer_Association",
+            joinColumns = @JoinColumn(name= "idCustomer"),
+            inverseJoinColumns = @JoinColumn(name= "idAccount"))
     private List<Account> accountList = new ArrayList<>();
 
     public Long getIdCustomer() {

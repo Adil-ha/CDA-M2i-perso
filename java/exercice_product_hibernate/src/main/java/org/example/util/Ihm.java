@@ -1,7 +1,7 @@
 package org.example.util;
 
-import org.example.model.Command;
-import org.example.model.Product;
+import org.example.entity.Command;
+import org.example.entity.Product;
 import org.example.service.CommandService;
 import org.example.service.IProductService;
 import org.example.service.ProductService;

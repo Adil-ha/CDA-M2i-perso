@@ -1,4 +1,4 @@
-package org.example.model;
+package org.example.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -2,14 +2,13 @@ package org.example.service;
 
 import org.example.dao.IProductDao;
 import org.example.dao.ProductDao;
-import org.example.model.Comment;
-import org.example.model.Product;
+import org.example.entity.Comment;
+import org.example.entity.Product;
 import org.example.util.HibernateUtil;
 import org.hibernate.SessionFactory;
 
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 public class ProductService implements IProductService {

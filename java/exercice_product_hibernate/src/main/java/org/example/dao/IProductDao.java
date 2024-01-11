@@ -1,7 +1,7 @@
 package org.example.dao;
 
-import org.example.model.Comment;
-import org.example.model.Product;
+import org.example.entity.Comment;
+import org.example.entity.Product;
 
 import java.time.LocalDate;
 import java.util.List;

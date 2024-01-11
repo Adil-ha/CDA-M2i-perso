@@ -7,11 +7,10 @@
 
 
     <session-factory>
-        <mapping class="org.example.entity.Product"/>
-        <mapping class="org.example.entity.Comment"/>
-        <mapping class="org.example.entity.Image"/>
-        <mapping class="org.example.entity.Command"/>
 
+        <mapping class="heritage.joined_table.CreditCardPayment"/>
+        <mapping class="heritage.joined_table.Payment"/>
+        <mapping class="heritage.joined_table.PayPalPayment"/>
 
     </session-factory>
 
