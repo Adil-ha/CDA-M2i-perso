@@ -92,6 +92,7 @@ public class Ihm {
 
                 case "0":
                     System.out.println("Bye");
+                    HibernateUtil.closeSessionFactory();
                     break;
                 default:
                     System.out.println("Choix invalide. Veuillez réessayer.");
