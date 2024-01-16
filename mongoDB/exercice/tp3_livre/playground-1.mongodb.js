@@ -10,3 +10,6 @@ db.livre.find();
 // db.livre.find({ "authors": "Toru Ishida" })
 
 // db.livre.distinct("publisher", { "type": "publisher" })
+
+//db.livre.distinct("authors")
+

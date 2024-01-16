@@ -21,7 +21,7 @@ use("tpdeux");
 
 //db.users.count({ "gender": "female", "age": 30 })
 
-//db.users.updateMany({}, { $unset: { "phone": 1 } })
+db.users.updateMany({}, { $unset: { "phone": 1 } })
 
 //db.users.updateOne({ "name": "Chuck Norris" }, { $set: { "age": Infinity } })
 
