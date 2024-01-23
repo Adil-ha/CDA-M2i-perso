@@ -18,7 +18,6 @@ public class ServletProductDetails extends HttpServlet {
     @Override
     public void init() throws ServletException {
         super.init();
-        // Initialisez ici votre productService, par exemple en l'instanciant
         this.productService = new ProductService();
     }
 
@@ -34,6 +33,6 @@ public class ServletProductDetails extends HttpServlet {
             req.setAttribute("product", product);
 
         }
-        req.getRequestDispatcher("product-details.jsp");
+        req.getRequestDispatcher("product-details.jsp").forward(req, resp);
     }
 }

@@ -29,7 +29,7 @@ public class ServletDelete extends HttpServlet {
             productService.deleteProduct(productId);
         }
 
-        resp.sendRedirect("product-list.jsp");
+        resp.sendRedirect("/product");
     }
 
 }

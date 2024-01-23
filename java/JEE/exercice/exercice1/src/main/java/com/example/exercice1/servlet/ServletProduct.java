@@ -34,7 +34,7 @@ public class ServletProduct extends HttpServlet {
 
         req.setAttribute("products", productList);
 
-        req.getRequestDispatcher("product-list.jsp").forward(req,resp);
+        req.getRequestDispatcher("/product").forward(req,resp);
 
     }
 
@@ -51,6 +51,6 @@ public class ServletProduct extends HttpServlet {
 
         productService.createProduct(product);
 
-        resp.sendRedirect("product-list.jsp");
+        resp.sendRedirect("/product");
     }
 }

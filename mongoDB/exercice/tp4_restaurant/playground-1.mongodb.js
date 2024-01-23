@@ -1,12 +1,14 @@
 use("restaurant");
 // db.restaurants.find();
 
-db.restaurants.aggregate([{ $limit: 10 }]);
+// db.restaurants.aggregate([{ $limit: 10 }]);
+// db.restaurants.find().limit(10);
 
 // db.restaurants.aggregate([
 //     { $sort: { name: 1 } },
 //     { $limit: 10 }
 // ])
+// db.restaurants.find().sort({ name: 1 }).limit(10)
 
 // db.restaurants.aggregate([
 //     { $match: { borough: "Brooklyn" } },
@@ -46,8 +48,8 @@ db.restaurants.aggregate([{ $limit: 10 }]);
 // ])
 
 // db.restaurants.aggregate([
-//     { $group: { _id: null, total_restaurants: { $sum: 1 } } }
-// ])
+//   { $group: { _id: null, total_restaurants: { $sum: 1 } } },
+// ]);
 
 // db.restaurants.aggregate([
 //     { $group: { _id: "$borough", total_restaurants: { $sum: 1 } } }
