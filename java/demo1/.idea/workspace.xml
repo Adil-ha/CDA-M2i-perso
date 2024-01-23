@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="demo1:war exploded" />
+    </artifacts-to-build>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="50ccb127-2540-4d20-8ede-982fb2a2f78c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../demo/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/book/Auteur.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/book/Book.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/book/CoverType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/book/Demo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/book/Editeur.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/dataStructure/Demo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/dataStructure/ElectricCar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/dataStructure/Engine.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/dataStructure/MotorCycle.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/dataStructure/PetroleCar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/dataStructure/SuperCar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/dataStructure/Vehicule.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/enums/Demo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/enums/Priority.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/exerciceCondition/ExerciceCondition.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/exoBiblio/Book.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/exoBiblio/Demo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/exoBiblio/DigitalBook.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/exoBiblio/Library.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/exoBiblio/Loan.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/exoBiblio/PaperbackBook.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/exoBiblio/Person.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/exoEnum/Demo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/exoEnum/MessageType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/exoEnum/Priority.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/exoException/exo1/Demo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/exoException/exo1/RationalException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/exoException/exo2/Demo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/exoException/exo3/Demo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/exoException/exo4/Demo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/exoException/exo4/SoldeInsuffisantException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/exoException/exo5/ArrayEmptyException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/exoException/exo5/Demo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/function/Function.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/lambok/Demo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/lambok/Maison.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/lambok/Person.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/matrix/Matrix.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/model/Maison.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/operator/Operator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/poo/Phone.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/poo/Product.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/poo/statics/Demo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/poo/statics/Employee.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/poo/statics/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/readFromConsole/ReadFromConsole.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/recursive/FactRec.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/stationery/Article.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/stationery/ArticleManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/stationery/ArticleUnitary.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/stationery/Batch.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/stationery/Demo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/stationery/Invoice.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/stationery/Line.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/stationery/Pen.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/stationery/Ream.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/stream/TextAnalysis.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/string/StringExo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/structure/Structure.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/structure/Structure2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/structureIteratve/StructureIterative.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/thread/TestThread.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/tpVendredi/tpVendredi.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/org/example/variable/Variable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/out/production/main/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/out/production/main/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/out/production/main/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/src/main/java/out/production/main/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../exercice_product_hibernate/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../exercice_product_hibernate/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../mongoDB/exercice/tp3bis_info/playground-1.mongodb.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../mongoDB/exercice/tp3bis_info/playground-1.mongodb.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Jsp File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2bJi5QRUjeyAjGDXhOvQ1XdXYqD" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration name="tomcat2" type="com.poratu.idea.plugins.tomcat">
+      <predefined_log_file enabled="true" id="Tomcat Localhost Log" />
+      <predefined_log_file enabled="true" id="Tomcat Access Log" />
+      <predefined_log_file id="Tomcat Catalina Log" />
+      <predefined_log_file id="Tomcat Manager Log" />
+      <predefined_log_file id="Tomcat Host Manager Log" />
+      <option name="catalinaBase" value="C:\Users\Administrateur\.SmartTomcat\demo1\demo1" />
+      <option name="contextPath" value="/demo1" />
+      <option name="docBase" value="$PROJECT_DIR$/src/main/webapp" />
+      <option name="envOptions">
+        <map />
+      </option>
+      <option name="extraClassPath" value="" />
+      <option name="tomcatInfo">
+        <TomcatInfo>
+          <option name="name" value="Apache Tomcat/10.1.18" />
+          <option name="path" value="$PROJECT_DIR$/../../../../../../Program Files/apache-tomcat-10.1.18" />
+          <option name="version" value="10.1.18.0" />
+        </TomcatInfo>
+      </option>
+      <option name="vmOptions" value="" />
+      <module name="demo1" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="50ccb127-2540-4d20-8ede-982fb2a2f78c" name="Changes" comment="" />
+      <created>1705939400903</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1705939400903</updated>
+      <workItem from="1705939401924" duration="1500000" />
+      <workItem from="1705997533457" duration="5935000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
