@@ -1,21 +1,22 @@
 package com.example.exercice1.dao;
 
-import com.example.exercice1.model.Product;
-import org.hibernate.Session;
+import com.example.exercice1.model.User;
 import org.hibernate.query.Query;
 
 import java.util.List;
 
-public class ProducDao extends Repository<Product> {
+public class UserDao extends Repository<User> {
 
-    public ProducDao() {
+    public UserDao() {
+        super();
     }
 
-    public boolean create(Product o) {
+    @Override
+    public boolean create(User user) {
         session = sessionFactory.openSession();
         session.beginTransaction();
         try {
-            session.save(o);
+            session.save(user);
             session.getTransaction().commit();
             return true;
         } catch (Exception e) {
@@ -27,11 +28,26 @@ public class ProducDao extends Repository<Product> {
         }
     }
 
-    public boolean update(Product o) {
+    public User getUserByUsername(String username) {
+        session = sessionFactory.openSession();
+        try {
+            Query<User> query = session.createQuery("FROM User WHERE username = :username", User.class);
+            query.setParameter("username", username);
+            return query.uniqueResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public boolean update(User user) {
         session = sessionFactory.openSession();
         session.beginTransaction();
         try {
-            session.update(o);
+            session.update(user);
             session.getTransaction().commit();
             return true;
         } catch (Exception e) {
@@ -43,12 +59,12 @@ public class ProducDao extends Repository<Product> {
         }
     }
 
+    @Override
     public boolean delete(Long id) {
         session = sessionFactory.openSession();
         session.beginTransaction();
         try {
-            Product product = session.get(Product.class, id);
-            session.delete(product);
+            session.delete(id);
             session.getTransaction().commit();
             return true;
         } catch (Exception e) {
@@ -60,32 +76,33 @@ public class ProducDao extends Repository<Product> {
         }
     }
 
-
-    public Product findById(Long id) {
-        Product product = null;
+    @Override
+    public User findById(Long id) {
+        User user = null;
         session = sessionFactory.openSession();
         try {
-            product = session.get(Product.class, id);
+            user = session.get(User.class, (long) id);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             session.close();
         }
-        return product;
+        return user;
     }
 
-    public List<Product> findAll() {
-        List<Product> productList = null;
+    @Override
+    public List<User> findAll() {
+        List<User> userList = null;
         session = sessionFactory.openSession();
         try {
-            Query<Product> productQuery = session.createQuery("from Product", Product.class);
-            productList = productQuery.list();
+            Query<User> userQuery = session.createQuery("from User", User.class);
+            userList = userQuery.list();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             session.close();
         }
-        return productList;
+        return userList;
     }
 }
 
