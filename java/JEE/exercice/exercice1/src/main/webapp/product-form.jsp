@@ -9,32 +9,32 @@
 <jsp:include page="./header.jsp"/>
 <main class="container">
     <h2>Formulaire de création/modification d'un produit</h2>
-    <form action="${productToUpdate.idProduct != null ? "": "product"}" method="post" enctype="multipart/form-data">
+    <form action="${productToUpdate.idProduct != null ? "updateProduct" : "product"}" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" value="${productToUpdate.idProduct}">
 
         <div class="form-group">
             <label for="brand">Marque</label>
-            <input type="text" class="form-control" id="brand" name="brand" value="${productToUpdate.brand}">
+            <input type="text" class="form-control" id="brand" name="brand" value="${productToUpdate.getBrand()}">
         </div>
 
         <div class="form-group">
             <label for="reference">Référence</label>
-            <input type="text" class="form-control" id="reference" name="reference" value="${productToUpdate.reference}">
+            <input type="text" class="form-control" id="reference" name="reference" value="${productToUpdate.getReference()}">
         </div>
 
         <div class="form-group">
             <label for="date">Date</label>
-            <input type="date" class="form-control" id="date" name="date" value="${productToUpdate.datePurchase}">
+            <input type="date" class="form-control" id="date" name="date" value="${productToUpdate.getDatePurchase()}">
         </div>
 
         <div class="form-group">
             <label for="price">Prix</label>
-            <input type="number" class="form-control" id="price" name="price" value="${productToUpdate.price}">
+            <input type="number" class="form-control" id="price" name="price" value="${productToUpdate.getPrice()}">
         </div>
 
         <div class="form-group">
             <label for="stock">Stock</label>
-            <input type="number" class="form-control" id="stock" name="stock" value="${productToUpdate.stock}">
+            <input type="number" class="form-control" id="stock" name="stock" value="${productToUpdate.getStock()}">
         </div>
 
         <div class="form-group">
@@ -42,13 +42,13 @@
             <input type="file" class="form-control" id="image" name="image">
 
 
-            <c:if test="${not empty productToUpdate.imagePath}">
-                <img src="${productToUpdate.imagePath}" alt="Product Image" style="max-width: 50px; max-height: 50px;">
+            <c:if test="${not empty productToUpdate.getImagePath()}">
+                <img src="${productToUpdate.getImagePath()}" alt="Product Image" style="max-width: 50px; max-height: 50px;">
             </c:if>
         </div>
 
 
-        <button type="submit" class="btn btn-primary">${productToUpdate.idProduct != null ? 'Mettre à jour' : 'Créer'}</button>
+        <button type="submit" class="btn btn-primary">${productToUpdate.getIdProduct() != null ? 'Mettre à jour' : 'Créer'}</button>
     </form>
 </main>
 </body>
