@@ -91,7 +91,6 @@ public class ServletUpdate extends HttpServlet {
                     return;
                 }
             } else {
-                // Gérez le cas où le paramètre "stock" est manquant ou vide
                 resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Le paramètre 'stock' est manquant ou vide");
                 return;
             }
