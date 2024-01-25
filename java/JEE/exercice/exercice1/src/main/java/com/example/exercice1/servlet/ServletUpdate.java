@@ -58,43 +58,24 @@ public class ServletUpdate extends HttpServlet {
             String reference = req.getParameter("reference");
             String dateParam = req.getParameter("date");
 
-            // Ajoutez des vérifications pour éviter une NullPointerException
-            LocalDate date = null;
-            if (dateParam != null && !dateParam.trim().isEmpty()) {
-                date = LocalDate.parse(dateParam);
-            }
+
+            LocalDate  date = LocalDate.parse(dateParam);
+
+
+            productToUpdate.setDatePurchase(date);
 
             String priceParam = req.getParameter("price");
 
-            if (priceParam != null && !priceParam.trim().isEmpty()) {
-                try {
                     Double price = Double.parseDouble(priceParam);
                     productToUpdate.setPrice(price);
-                } catch (NumberFormatException e) {
-                    resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Le paramètre 'price' n'est pas un nombre valide");
-                    return;
-                }
-            } else {
-                // Gérez le cas où le paramètre "price" est manquant ou vide
-                resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Le paramètre 'price' est manquant ou vide");
-                return;
-            }
+
 
             String stockParam = req.getParameter("stock");
 
-            if (stockParam != null && !stockParam.trim().isEmpty()) {
-                try {
+
                     int stock = Integer.parseInt(stockParam);
                     productToUpdate.setStock(stock);
-                } catch (NumberFormatException e) {
-                    resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Le paramètre 'stock' n'est pas un nombre entier valide");
-                    return;
-                }
-            } else {
-                // Gérez le cas où le paramètre "stock" est manquant ou vide
-                resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Le paramètre 'stock' est manquant ou vide");
-                return;
-            }
+
 
             String uploadPath = getServletContext().getRealPath("/") + "images";
 
@@ -112,7 +93,8 @@ public class ServletUpdate extends HttpServlet {
 
             productToUpdate.setBrand(brand);
             productToUpdate.setReference(reference);
-            productToUpdate.setDatePurchase(date);
+
+
 
             productService.updateProduct(productToUpdate);
 

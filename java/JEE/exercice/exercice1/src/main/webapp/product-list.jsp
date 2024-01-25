@@ -5,7 +5,6 @@
     <title>Liste des produits</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
-<<<<<<< Updated upstream
 <body>
 <jsp:include page="./header.jsp"/>
 <main class="container">
@@ -28,7 +27,6 @@
             <tr>
                 <td>${product.getIdProduct()}</td>
                 <td>
-                    <!-- Utilisez la balise c:url pour construire le chemin absolu de l'image -->
                     <img src="<c:url value='/images/${product.imagePath}'/>" alt="Product Image" style="max-width: 50px; max-height: 50px;">
                 </td>
                 <td>${product.getBrand()}</td>
