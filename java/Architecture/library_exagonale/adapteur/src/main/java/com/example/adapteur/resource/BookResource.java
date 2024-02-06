@@ -2,6 +2,7 @@ package com.example.adapteur.resource;
 
 import com.example.adapteur.dto.BookDto;
 import jakarta.inject.Inject;
+import org.example.repository.BookRepositoryImpl;
 import org.example.service.BookService;
 
 
@@ -20,7 +21,7 @@ public class BookResource {
 
     @Inject
     public BookResource(BookService bookService) {
-        this.bookService = bookService;
+        this.bookService = new BookService(new BookRepositoryImpl());
     }
 
     @GET
