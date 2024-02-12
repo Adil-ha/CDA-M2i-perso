@@ -35,4 +35,12 @@ public class BookService {
     public List<Book> findAllBooks() {
         return bookRepository.findAll();
     }
+
+    public List<Book> searchBook(String search) {
+        if(search.length() < 3) {
+            throw new RuntimeException("search word length must be gt 3 char");
+        }
+        List<Book> list = bookRepository.searchBook(search);
+        return list;
+    }
 }

@@ -1,7 +1,7 @@
 package com.example.adapteur.resource;
 
-import com.example.adapteur.dto.BookDto;
-import jakarta.inject.Inject;
+import com.example.adapteur.dto.BookDTO;
+import org.example.entity.Book;
 import org.example.repository.BookRepositoryImpl;
 import org.example.service.BookService;
 
@@ -9,53 +9,53 @@ import org.example.service.BookService;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import java.net.URI;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Path("/books")
-@Consumes(MediaType.APPLICATION_JSON)
-@Produces(MediaType.APPLICATION_JSON)
+@Path("book")
 public class BookResource {
     private final BookService bookService;
 
-    @Inject
-    public BookResource(BookService bookService) {
+
+    public BookResource() {
         this.bookService = new BookService(new BookRepositoryImpl());
     }
 
     @GET
-    public List<BookDto> getAllBooks() {
-        return bookService.findAllBooks().stream()
-                .map(this::convertToDto)
-                .collect(Collectors.toList());
+    @Path("{search}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<BookDTO> get(@PathParam("search") String search) {
+        List<Book> list = bookService.searchBook(search);
+        return list
+                .stream()
+                .map(book -> BookDTO.
+                        builder().
+                        author(book.getAuthor())
+                        .title(book.getTitle())
+                        .id(book.getId())
+                        .build()).collect(Collectors.toList());
     }
 
     @POST
-    public Response createBook(BookDto bookDto) {
-        org.example.entity.Book book = convertToEntity(bookDto);
-        bookService.createBook(bookDto.getTitle(), bookDto.getAuthor());
-        URI location = URI.create("/books/" + book.getId());
-        return Response.created(location).build();
+    public Response post(BookDTO bookDTO) {
+        try {
+            bookService.createBook(bookDTO.getTitle(), bookDTO.getAuthor());
+            return Response.ok().build();
+        }catch (Exception ex) {
+            return Response.status(500, "Erreur serveur").build();
+        }
     }
 
     @DELETE
     @Path("{id}")
-    public Response deleteBook(@PathParam("id") Long id) {
-        boolean deleted = bookService.deleteBook(id);
-        if (deleted) {
-            return Response.noContent().build();
-        } else {
-            return Response.status(Response.Status.NOT_FOUND).build();
+    public Response delete(@PathParam("id") int id) {
+        try {
+            bookService.deleteBook(id);
+            return Response.ok().build();
+        }catch (Exception ex) {
+            return Response.status(500, "Erreur serveur").build();
         }
-    }
-
-    private BookDto convertToDto(org.example.entity.Book book) {
-        return new BookDto(book.getTitle(), book.getAuthor());
-    }
-
-    private org.example.entity.Book convertToEntity(BookDto bookDto) {
-        return new org.example.entity.Book(bookDto.getTitle(), bookDto.getAuthor());
     }
 }
 

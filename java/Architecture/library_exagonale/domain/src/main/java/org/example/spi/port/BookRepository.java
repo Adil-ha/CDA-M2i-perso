@@ -11,4 +11,6 @@ public interface BookRepository {
     Book findById(Long id);
 
     List<Book> findAll();
+
+    List<Book> searchBook(String search);
 }

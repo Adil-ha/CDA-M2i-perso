@@ -92,5 +92,12 @@ public class BookRepositoryImpl implements BookRepository {
             sessionFactory.close();
         }
     }
+
+    @Override
+    public List<Book> searchBook(String search) {
+        return null;
+    }
+
+
 }
 
