@@ -5,14 +5,12 @@
 </head>
 <body>
 <h1>Todo Details</h1>
-<div th:if="${todo}">
-    <p>ID: <span th:text="${todo.id}"></span></p>
-    <p>Title: <span th:text="${todo.title}"></span></p>
-    <p>Description: <span th:text="${todo.description}"></span></p>
-    <p>Completed: <span th:text="${todo.done} ? 'Yes' : 'No'"></span></p>
+<div>
+    <p>ID: <span th:text="${id}"></span></p>
+    <p>Title: <span th:text="${title}"></span></p>
+    <p>Description: <span th:text="${description}"></span></p>
+    <p>Completed: <span th:text="${done} ? 'Yes' : 'No'"></span></p>
 </div>
-<div th:unless="${todo}">
-    <p>Todo not found</p>
-</div>
+
 </body>
 </html>

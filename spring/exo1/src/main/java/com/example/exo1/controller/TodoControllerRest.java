@@ -13,19 +13,20 @@ import java.util.List;
 @RequestMapping("/api/v1/home")
 public class TodoControllerRest {
 
-    List<Todo> todos = new ArrayList<>();
 
 
-    @GetMapping(value = "todo")
+
+    @GetMapping(value = "todos")
     public List<Todo> getAllTodos(){
         Todo todo1 = new Todo(1,"sport", "Faire du sport", false);
         Todo todo2 = new Todo(2,"travail", "Aller au sport", false);
 
-        todos.add(todo1);
-        todos.add(todo2);
+        return List.of(todo1, todo2);
+    }
 
-
-        return todos;
+    @GetMapping(value= "todo")
+    public Todo getTodo(){
+        return new Todo(8,"test1", "description", true);
     }
 
 
