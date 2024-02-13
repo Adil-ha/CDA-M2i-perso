@@ -4,11 +4,16 @@
         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 
 <hibernate-configuration>
-    <session-factory>
-        <mapping class="com.hospital_jee.entity.CareRecord" />
-        <mapping class="com.hospital_jee.entity.Consultation" />
-        <mapping class="com.hospital_jee.entity.Patient" />
-        <mapping class="com.hospital_jee.entity.Prescription" />
-        <mapping class="com.hospital_jee.entity.User" />
-    </session-factory>
+
+
+<session-factory>
+
+    <mapping class="com.hospital_jee.entity.CareRecord" />
+    <mapping class="com.hospital_jee.entity.Consultation" />
+    <mapping class="com.hospital_jee.entity.Patient" />
+    <mapping class="com.hospital_jee.entity.Prescription" />
+    <mapping class="com.hospital_jee.entity.User" />
+
+</session-factory>
+
 </hibernate-configuration>

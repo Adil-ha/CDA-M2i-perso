@@ -108,10 +108,10 @@ public class PatientServlet extends HttpServlet {
             if(service.create(produit)) {
                 response.sendRedirect("list");
             }else{
-                response.sendRedirect("form-produit.jsp");
+                response.sendRedirect("patient-form.jsp");
             }
         }else{
-            response.sendRedirect("form-produit.jsp");
+            response.sendRedirect("patient-form.jsp");
         }
     }
     private void deletePatient(HttpServletRequest request, HttpServletResponse response)
@@ -131,7 +131,7 @@ public class PatientServlet extends HttpServlet {
             int id = Integer.parseInt((request.getParameter("id")));
             Patient patient = service.findById(id);
             request.setAttribute("patient", patient);
-            request.getRequestDispatcher("produit.jsp").forward(request,response);
+            request.getRequestDispatcher("patient.jsp").forward(request,response);
         }
         else {
             request.setAttribute("patients", service.findAll());

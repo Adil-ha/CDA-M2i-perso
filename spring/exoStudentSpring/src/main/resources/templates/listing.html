@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulaire d'ajout d'un étudiant</title>
+    <link th:replace="~{home :: bootstrapImports}">
+</head>
+<body>
+<header th:replace="~{home :: header}"></header>
+<main class="container">
+    <h1>Listing des étudiants</h1>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Age</th>
+            <th>Email</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="student : ${students}">
+            <td th:text="${student.id}">ID</td>
+            <td th:text="${student.lastname}">Name</td>
+            <td th:text="${student.firstname}">Breed</td>
+            <td th:text="${student.age}">Breed</td>
+            <td th:text="${student.email}">Breed</td>
+            <td>
+                <a th:href="@{/detail/{id}(id=${student.id})}" class="btn btn-info">Details</a>
+                <a th:href="@{/update/{id}(id=${student.id})}" class="btn btn-warning">Modifier</a>
+                <a th:href="@{/delete/{id}(id=${student.id})}" class="btn btn-danger">Supprimer</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+
+</body>
+</html>

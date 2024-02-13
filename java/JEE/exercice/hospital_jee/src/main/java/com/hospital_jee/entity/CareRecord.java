@@ -1,10 +1,12 @@
 package com.hospital_jee.entity;
 
-import javax.persistence.*;
+
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
 @Data
+@NoArgsConstructor
 @Table(name="T_CareRecord")
 public class CareRecord {
     @Id

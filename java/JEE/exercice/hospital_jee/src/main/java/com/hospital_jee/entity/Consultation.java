@@ -1,6 +1,6 @@
 package com.hospital_jee.entity;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -8,6 +8,7 @@ import java.util.List;
 
 @Entity
 @Data
+@NoArgsConstructor
 @Table(name="T_Consultation")
 public class Consultation {
     @Id

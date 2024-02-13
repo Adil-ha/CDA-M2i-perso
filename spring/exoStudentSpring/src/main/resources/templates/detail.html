@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Détail de l'étudiant</title>
+    <link th:replace="~{home :: bootstrapImports}">
+    <style>
+        .card {
+            margin-top: 20px;
+            width: 18rem;
+            border: 1px solid #dee2e6;
+            border-radius: 0.25rem;
+        }
+        .card-body {
+            padding: 1.25rem;
+        }
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+        .card-text {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+<header th:replace="~{home :: header}"></header>
+<main class="container">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Détail de l'étudiant</h5>
+            <p class="card-text">Nom : <span th:text="${MyStudent.lastname}"></span></p>
+            <p class="card-text">Prénom : <span th:text="${MyStudent.firstname}"></span></p>
+            <p class="card-text">Age : <span th:text="${MyStudent.age}"></span></p>
+            <p class="card-text">Email : <span th:text="${MyStudent.email}"></span></p>
+            <a th:href="@{/update}" class="btn btn-primary">Modifier</a>
+            <a th:href="@{/}" class="btn btn-secondary">Retour</a>
+        </div>
+    </div>
+</main>
+</body>
+</html>

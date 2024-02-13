@@ -62,7 +62,7 @@ public class UserService extends BaseService implements Repository<User> {
 
 
 
-    public User getById(Long id) {
+    public User getById(int id) {
         Session session = null;
 
         try {

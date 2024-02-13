@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Produits</title>
+    <title>Patients</title>
     <jsp:include page="../includes/head.jsp" />
 
 </head>

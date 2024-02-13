@@ -1,12 +1,15 @@
 package com.hospital_jee.entity;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import lombok.*;
 @Entity
 @Data
+@NoArgsConstructor
 @Table(name="T_User")
 public class User {
-    private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     private String email;
 

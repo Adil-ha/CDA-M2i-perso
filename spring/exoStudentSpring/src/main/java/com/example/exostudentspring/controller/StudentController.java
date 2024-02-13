@@ -29,7 +29,7 @@ public class StudentController {
     }
 
     @GetMapping("/detail/{studentId}")
-    public String detailRabbit(@PathVariable("studentId") UUID id, Model model){
+    public String detailStudent(@PathVariable("studentId") UUID id, Model model){
         Student student = studentService.getStudentById(id);
         model.addAttribute("MyStudent",student);
         return "detail";
@@ -50,14 +50,14 @@ public class StudentController {
     @GetMapping("/look")
     public String showStudent(@RequestParam(value = "name", required = false) String name, Model model) {
         List<Student> students = studentService.searchStudentByName(name);
-        model.addAttribute("students", students);
+        model.addAttribute("MyStudent", students);
         return "detail";
     }
 
-    @PostMapping("/delete")
-    public String deleteStudent(@RequestParam(value = "id") UUID id) {
+    @PostMapping("/delete/{id}")
+    public String deleteStudent(@PathVariable("id") UUID id) {
         studentService.deleteStudentById(id);
-        return "redirect:/listing";
+        return "redirect:/";
     }
 
 

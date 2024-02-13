@@ -1,15 +1,18 @@
 package com.hospital_jee.entity;
 
-import javax.persistence.*;
+
+
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
 @Data
+@NoArgsConstructor
 @Table(name="T_Prescription")
 public class Prescription {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     private String medicationType;
     private int duration;

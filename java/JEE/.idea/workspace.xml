@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="83fc655c-1fea-45b3-b22b-629b0b6f9bf1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/exercice/hospital_jee/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exercice/hospital_jee/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/exercice/hospital_jee/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exercice/hospital_jee/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/exercice/hospital_jee/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exercice/hospital_jee/src/main/java/com/hospital_jee/entity/CareRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/exercice/hospital_jee/src/main/java/com/hospital_jee/entity/CareRecord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exercice/hospital_jee/src/main/java/com/hospital_jee/entity/Consultation.java" beforeDir="false" afterPath="$PROJECT_DIR$/exercice/hospital_jee/src/main/java/com/hospital_jee/entity/Consultation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exercice/hospital_jee/src/main/java/com/hospital_jee/entity/Patient.java" beforeDir="false" afterPath="$PROJECT_DIR$/exercice/hospital_jee/src/main/java/com/hospital_jee/entity/Patient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exercice/hospital_jee/src/main/java/com/hospital_jee/entity/Prescription.java" beforeDir="false" afterPath="$PROJECT_DIR$/exercice/hospital_jee/src/main/java/com/hospital_jee/entity/Prescription.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exercice/hospital_jee/src/main/java/com/hospital_jee/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/exercice/hospital_jee/src/main/java/com/hospital_jee/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exercice/hospital_jee/src/main/java/com/hospital_jee/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/exercice/hospital_jee/src/main/java/com/hospital_jee/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exercice/hospital_jee/src/main/java/com/hospital_jee/servlet/PatientServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/exercice/hospital_jee/src/main/java/com/hospital_jee/servlet/PatientServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exercice/hospital_jee/src/main/resources/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/exercice/hospital_jee/src/main/resources/hibernate.cfg.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exercice/hospital_jee/src/main/resources/hibernates.properties" beforeDir="false" afterPath="$PROJECT_DIR$/exercice/hospital_jee/src/main/resources/hibernates.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exercice/hospital_jee/src/main/webapp/WEB-INF/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/exercice/hospital_jee/src/main/webapp/WEB-INF/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exercice/hospital_jee/src/main/webapp/WEB-INF/patients.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/exercice/hospital_jee/src/main/webapp/WEB-INF/patients.jsp" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 3
+}]]></component>
+  <component name="ProjectId" id="2bXwWboBDgW2ScWFF8o1jpBjWpJ" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/hanou/Desktop/CDA-M2i-perso/java/JEE/exercice/hospital_jee",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="83fc655c-1fea-45b3-b22b-629b0b6f9bf1" name="Changes" comment="" />
+      <created>1706374764127</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1706374764127</updated>
+      <workItem from="1706374765148" duration="33000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
