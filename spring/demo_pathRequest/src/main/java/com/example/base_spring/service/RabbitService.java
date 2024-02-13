@@ -34,9 +34,16 @@ public class RabbitService {
                 .breed("jersey wooly")
                 .build();
 
+        Rabbit rabbitD = Rabbit.builder()
+                .id(UUID.randomUUID())
+                .name("Mickey")
+                .breed("Mouse")
+                .build();
+
         rabbits.put(rabbitA.getId(),rabbitA);
         rabbits.put(rabbitB.getId(),rabbitB);
         rabbits.put(rabbitC.getId(),rabbitC);
+        rabbits.put(rabbitD.getId(),rabbitD);
     }
 
     public List<Rabbit> getRabbits(){
@@ -46,5 +53,12 @@ public class RabbitService {
     public Rabbit getRabbitById(UUID id){
         return rabbits.values().stream().filter(r -> r.getId().equals(id)).findFirst().orElse(null);
       //  return rabbits.get(id);
+    }
+    public Rabbit addRabbit(Rabbit rabbit) {
+        if (rabbit.getId() == null) {
+            rabbit.setId(UUID.randomUUID());
+        }
+        rabbits.put(rabbit.getId(), rabbit);
+        return rabbit;
     }
 }

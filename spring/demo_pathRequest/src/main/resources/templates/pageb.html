@@ -1,37 +1,40 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Page B</title>
-    <span th:replace="~{pagea :: bootstrapImports}"></span>
+    <link th:replace="~{pagea :: bootstrapImports}">
 </head>
 <body>
 <header>
     <h1>Page B</h1>
     <nav>
-        <a th:href="@{/}">Home Page</a>
+        <a th:href="@{/}" class="btn btn-primary">Home Page</a>
+        <a th:href="@{/add}">Ajouter un lapin</a>
     </nav>
 </header>
 
-<table>
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Breed</th>
-        <th>Action</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="rabbit : ${rabbits}">
-        <td th:text="${rabbit.id}">ID</td>
-        <td th:text="${rabbit.name}">Name</td>
-        <td th:text="${rabbit.breed}">Breed</td>
-        <td><a th:href="@{/detail/{id}(id=${rabbit.id})}">Details</a></td>
-
-    </tr>
-    </tbody>
-</table>
+<div class="container mt-5 ">
+    <table class="table table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Breed</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="rabbit : ${rabbits}">
+            <td th:text="${rabbit.id}">ID</td>
+            <td th:text="${rabbit.name}">Name</td>
+            <td th:text="${rabbit.breed}">Breed</td>
+            <td><a th:href="@{/detail/{id}(id=${rabbit.id})}" class="btn btn-info">Details</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 
 </body>
 </html>

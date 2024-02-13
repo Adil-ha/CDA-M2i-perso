@@ -7,7 +7,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 import java.util.UUID;
@@ -37,5 +39,16 @@ public class DemoController {
         return "pagec";
     }
 
+    @GetMapping("/add")
+    public String addRabbit(Model model){
+        model.addAttribute("rabbit",new Rabbit());
+        return "form/form";
+    }
+
+    @PostMapping("/add")
+    public String submitRabbit(@ModelAttribute("rabbit") Rabbit rabbit){
+        rabbitService.addRabbit(rabbit);
+        return "redirect:/pageb";
+    }
 
 }

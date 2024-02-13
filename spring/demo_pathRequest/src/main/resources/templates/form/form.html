@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Rabbit Form</title>
+</head>
+<body>
+<h2>Add Rabbit Form</h2>
+<form th:action="@{/add}" th:object="${rabbit}" method="post">
+    <p>
+        <label for="name">Name:</label>
+        <input type="text" th:field="*{name}" id="name" required>
+    </p>
+    <p>
+        <label for="breed">Breed:</label>
+        <input type="text" th:field="*{breed}" id="breed" required>
+    </p>
+    <p>
+        <button type="submit">Add Rabbit</button>
+    </p>
+</form>
+</body>
+</html>
