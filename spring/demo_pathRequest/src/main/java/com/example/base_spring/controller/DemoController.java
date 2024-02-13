@@ -52,7 +52,7 @@ public class DemoController {
 
 
     @GetMapping("/look")
-    public String showRabbit(@RequestParam("name") String name, Model model) {
+    public String showRabbit(@RequestParam(value = "name", required = false) String name, Model model) {
         Rabbit rabbit = rabbitService.getRabbitByName(name);
         model.addAttribute("monlapin", rabbit);
         return "pagec";
