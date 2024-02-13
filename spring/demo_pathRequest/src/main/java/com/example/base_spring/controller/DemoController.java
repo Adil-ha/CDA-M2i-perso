@@ -2,14 +2,12 @@ package com.example.base_spring.controller;
 
 
 import com.example.base_spring.model.Rabbit;
-import com.example.base_spring.service.RabbitService;
+import com.example.base_spring.service.IRabbitService;
+import com.example.base_spring.service.RabbitServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -18,7 +16,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class DemoController {
 
-    private final RabbitService rabbitService;
+    private final IRabbitService rabbitService;
 
     @GetMapping
     public String homePage(){
@@ -49,6 +47,15 @@ public class DemoController {
     public String submitRabbit(@ModelAttribute("rabbit") Rabbit rabbit){
         rabbitService.addRabbit(rabbit);
         return "redirect:/pageb";
+    }
+
+
+
+    @GetMapping("/look")
+    public String showRabbit(@RequestParam("name") String name, Model model) {
+        Rabbit rabbit = rabbitService.getRabbitByName(name);
+        model.addAttribute("monlapin", rabbit);
+        return "pagec";
     }
 
 }

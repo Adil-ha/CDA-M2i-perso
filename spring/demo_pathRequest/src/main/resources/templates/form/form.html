@@ -3,21 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Add Rabbit Form</title>
+    <link th:replace="~{pagea :: bootstrapImports}">
 </head>
 <body>
-<h2>Add Rabbit Form</h2>
-<form th:action="@{/add}" th:object="${rabbit}" method="post">
-    <p>
-        <label for="name">Name:</label>
-        <input type="text" th:field="*{name}" id="name" required>
-    </p>
-    <p>
-        <label for="breed">Breed:</label>
-        <input type="text" th:field="*{breed}" id="breed" required>
-    </p>
-    <p>
-        <button type="submit">Add Rabbit</button>
-    </p>
-</form>
+<div class="container">
+    <h2 class="mt-5">Add Rabbit Form</h2>
+    <form class="mt-3" th:action="@{/add}" th:object="${rabbit}" method="post">
+        <div class="mb-3">
+            <label for="name" class="form-label">Name:</label>
+            <input type="text" class="form-control" th:field="*{name}" id="name" required>
+        </div>
+        <div class="mb-3">
+            <label for="breed" class="form-label">Breed:</label>
+            <input type="text" class="form-control" th:field="*{breed}" id="breed" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Rabbit</button>
+    </form>
+</div>
 </body>
 </html>

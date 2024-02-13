@@ -10,10 +10,10 @@ import java.util.UUID;
 
 
 @Service
-public class RabbitService {
+public class RabbitServiceImpl implements IRabbitService{
     private final Map<UUID, Rabbit> rabbits;
 
-    public RabbitService(){
+    public RabbitServiceImpl(){
         rabbits = new HashMap<>();
 
         Rabbit rabbitA = Rabbit.builder()
@@ -60,5 +60,11 @@ public class RabbitService {
         }
         rabbits.put(rabbit.getId(), rabbit);
         return rabbit;
+    }
+    public Rabbit getRabbitByName(String name) {
+        return rabbits.values().stream()
+                .filter(r -> r.getName().equalsIgnoreCase(name))
+                .findFirst()
+                .orElse(null);
     }
 }
