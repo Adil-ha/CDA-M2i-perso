@@ -73,6 +73,10 @@ public class StudentServiceImpl implements IStudentService {
     @Override
     public Student getStudentById(UUID id) {
         return students.get(UUID.fromString(id.toString()));
+//        return students.values().stream()
+//                .filter(s->s.getId(id))
+//                .findFirst()
+//                .orElse(null);
     }
 
     @Override

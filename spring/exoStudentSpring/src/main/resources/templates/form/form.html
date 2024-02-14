@@ -27,7 +27,11 @@
                 <label for="email" class="form-label">Email :</label>
                 <input type="email" class="form-control" th:field="*{email}" id="email" required>
             </div>
-            <button type="submit" class="btn btn-primary">Ajouter Étudiant</button>
+            <input type="hidden" th:if="${updateMode}" name="updateMode" value="true">
+            <button type="submit" class="btn btn-primary">
+                <span th:if="${updateMode}">Modifier Étudiant</span>
+                <span th:unless="${updateMode}">Ajouter Étudiant</span>
+            </button>
         </form>
     </div>
 </main>

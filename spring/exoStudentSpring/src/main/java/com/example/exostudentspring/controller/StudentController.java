@@ -35,6 +35,19 @@ public class StudentController {
         return "detail";
     }
 
+    @GetMapping("/add/{id}")
+    public String formForUpdate(@PathVariable("id") UUID id, Model model){
+        Student student = studentService.getStudentById(id);
+        if (student != null) {
+            model.addAttribute("student", student);
+            model.addAttribute("updateMode", true);
+            return "form/form";
+        } else {
+            // Gérer le cas où l'étudiant n'existe pas
+            return "redirect:/listing";
+        }
+    }
+
     @GetMapping("/add")
     public String addStudent(Model model){
         model.addAttribute("student",new Student());
@@ -42,8 +55,12 @@ public class StudentController {
     }
 
     @PostMapping("/add")
-    public String submitStudent(@ModelAttribute("student") Student student){
-        studentService.createStudent(student);
+    public String submitStudent(@ModelAttribute("student") Student student, @RequestParam(value = "updateMode", required = false) boolean updateMode){
+        if (updateMode) {
+            studentService.updateStudent(student.getId(), student);
+        } else {
+            studentService.createStudent(student);
+        }
         return "redirect:/listing";
     }
 
@@ -54,9 +71,16 @@ public class StudentController {
         return "detail";
     }
 
-    @PostMapping("/delete/{id}")
+    @GetMapping("/delete/{id}")
     public String deleteStudent(@PathVariable("id") UUID id) {
         studentService.deleteStudentById(id);
+        return "redirect:/listing";
+    }
+
+    @GetMapping("/update/{id}")
+    public String updateStudent(@PathVariable("id") UUID id) {
+       Student student=  studentService.getStudentById(id);
+        studentService.updateStudent(id,student);
         return "redirect:/";
     }
 
