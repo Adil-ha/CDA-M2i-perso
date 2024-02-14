@@ -49,7 +49,7 @@ public class StudentController {
 
     @GetMapping("/look")
     public String showStudent(@RequestParam(value = "name", required = false) String name, Model model) {
-        List<Student> students = studentService.searchStudentByName(name);
+        Student students = studentService.searchStudentByName(name);
         model.addAttribute("MyStudent", students);
         return "detail";
     }
@@ -59,7 +59,6 @@ public class StudentController {
         studentService.deleteStudentById(id);
         return "redirect:/";
     }
-
 
 
 }

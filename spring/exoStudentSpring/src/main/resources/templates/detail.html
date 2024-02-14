@@ -33,10 +33,9 @@
             <p class="card-text">Prénom : <span th:text="${MyStudent.firstname}"></span></p>
             <p class="card-text">Age : <span th:text="${MyStudent.age}"></span></p>
             <p class="card-text">Email : <span th:text="${MyStudent.email}"></span></p>
-            <a th:href="@{/update}" class="btn btn-primary">Modifier</a>
-            <a th:href="@{/}" class="btn btn-secondary">Retour</a>
         </div>
     </div>
+    <a th:href="@{/}" class="btn btn-secondary">Retour</a>
 </main>
 </body>
 </html>

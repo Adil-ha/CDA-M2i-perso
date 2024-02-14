@@ -90,21 +90,12 @@ public class StudentServiceImpl implements IStudentService {
         return students.remove(UUID.fromString(id.toString())) != null;
     }
 
-//    @Override
-//    public List<Student> searchStudentByName(String name) {
-//        return students.values().stream()
-//                .filter(student -> student.getLastname().equalsIgnoreCase(name) || student.getFirstname().equalsIgnoreCase(name))
-//                .collect(Collectors.toList());
-//    }
-@Override
-public List<Student> searchStudentByName(String name) {
-    List<Student> foundStudents = new ArrayList<>();
-    for (Student student : students.values()) {
-        if (student.getFirstname().equals(name) || student.getLastname().equals(name)) {
-            foundStudents.add(student);
-        }
+
+    public Student searchStudentByName(String name) {
+        return students.values().stream()
+                .filter(r -> r.getLastname().equalsIgnoreCase(name))
+                .findFirst()
+                .orElse(null);
     }
-    return foundStudents;
-}
 }
 

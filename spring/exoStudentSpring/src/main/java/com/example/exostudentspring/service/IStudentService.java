@@ -11,6 +11,6 @@ public interface IStudentService {
     Student getStudentById(UUID id);
     Student updateStudent(UUID id, Student student);
     boolean deleteStudentById(UUID id);
-    List<Student> searchStudentByName(String name);
+    Student searchStudentByName(String name);
 
 }
