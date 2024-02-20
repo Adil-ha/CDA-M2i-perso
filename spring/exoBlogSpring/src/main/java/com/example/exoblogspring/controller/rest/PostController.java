@@ -1,4 +1,4 @@
-package com.example.exoblogspring.controller;
+package com.example.exoblogspring.controller.rest;
 
 import com.example.exoblogspring.dto.PostDto;
 import com.example.exoblogspring.service.IPostService;

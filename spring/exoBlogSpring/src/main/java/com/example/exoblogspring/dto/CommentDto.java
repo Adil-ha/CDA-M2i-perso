@@ -13,7 +13,7 @@ public class CommentDto {
     private String name;
     private String email;
     private String content;
-    private int postId;
+    private PostDto postDto;
 
 
 }

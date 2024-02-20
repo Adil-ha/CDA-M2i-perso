@@ -5,22 +5,35 @@ import com.example.exoblogspring.entity.Comment;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-@Mapper
-public interface CommentMapper {
+@Component
+public class CommentMapper {
 
-    CommentMapper INSTANCE = Mappers.getMapper(CommentMapper.class);
 
-    @Mapping(source = "post.id", target = "postId")
-    CommentDto commentToCommentDto(Comment comment);
+    public CommentDto toDto(Comment comment) {
+        CommentDto dto = new CommentDto();
+        dto.setId(comment.getId());
+        dto.setName(comment.getName());
+        dto.setEmail(comment.getEmail());
+        dto.setContent(comment.getContent());
+        // Convertir l'entité Post en DTO PostDto si nécessaire
+        // dto.setPostDto(PostMapper.toDto(comment.getPost()));
+        return dto;
+    }
 
-    @Mapping(source = "postId", target = "post.id")
-    Comment commentDtoToComment(CommentDto commentDto);
-
-    List<CommentDto> commentsToCommentDtos(List<Comment> comments);
-
-    List<Comment> commentDtosToComments(List<CommentDto> commentDtos);
+    public Comment toEntity(CommentDto dto) {
+        Comment comment = new Comment();
+        comment.setId(dto.getId());
+        comment.setName(dto.getName());
+        comment.setEmail(dto.getEmail());
+        comment.setContent(dto.getContent());
+        // Convertir le DTO PostDto en entité Post si nécessaire
+//         comment.setPost(PostMapper.toEntity(dto.getPostDto()));
+        return comment;
+    }
 }
 

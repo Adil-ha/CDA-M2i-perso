@@ -1,6 +1,7 @@
-package com.example.exoblogspring.controller;
+package com.example.exoblogspring.controller.rest;
 
 import com.example.exoblogspring.dto.CommentDto;
+import com.example.exoblogspring.dto.PostDto;
 import com.example.exoblogspring.service.ICommentService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -23,8 +24,12 @@ public class CommentController {
         return commentService.findById(id);
     }
 
-    @PostMapping("/comments")
-    public CommentDto createComment(@RequestBody CommentDto commentDto) {
+    @PostMapping("/posts/{id}/comments/")
+    public CommentDto createComment(@PathVariable("id") int postId, @RequestBody CommentDto commentDto) {
+        PostDto postDto = new PostDto();
+        postDto.setId(postId);
+        commentDto.setPostDto(postDto);
+
         return commentService.save(commentDto);
     }
 

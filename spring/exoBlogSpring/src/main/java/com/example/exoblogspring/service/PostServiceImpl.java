@@ -27,36 +27,37 @@ public class PostServiceImpl implements IPostService {
     public List<PostDto> findAll() {
         List<Post> posts = postRepository.findAll();
         return posts.stream()
-                .map(postMapper::postToPostDto)
+                .map(postMapper::toDto)
                 .collect(Collectors.toList());
     }
 
     @Override
     public PostDto findById(int id) {
         Optional<Post> optionalPost = postRepository.findById(id);
-        return optionalPost.map(postMapper::postToPostDto)
+        return optionalPost.map(postMapper::toDto)
                 .orElseThrow(() -> new IllegalArgumentException("Post not found"));
     }
 
     @Override
     public PostDto save(PostDto postDto) {
-        Post post = postMapper.postDtoToPost(postDto);
-        return postMapper.postToPostDto(postRepository.save(post));
+        Post post = postMapper.toEntity(postDto);
+        return postMapper.toDto(postRepository.save(post));
     }
 
     @Override
     public PostDto update(PostDto postDto) {
-        Post post = postMapper.postDtoToPost(postDto);
+        Post post = postMapper.toEntity(postDto);
         if (post.getId() <= 0) {
             throw new IllegalArgumentException("Invalid Post ID");
         }
-        return postMapper.postToPostDto(postRepository.save(post));
+        return postMapper.toDto(postRepository.save(post));
     }
 
     @Override
     public void delete(PostDto postDto) {
-        Post post = postMapper.postDtoToPost(postDto);
+        Post post = postMapper.toEntity(postDto);
         postRepository.delete(post);
     }
 }
+
 

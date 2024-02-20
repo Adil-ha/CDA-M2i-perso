@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 public class CommentServiceImpl implements ICommentService {
 
     private final ICommentRepository commentRepository;
-    private final CommentMapper commentMapper; // Ajoutez le mapper
+    private final CommentMapper commentMapper;
 
     @Autowired
     public CommentServiceImpl(ICommentRepository commentRepository, CommentMapper commentMapper) {
@@ -27,28 +27,28 @@ public class CommentServiceImpl implements ICommentService {
     public List<CommentDto> findAll() {
         List<Comment> comments = commentRepository.findAll();
         return comments.stream()
-                .map(commentMapper::commentToCommentDto)
+                .map(commentMapper::toDto)
                 .collect(Collectors.toList());
     }
 
     @Override
     public CommentDto findById(int id) {
         Optional<Comment> optionalComment = commentRepository.findById(id);
-        return optionalComment.map(commentMapper::commentToCommentDto).orElse(null);
+        return optionalComment.map(commentMapper::toDto).orElse(null);
     }
 
     @Override
     public CommentDto save(CommentDto commentDto) {
-        Comment comment = commentMapper.commentDtoToComment(commentDto);
+        Comment comment = commentMapper.toEntity(commentDto);
         comment = commentRepository.save(comment);
-        return commentMapper.commentToCommentDto(comment);
+        return commentMapper.toDto(comment);
     }
 
     @Override
     public CommentDto update(CommentDto commentDto) {
-        Comment comment = commentMapper.commentDtoToComment(commentDto);
+        Comment comment = commentMapper.toEntity(commentDto);
         comment = commentRepository.save(comment);
-        return commentMapper.commentToCommentDto(comment);
+        return commentMapper.toDto(comment);
     }
 
     @Override
@@ -56,4 +56,5 @@ public class CommentServiceImpl implements ICommentService {
         commentRepository.deleteById(id);
     }
 }
+
 
