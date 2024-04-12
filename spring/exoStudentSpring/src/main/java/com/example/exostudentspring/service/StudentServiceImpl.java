@@ -81,9 +81,9 @@ public class StudentServiceImpl implements IStudentService {
 
     @Override
     public Student updateStudent(UUID id, Student student) {
-        if (students.containsKey(UUID.fromString(id.toString()))) {
-            student.setId(UUID.fromString(id.toString()));
-            students.put(UUID.fromString(id.toString()), student);
+        if (id != null && students.containsKey(id)) {
+            student.setId(id);
+            students.put(id, student);
             return student;
         }
         return null;

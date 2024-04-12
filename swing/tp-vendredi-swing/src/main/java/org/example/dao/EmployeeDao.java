@@ -1,6 +1,8 @@
 package org.example.dao;
 
+import org.example.model.BloodGroup;
 import org.example.model.Employee;
+import org.example.model.Qualification;
 import org.example.util.ConnexionDB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -29,9 +31,9 @@ public class EmployeeDao {
             statement.setString(2, employee.getName());
             statement.setString(3, employee.getGender().toString());
             statement.setInt(4, employee.getAge());
-            statement.setString(5, employee.getBloodGroup());
+            statement.setString(5, employee.getBloodGroup().toString());
             statement.setString(6, employee.getPhoneNumber());
-            statement.setString(7, employee.getQualification());
+            statement.setString(7, employee.getQualification().toString());
             statement.setDate(8, new java.sql.Date(employee.getStartDate().getTime()));
             statement.setString(9, employee.getAddress());
             statement.setString(10, employee.getPhotoUrl());
@@ -54,9 +56,9 @@ public class EmployeeDao {
                         resultSet.getString("name"),
                         Gender.valueOf(resultSet.getString("gender")),
                         resultSet.getInt("age"),
-                        resultSet.getString("bloodGroup"),
+                        BloodGroup.valueOf(resultSet.getString("bloodGroup")),
                         resultSet.getString("phoneNumber"),
-                        resultSet.getString("qualification"),
+                        Qualification.valueOf(resultSet.getString("qualification")),
                         resultSet.getDate("startDate"),
                         resultSet.getString("address"),
                         resultSet.getString("photoUrl")
@@ -81,9 +83,9 @@ public class EmployeeDao {
                             resultSet.getString("name"),
                             Gender.valueOf(resultSet.getString("gender")),
                             resultSet.getInt("age"),
-                            resultSet.getString("bloodGroup"),
+                            BloodGroup.valueOf(resultSet.getString("bloodGroup")),
                             resultSet.getString("phoneNumber"),
-                            resultSet.getString("qualification"),
+                            Qualification.valueOf(resultSet.getString("qualification")),
                             resultSet.getDate("startDate"),
                             resultSet.getString("address"),
                             resultSet.getString("photoUrl")
@@ -114,9 +116,9 @@ public class EmployeeDao {
             statement.setString(1, updatedEmployee.getName());
             statement.setString(2, updatedEmployee.getGender().toString());
             statement.setInt(3, updatedEmployee.getAge());
-            statement.setString(4, updatedEmployee.getBloodGroup());
+            statement.setString(4, updatedEmployee.getBloodGroup().toString());
             statement.setString(5, updatedEmployee.getPhoneNumber());
-            statement.setString(6, updatedEmployee.getQualification());
+            statement.setString(6, updatedEmployee.getQualification().toString());
             statement.setDate(7, new java.sql.Date(updatedEmployee.getStartDate().getTime()));
             statement.setString(8, updatedEmployee.getAddress());
             statement.setString(9, updatedEmployee.getPhotoUrl());

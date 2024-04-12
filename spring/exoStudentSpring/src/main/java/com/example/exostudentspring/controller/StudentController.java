@@ -43,7 +43,7 @@ public class StudentController {
             model.addAttribute("updateMode", true);
             return "form/form";
         } else {
-            // Gérer le cas où l'étudiant n'existe pas
+
             return "redirect:/listing";
         }
     }

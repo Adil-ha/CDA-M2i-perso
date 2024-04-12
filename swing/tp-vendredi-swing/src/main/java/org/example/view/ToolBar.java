@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ToolBar extends JToolBar {
+
     private JLabel labelSearch;
     private JTextField textFieldSearch;
     private JButton buttonNew;
@@ -20,25 +21,26 @@ public class ToolBar extends JToolBar {
 
     private void initializeUI() {
         setFloatable(false); // Make the toolbar non-floating
-        setLayout(new FlowLayout(FlowLayout.LEFT)); // Use a FlowLayout with left alignment
+        setLayout( new FlowLayout( FlowLayout.CENTER ) );
 
         labelSearch = new JLabel("Search");
         textFieldSearch = new JTextField(10); // Set preferred width of the text field
 
         // Create buttons with names and icons
-        buttonNew = new JButton(new ImageIcon("new_icon.png"));
+        buttonNew = new JButton(new ImageIcon("icons/new_icon.png")+ "New");
         buttonNew.setText("New");
 
-        buttonSave = new JButton(new ImageIcon("save_icon.png"));
+        buttonSave = new JButton(new ImageIcon("icons/save.png")+ "Save");
         buttonSave.setText("Save");
 
-        buttonUpdate = new JButton(new ImageIcon("update_icon.png"));
+
+        buttonUpdate = new JButton(new ImageIcon("icons/update_icon.png")+ "Update");
         buttonUpdate.setText("Update");
 
-        buttonClear = new JButton(new ImageIcon("clear_icon.png"));
+        buttonClear = new JButton(new ImageIcon("icons/clear_icon.png")+ "Clear");
         buttonClear.setText("Clear");
 
-        buttonPrint = new JButton(new ImageIcon("print_icon.png"));
+        buttonPrint = new JButton(new ImageIcon("icons/print_icon.png")+ "Print");
         buttonPrint.setText("Print");
 
         // Add action listeners for the buttons

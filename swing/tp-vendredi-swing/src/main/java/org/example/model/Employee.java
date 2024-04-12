@@ -12,9 +12,9 @@ public class Employee {
     private String name;
     private Gender gender;
     private int age;
-    private String bloodGroup;
+    private BloodGroup bloodGroup;
     private String phoneNumber;
-    private String qualification;
+    private Qualification qualification;
     private Date startDate;
     private String address;
     private String photoUrl;

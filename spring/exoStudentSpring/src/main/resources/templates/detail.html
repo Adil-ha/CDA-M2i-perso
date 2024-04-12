@@ -33,7 +33,6 @@
             <p class="card-text">Prénom : <span th:text="${MyStudent.firstname}"></span></p>
             <p class="card-text">Age : <span th:text="${MyStudent.age}"></span></p>
             <p class="card-text">Email : <span th:text="${MyStudent.email}"></span></p>
-<!--            <a th:href="@{/add/{id}(id=${MyStudent.id})}" class="btn btn-warning">Modifier</a>-->
             <a th:href="@{'/add/' + ${MyStudent.id}}" class="btn btn-warning">Modifier</a>
             <a th:href="@{/delete/{id}(id=${MyStudent.id})}" class="btn btn-danger">Supprimer</a>
         </div>

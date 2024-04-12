@@ -1,4 +1,8 @@
-package org.example.view;
+import org.jdatepicker.DateModel;
+import org.jdatepicker.JDatePicker;
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.JDatePickerImpl;
+import org.jdatepicker.impl.UtilDateModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,7 +31,7 @@ public class FormEmployee extends JPanel {
     private JTextField textFieldBloodGroup;
     private JTextField textFieldPhoneNumber;
     private JComboBox<String> comboBoxQualification;
-    private JTextField textFieldStartDate;
+    private JDatePicker startDatePicker; 
     private JTextArea textAreaAddress;
     private JButton buttonUploadImage;
     private JTextField textFieldImagePath;
@@ -38,23 +42,23 @@ public class FormEmployee extends JPanel {
     }
 
     private void initializeUI() {
-        setLayout(new GridLayout(0, 3, 10, 10)); // 3 columns with 10px horizontal and vertical gap
+        setLayout(new GridLayout(0, 3, 10, 10));
 
         // First Column
-        labelEmployeeID = new JLabel("Employee ID"); // Initialize labelEmployeeID
+        labelEmployeeID = new JLabel("Employee ID");
         textFieldEmployeeID = new JTextField();
         add(labelEmployeeID);
         add(textFieldEmployeeID);
-        add(new JLabel()); // Empty space to align with other columns
+        add(new JLabel());
 
         labelName = new JLabel("Name");
         textFieldName = new JTextField();
         add(labelName);
         add(textFieldName);
-        add(new JLabel()); // Empty space
+        add(new JLabel());
 
         labelGender = new JLabel("Gender");
-        JPanel genderPanel = new JPanel(); // Panel to hold radio buttons
+        JPanel genderPanel = new JPanel();
         radioButtonMale = new JRadioButton("Male");
         radioButtonFemale = new JRadioButton("Female");
         genderButtonGroup = new ButtonGroup();
@@ -64,38 +68,40 @@ public class FormEmployee extends JPanel {
         genderPanel.add(radioButtonFemale);
         add(labelGender);
         add(genderPanel);
-        add(new JLabel()); // Empty space
+        add(new JLabel());
 
         labelAge = new JLabel("Age");
         textFieldAge = new JTextField();
         add(labelAge);
         add(textFieldAge);
-        add(new JLabel()); // Empty space
+        add(new JLabel());
 
         labelBloodGroup = new JLabel("Blood Group");
         textFieldBloodGroup = new JTextField();
         add(labelBloodGroup);
         add(textFieldBloodGroup);
-        add(new JLabel()); // Empty space
+        add(new JLabel());
 
         labelPhoneNumber = new JLabel("Phone Number");
         textFieldPhoneNumber = new JTextField();
         add(labelPhoneNumber);
         add(textFieldPhoneNumber);
-        add(new JLabel()); // Empty space
+        add(new JLabel());
 
         labelQualification = new JLabel("Qualification");
-        String[] qualifications = {"Bachelor's Degree", "Master's Degree", "PhD", "Diploma", "Other"};
+        String[] qualifications = {"DOCT", "DESS", "MAST", "LICE", "BTS", "DEUG", "DUT", "BAC"};
         comboBoxQualification = new JComboBox<>(qualifications);
         add(labelQualification);
         add(comboBoxQualification);
-        add(new JLabel()); // Empty space
+        add(new JLabel());
 
         labelStartDate = new JLabel("Start Date");
-        textFieldStartDate = new JTextField();
+        UtilDateModel startDateModel = new UtilDateModel();
+        JDatePanelImpl startDatePanel = new JDatePanelImpl(startDateModel);
+        startDatePicker = new JDatePickerImpl(startDatePanel);
         add(labelStartDate);
-        add(textFieldStartDate);
-        add(new JLabel()); // Empty space
+        add(startDatePicker);
+        add(new JLabel());
 
         labelAddress = new JLabel("Address");
         textAreaAddress = new JTextArea();
@@ -103,10 +109,10 @@ public class FormEmployee extends JPanel {
         JScrollPane addressScrollPane = new JScrollPane(textAreaAddress);
         add(labelAddress);
         add(addressScrollPane);
-        add(new JLabel()); // Empty space
+        add(new JLabel());
 
-        // Second Column
-        add(new JLabel()); // Empty space
+
+        add(new JLabel());
         buttonUploadImage = new JButton("Upload Image");
         buttonUploadImage.addActionListener(new ActionListener() {
             @Override
@@ -120,7 +126,7 @@ public class FormEmployee extends JPanel {
         textFieldImagePath = new JTextField();
         add(labelImagePath);
         add(textFieldImagePath);
-        add(new JLabel()); // Empty space
+        add(new JLabel());
 
         // Third Column
         add(new JLabel()); // Empty space
@@ -132,4 +138,3 @@ public class FormEmployee extends JPanel {
         add(new JLabel()); // Empty space
     }
 }
-

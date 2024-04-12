@@ -2,6 +2,7 @@ package org.example.view;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import java.awt.*;
 
 public class MainWindow extends JFrame {
@@ -14,8 +15,7 @@ public class MainWindow extends JFrame {
     }
 
     private void initializeUI() {
-        setTitle("Employee Management");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
 
         // Creating panels
@@ -23,18 +23,18 @@ public class MainWindow extends JFrame {
         panelCenter = new ToolBar(); // You'll need to implement your own toolbar here
         panelSouth = new JTable(); // You'll need to implement your own table here
 
-        // Adding borders and outer margins to the panels
+
         panelNorth.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createTitledBorder("Employee Form"),
-                new EmptyBorder(10, 10, 10, 10))); // Border and outer margin for panelNorth
+                new EmptyBorder(10, 10, 10, 10)));
 
         panelCenter.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createTitledBorder("Toolbar"),
-                new EmptyBorder(10, 10, 10, 10))); // Border and outer margin for panelCenter
+                new EmptyBorder(10, 50, 10, 50)));
 
         panelSouth.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createTitledBorder("Employee List"),
-                new EmptyBorder(10, 10, 10, 10))); // Border and outer margin for panelSouth
+                new EmptyBorder(10, 10, 10, 10)));
 
         // Adding panels with specified height percentages
         add(panelNorth, BorderLayout.NORTH);
@@ -54,7 +54,8 @@ public class MainWindow extends JFrame {
         setVisible(true);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
+//        UIManager.setLookAndFeel(new NimbusLookAndFeel());
         SwingUtilities.invokeLater(MainWindow::new);
     }
 }
